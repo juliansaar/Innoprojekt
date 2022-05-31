@@ -11,7 +11,7 @@ export class ZweiteFolieComponent implements OnInit {
   constructor(private router : Router) { }
 
   ngOnInit(): void {
-    window.scrollTo(0, document.body.scrollHeight);
+    
   }
 
   back=  () => {

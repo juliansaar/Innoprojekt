@@ -1,5 +1,6 @@
-import { Component, ComponentFactoryResolver, ComponentRef, ViewChild, ViewContainerRef,NgModule } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, ViewChild, ViewContainerRef, NgModule, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { VierteFolieComponent } from './Dichte/vierte-folie/vierte-folie.component';
 
 @Component({
   selector: 'app-root',
@@ -7,23 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  showFiller = false;
   title = 'data_stories_frontend';
-  @ViewChild('parent', { read: ViewContainerRef })
-  target!: ViewContainerRef;
+  @ViewChild('parent', { read: VierteFolieComponent })
+  target!: VierteFolieComponent;
   private componentRef: ComponentRef<any> | undefined;
 
 
   constructor(private router: Router) {
-   
+
   }
- // addElement(){
-   // let childComponent = this.componentFactoryResolver.resolveComponentFactory(ZweiteFolieComponent);
-   // this.componentRef = this.target.createComponent(childComponent);
- // }
-  click=  () => {
+
+  click = () => {
     this.router.navigateByUrl('dichte/2/0');
     window.scrollTo(0, document.body.scrollHeight);
-};
+  };
+  click1 = () => {
+    this.router.navigateByUrl('kaffee/2/0');
+    window.scrollTo(0, document.body.scrollHeight);
+  };
 }
 
 

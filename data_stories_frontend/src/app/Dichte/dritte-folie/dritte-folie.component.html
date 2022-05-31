@@ -1,67 +1,50 @@
-
-  <!-- Toolbar -->
-  <div class="toolbar" role="banner">
-    <img
-      width="160"
-      alt="Angular Logo"
-      src="../assets/bytefabrik_logo.png"
-    />
-      <div class="spacer"></div>
-     
-      
-  </div>
-  
-  <div class="content" role="main">
+<div class="content" role="main">
   
     <!-- Highlight Card -->
     <div class="card highlight-card card-small">
   
      
   
-      <span style="font-size: 2vw" >Data Stories: Dichte</span>
+      <span style="font-size: 2vw" >Undichtigkeit erkennen</span>
   
   
     </div>
   
     <!-- Resources -->
-  
-    <h2>Fragerunde: 2</h2>
-    <div  class="container">
-     <div>
-    <h3>Adressat zum Beantworten der Fragen:</h3> <p>Domänenexperte </p>
-  
-      <h3> Stand:</h3><p> die Bedeutung aller 5 Statuskategorien wurde geklärt </p>
-      
-      <h3>Datensatz:</h3><p> Kontinuierlicher Druck- und Leckwert, 5 verschiedene Status, diverse Labels </p>
-      
-      <h3>Zeitraum:</h3> <p>24.10 – 10.11.2021 </p>
-      
-      <h3>Messungsintervall:</h3> <p>1 Millisekunde </p>
-      
-      <h3>Einträge:</h3> <p>1.455.424 </p>
-     
-    </div>
-      <img src="../assets/boxplot.png" alt="boxplot">
-      
+    <div class="container">
+      <div>
+    <div>
+    <p class="fragen">  Anmerkung: Sieht man in den Daten, dass der Druck durch eine Konfiguration an der Maschine beeinflusst werden kann? Basierend auf welchen Feld? Wie oft ändern sich die Werte in dem Feld? [aus Folie ID: 1.05]
+    </p> <br></div>
+<div>
+    <p>Die Anpassung des Drucks kann man an den in der Tabelle dargestellten Feldern sehen. Die Werte ändern sich durchschnittlich 22 mal pro Tag.
+
+    </p> <br></div>
+<div>
+    <p class="fragen">Frage: Gibt es einen Einfluss von Druck auf den Leckwert in den Daten? [aus Folie ID: 1.0]</p> <br>
   </div>
-  <img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="500px"height="200px">
-  <div>
-      <button (click)="btnClick()" title="submit" type="submit" style="font-size: 1vw; margin:1vw">Weiter</button>
+    <div>
+      <p>Die Korrelation der Felder von -0,33 zeigt, dass es einen mittleren Einfluss von Druck auf Leckwert gibt. -> je höher der Druck, desto höher ist vermutlich auch der Leckwert (der in negativen Zahlen gemessen wird)
+
+  
+      </p> <br></div>
     </div>
+    <div  class="im">
+      <img src="../assets/configuration_label.png" alt="configuration_label">
+      <img src="../assets/cor.png" alt="correlation">
+    </div>
+    </div>
+
+  <div>
+    <button (click)='back()'title="submit" type="submit" style="font-size: 1vw; margin:1vw">Zurück</button>
+      <button (click)='go()'title="submit" type="submit" style="font-size: 1vw; margin:1vw">Weiter</button>
+    </div>
+    <div #parent> </div>
   
-    <!-- Next Steps -->
-    
-  
-    <!-- Terminal -->
-  
-  
-  
-    <!-- Links -->
-    
   
     <!-- Footer -->
     <footer>
-        <p>ID: 2.0	Datum: 19.05.2022 </p>
+        <p>ID: 2.2	Datum: 19.05.2022 </p>
     </footer>
   
     <svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
@@ -70,6 +53,7 @@
     </svg>
   
   </div>
-  
+
   <router-outlet></router-outlet>
   
+

@@ -13,13 +13,8 @@ export class ErsteFolieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    window.scrollTo(0, document.body.scrollHeight);
   }
   
- // addElement(){
-   // let childComponent = this.componentFactoryResolver.resolveComponentFactory(ZweiteFolieComponent);
-   // this.componentRef = this.target.createComponent(childComponent);
- // }
   btnClick=  () => {
     this.router.navigateByUrl('dichte/2/1');
 };

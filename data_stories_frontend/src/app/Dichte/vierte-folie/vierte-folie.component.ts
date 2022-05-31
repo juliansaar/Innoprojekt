@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,12 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./vierte-folie.component.css']
 })
 export class VierteFolieComponent implements OnInit {
-  
 
   constructor(private router: Router) {
     
    }
-  
+ 
   ngOnInit(): void {
     window.scrollTo(0, document.body.scrollHeight);
   }
@@ -22,6 +21,7 @@ export class VierteFolieComponent implements OnInit {
   };
 
   go=  () => {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('dichte/2/4');
+    
   };
 }
