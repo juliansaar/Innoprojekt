@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import html2canvas from 'html2canvas';
+import { ApiClientService } from 'src/app/service/api-client.service';
 
 @Component({
   selector: 'app-dritte-folie-k',
@@ -16,7 +18,7 @@ export class DritteFolieKComponent implements OnInit {
   currentStyles: Record<string,string> = {};
   imgUrl = "../assets/starker_ausschlag"
   
-  constructor(private router: Router) { }
+  constructor(private router: Router, private apiclient: ApiClientService) { }
 
   ngOnInit(): void {
     window.scrollTo(0, document.body.scrollHeight);
@@ -39,7 +41,12 @@ export class DritteFolieKComponent implements OnInit {
       this.counter += 1;
       this.setCurrentStyles(this.firstSituation);
       this.setImgUrl(this.counter);
-    } else this.router.navigateByUrl('kaffee/2/3');
+      let div = document.getElementById('photo');
+      html2canvas(div).then(canvas => canvas.toBlob(blob => this.apiclient.imageUploadAction(blob,`kaffee_3_${this.counter}`)));
+    } else {
+      let div = document.getElementById('photo');
+      html2canvas(div).then(canvas => canvas.toBlob(blob => this.apiclient.imageUploadAction(blob,`kaffee_3_${this.counter}`)));
+      this.router.navigateByUrl('kaffee/2/3');}
   }
  }
   back=  () => {
@@ -54,10 +61,6 @@ export class DritteFolieKComponent implements OnInit {
       }
       this.setImgUrl(this.counter);
     }
-  };
-
-  go=  () => {
-    this.router.navigateByUrl('dichte/2/3');
   };
 
   setCurrentStyles(firstSituation: boolean) {

@@ -5,13 +5,13 @@
 
 
 
-        <span style="font-size: 2vw">Nicht definierter Zustand</span>
+        <span id="headline">Nicht definierter Zustand</span>
 
 
     </div>
 
     <!-- Resources -->
-    <div class="container">
+    <div class="container" id="photo">
 
         <div>
             <div>
@@ -52,8 +52,8 @@
             
         </div>
         <div>
-            <button (click)='back()' title="submit" type="submit" style="font-size: 1vw; margin:1vw">Zurück</button>
-            <button (click)='go()' title="submit" type="submit" style="font-size: 1vw; margin:1vw">Weiter</button>
+            <button  class="navigation" (click)='back()' title="submit" type="submit">Zurück</button>
+            <button  class="navigation" (click)='go()' title="submit" type="submit">Weiter</button>
         </div>
         <div #parent> </div>
 
