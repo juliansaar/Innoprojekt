@@ -8,23 +8,15 @@ from couchdb import Server
 import couchdb
 import simplejson
 from flask_cors import CORS
-import os
-import json
 
 couch = couchdb.Server('http://admin:admin@localhost:5984/')
 db = couch['datastories']
 
 app = Flask(__name__, static_url_path='/static')
-app.config['UPLOAD_FOLDER'] = 'C:/Users/Julian/Documents/Innoprojekt'
 CORS(app)
 app.config.from_pyfile('config.py')
 # app.debug=True
 server = Server()
-
-
-
-class User(Document):
-    doc_type = 'User'
 
 
 @app.route('/fetchimg/dichte', methods=['GET'])
@@ -64,25 +56,6 @@ def fetchKaffee():
 	x = {f'kaffee_{i}' : base64.b64encode(db.get_attachment(doc_id,f'kaffee_{i}').read()) for i in range(4,6)}
 	g = xspecial | x
 	return simplejson.dumps(g)
-
-@app.route('/fetchimg/kaffee', methods=['GET'])
-def f():
-	mango = {'selector': {'datastory': 'dichte'}}
-	y= list(db.find(mango))
-	s = ''.join(str(x) for x in y)
-	counter = 0
-	doc_id = ''
-	for char in s:
-		if char == "'":
-			counter += 1
-			continue
-		match counter:
-			case 1: doc_id += char
-			case 3: break
-
-	x = {f'dichte_{i}' : base64.b64encode(db.get_attachment(doc_id,f'dichte_{i}').read()) for i in range(3,6)}
-
-	return simplejson.dumps(x)
 
 
 @app.route('/createds', methods=['POST'])
