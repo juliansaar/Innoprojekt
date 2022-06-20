@@ -1,0 +1,91 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+   10
+   11
+   12
+   13
+   14
+   15
+   16
+   17
+   18
+   19
+   20
+   21
+   22
+   23
+   24
+   25
+   26
+   27
+   28
+   29
+   30
+   31
+   32
+   33
+   34
+   35
+   36
+   37
+   38
+   39
+   40
+   41
+   42
+   43
+   44
+   45</pre></td><td><pre style="margin: 0; line-height: 125%">intersection <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">350</span>
+   
+   <span style="color: #008800; font-weight: bold">while</span> intersection <span style="color: #333333">&lt;</span> <span style="color: #007020">len</span>(df):
+       offset <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>
+       intersection_value <span style="color: #333333">=</span> (df<span style="color: #333333">.</span>x[intersection] <span style="color: #333333">+</span> df<span style="color: #333333">.</span>y[intersection] <span style="color: #333333">+</span> df<span style="color: #333333">.</span>z[intersection]) <span style="color: #333333">/</span> <span style="color: #0000DD; font-weight: bold">3</span>
+       <span style="color: #008800; font-weight: bold">if</span> (intersection_value <span style="color: #333333">&gt;</span> <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span> <span style="color: #000000; font-weight: bold">or</span> intersection_value <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">1</span>):
+           one_part <span style="color: #333333">=</span> df[intersection<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">350</span> : intersection]
+           
+           count <span style="color: #333333">=</span> (one_part[(one_part<span style="color: #333333">.</span>x <span style="color: #333333">&gt;</span> <span style="color: #0000DD; font-weight: bold">2</span>) <span style="color: #333333">|</span> (one_part<span style="color: #333333">.</span>x <span style="color: #333333">&lt;</span> <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">2</span>)]<span style="color: #333333">.</span>count()[<span style="color: #0000DD; font-weight: bold">0</span>]) <span style="color: #333333">+</span> \
+                   (one_part[(one_part<span style="color: #333333">.</span>y <span style="color: #333333">&gt;</span> <span style="color: #0000DD; font-weight: bold">2</span>) <span style="color: #333333">|</span> (one_part<span style="color: #333333">.</span>y <span style="color: #333333">&lt;</span> <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">2</span>)]<span style="color: #333333">.</span>count()[<span style="color: #0000DD; font-weight: bold">0</span>]) <span style="color: #333333">+</span> \
+                   (one_part[(one_part<span style="color: #333333">.</span>z <span style="color: #333333">&gt;</span> <span style="color: #0000DD; font-weight: bold">2</span>) <span style="color: #333333">|</span> (one_part<span style="color: #333333">.</span>z <span style="color: #333333">&lt;</span> <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">2</span>)]<span style="color: #333333">.</span>count()[<span style="color: #0000DD; font-weight: bold">0</span>])
+           
+           <span style="color: #008800; font-weight: bold">if</span> (count <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">15</span>):
+               df<span style="color: #333333">.</span>Status[intersection<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">350</span>:intersection] <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>    <span style="color: #888888"># Leerlauf</span>
+           <span style="color: #008800; font-weight: bold">elif</span> (count <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">200</span>):
+               df<span style="color: #333333">.</span>Status[intersection<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">350</span>:intersection] <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">1</span>    <span style="color: #888888"># undefiniert</span>
+           <span style="color: #008800; font-weight: bold">elif</span> (count <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">450</span>):
+               df<span style="color: #333333">.</span>Status[intersection<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">350</span>:intersection] <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">2</span>    <span style="color: #888888"># Kaffee ausgeben</span>
+           <span style="color: #008800; font-weight: bold">elif</span> (count <span style="color: #333333">&gt;=</span> <span style="color: #0000DD; font-weight: bold">450</span>):
+               df<span style="color: #333333">.</span>Status[intersection<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">350</span>:intersection] <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">3</span>    <span style="color: #888888"># Kaffee ausgeben und Wasser nachziehen</span>
+   
+           intersection <span style="color: #333333">+=</span> <span style="color: #0000DD; font-weight: bold">350</span>
+       <span style="color: #008800; font-weight: bold">else</span>:  
+           <span style="color: #008800; font-weight: bold">while</span> (intersection_value <span style="color: #333333">&lt;=</span> <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span> <span style="color: #000000; font-weight: bold">or</span> intersection_value <span style="color: #333333">&gt;=</span> <span style="color: #0000DD; font-weight: bold">1</span>):
+               offset <span style="color: #333333">+=</span> <span style="color: #0000DD; font-weight: bold">60</span> 
+               intersection_value <span style="color: #333333">=</span> (df<span style="color: #333333">.</span>x[intersection<span style="color: #333333">+</span>offset] <span style="color: #333333">+</span> df<span style="color: #333333">.</span>y[intersection<span style="color: #333333">+</span>offset] <span style="color: #333333">+</span> df<span style="color: #333333">.</span>z[intersection<span style="color: #333333">+</span>offset]) <span style="color: #333333">/</span> <span style="color: #0000DD; font-weight: bold">3</span> 
+               <span style="color: #008800; font-weight: bold">if</span> (intersection_value <span style="color: #333333">&gt;</span> <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span> <span style="color: #000000; font-weight: bold">or</span> intersection_value <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">1</span>):
+                   
+                       
+                   one_part <span style="color: #333333">=</span> df[intersection<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">350</span>:intersection<span style="color: #333333">+</span>offset]
+                   <span style="color: #888888">#hier muss noch beachtet werden, dass die Länge des Abschnitts größer ist. Dadurch gibt es auch mehr Ausschläge.</span>
+                   count <span style="color: #333333">=</span> (one_part[(one_part<span style="color: #333333">.</span>x <span style="color: #333333">&gt;</span> <span style="color: #0000DD; font-weight: bold">2</span>) <span style="color: #333333">|</span> (one_part<span style="color: #333333">.</span>x <span style="color: #333333">&lt;</span> <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">2</span>)]<span style="color: #333333">.</span>count()[<span style="color: #0000DD; font-weight: bold">0</span>]) <span style="color: #333333">+</span> \
+                           (one_part[(one_part<span style="color: #333333">.</span>y <span style="color: #333333">&gt;</span> <span style="color: #0000DD; font-weight: bold">2</span>) <span style="color: #333333">|</span> (one_part<span style="color: #333333">.</span>y <span style="color: #333333">&lt;</span> <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">2</span>)]<span style="color: #333333">.</span>count()[<span style="color: #0000DD; font-weight: bold">0</span>]) <span style="color: #333333">+</span> \
+                           (one_part[(one_part<span style="color: #333333">.</span>z <span style="color: #333333">&gt;</span> <span style="color: #0000DD; font-weight: bold">2</span>) <span style="color: #333333">|</span> (one_part<span style="color: #333333">.</span>z <span style="color: #333333">&lt;</span> <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">2</span>)]<span style="color: #333333">.</span>count()[<span style="color: #0000DD; font-weight: bold">0</span>])
+                   
+                   <span style="color: #008800; font-weight: bold">if</span> (count <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">15</span>):
+                       df<span style="color: #333333">.</span>Status[intersection<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">350</span>:intersection] <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>    <span style="color: #888888"># Leerlauf</span>
+                   <span style="color: #008800; font-weight: bold">elif</span> (count <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">200</span>):
+                       df<span style="color: #333333">.</span>Status[intersection<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">350</span>:intersection] <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">1</span>    <span style="color: #888888"># undefiniert</span>
+                   <span style="color: #008800; font-weight: bold">elif</span> (count <span style="color: #333333">&lt;</span> <span style="color: #0000DD; font-weight: bold">450</span>):
+                       df<span style="color: #333333">.</span>Status[intersection<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">350</span>:intersection] <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">2</span>    <span style="color: #888888"># Kaffee ausgeben</span>
+                   <span style="color: #008800; font-weight: bold">elif</span> (count <span style="color: #333333">&gt;=</span> <span style="color: #0000DD; font-weight: bold">450</span>):
+                       df<span style="color: #333333">.</span>Status[intersection<span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">350</span>:intersection] <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">3</span>    <span style="color: #888888"># Kaffee ausgeben und Wasser nachziehen</span>
+   
+                   intersection <span style="color: #333333">+=</span> <span style="color: #0000DD; font-weight: bold">350</span> <span style="color: #333333">+</span> offset
+   </pre></td></tr></table></div>
+   
