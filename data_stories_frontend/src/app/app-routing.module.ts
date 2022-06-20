@@ -13,6 +13,9 @@ import { FuenfteFolieKComponent } from './Kaffee/fuenfte-folie-k/fuenfte-folie-k
 import { SuccessComponent } from './core/components/success/success.component';
 import { FuenfteFolieComponent } from './Dichte/fuenfte-folie/fuenfte-folie.component';
 import { AlteDsComponent } from './Kaffee/alte-ds/alte-ds.component';
+import { DatastorycreatorComponent } from './datastorycreator/datastorycreator.component';
+import { AbgeschlosseneDsComponent } from './abgeschlossene-ds/abgeschlossene-ds.component';
+import { KaffeeComponent } from './abgeschlossene-ds/kaffee/kaffee.component';
 
 const routes: Routes = [
   { path: 'dichte/2/0', component: ErsteFolieComponent },
@@ -29,6 +32,9 @@ const routes: Routes = [
   { path: 'kaffee/2/5', component: FuenfteFolieKComponent },
 
   { path: 'success', component: SuccessComponent },
+  { path: 'datastorycreator', component: DatastorycreatorComponent },
+  { path: 'abgeschlossen/dichte', component: AbgeschlosseneDsComponent},
+  { path: 'abgeschlossen/kaffee', component: KaffeeComponent}
 ];
 
 @NgModule({

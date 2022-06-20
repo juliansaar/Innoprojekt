@@ -1,0 +1,26 @@
+<div class="content" role="main">
+  
+    <!-- Highlight Card -->
+    <div class="card highlight-card card-small">
+  
+     
+  
+      <span id="headline">Editor für neue Data Stories</span>
+    
+    </div>
+  
+    <!-- Resources -->
+    <div>
+      <form>
+        <input placeholder="Name der Data Story" title="name" type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+        <input placeholder="Länge der Data Story" title="number" type="number" [(ngModel)]="length" [ngModelOptions]="{standalone: true}">
+        <button (click)="click()" title="submit" type="submit" >Erstellen</button>
+      </form>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+    </footer>
+  </div>
+
+

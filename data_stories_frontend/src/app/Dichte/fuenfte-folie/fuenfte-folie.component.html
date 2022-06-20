@@ -5,13 +5,13 @@
 
 
 
-        <span style="font-size: 2vw">Außergewöhnlich hohe Leckwerte</span>
+        <span id="headline">Außergewöhnlich hohe Leckwerte</span>
 
 
     </div>
 
     <!-- Resources -->
-    <div class="container">
+    <div class="container" id="photo">
 
         <div>
             <div>
@@ -42,8 +42,8 @@
             
         </div>
         <div>
-            <button (click)='back()' title="submit" type="submit" style="font-size: 1vw; margin:1vw">Zurück</button>
-            <button (click)='go()' title="submit" type="submit" style="font-size: 1vw; margin:1vw">Data Story beenden und
+            <button  class="navigation" (click)='back()' title="submit" type="submit">Zurück</button>
+            <button  class="navigation" (click)='go()' title="submit" type="submit">Data Story beenden und
                 abschicken</button>
         </div>
         <div #parent> </div>

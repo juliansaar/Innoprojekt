@@ -13,13 +13,13 @@
 
 
 
-        <span style="font-size: 2vw">Kalibrierung</span>
+        <span id="headline">Kalibrierung</span>
 
 
     </div>
 
     <!-- Resources -->
-    <div class="container">
+    <div class="container" id="photo">
         <div>
     <div>
         <p> Erkanntes Merkmal: 
@@ -39,8 +39,8 @@
     </div>
 </div>
     <div>
-        <button (click)='back()' title="submit" type="submit" style="font-size: 1vw; margin:1vw">Zurück</button>
-        <button (click)='go()' title="submit" type="submit" style="font-size: 1vw; margin:1vw">Data Story beenden und abschicken</button>
+        <button  class="navigation" (click)='back()' title="submit" type="submit">Zurück</button>
+        <button  class="navigation" (click)='go()' title="submit" type="submit">Data Story beenden und abschicken</button>
     </div>
     <div #parent> </div>
 

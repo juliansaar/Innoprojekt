@@ -1,11 +1,11 @@
 <div class="content" role="main">
   <!-- Highlight Card -->
   <div class="card highlight-card card-small">
-    <span style="font-size: 2vw">Undichtigkeit erkennen</span>
+    <span id="headline">Undichtigkeit erkennen</span>
   </div>
 
   <!-- Resources -->
-  <div class="container">
+  <div class="container" id="photoiv">
     <div>
   <div>
     <p id="fragen"> Frage: Wie könnte man dies frühzeitig erkennen?
@@ -30,8 +30,8 @@
   </div>
 </div>
   <div>
-    <button (click)='back()' title="submit" type="submit" style="font-size: 1vw; margin:1vw">Zurück</button>
-    <button (click)='go()' title="submit" type="submit" style="font-size: 1vw; margin:1vw">Weiter</button>
+    <button  class="navigation" (click)='back()' title="submit" type="submit">Zurück</button>
+    <button  class="navigation" (click)='go()' title="submit" type="submit">Weiter</button>
   </div>
   <div #parent> </div>
 

@@ -1,3 +1,6 @@
+<script src=
+"https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js">
+  </script>
 <div class="content" role="main">
   
     <!-- Highlight Card -->
@@ -5,13 +8,13 @@
   
      
   
-      <span style="font-size: 2vw" >Undichtigkeit erkennen</span>
+      <span id="headline">Undichtigkeit erkennen</span>
   
   
     </div>
   
     <!-- Resources -->
-    <div class="container">
+    <div class="container" id="photo">
       <div>
     <div>
     <p class="fragen">  Anmerkung: Sieht man in den Daten, dass der Druck durch eine Konfiguration an der Maschine beeinflusst werden kann? Basierend auf welchen Feld? Wie oft ändern sich die Werte in dem Feld? [aus Folie ID: 1.05]
@@ -36,9 +39,10 @@
     </div>
 
   <div>
-    <button (click)='back()'title="submit" type="submit" style="font-size: 1vw; margin:1vw">Zurück</button>
-      <button (click)='go()'title="submit" type="submit" style="font-size: 1vw; margin:1vw">Weiter</button>
+    <button class="navigation" (click)='back()'title="submit" type="submit">Zurück</button>
+      <button class="navigation" (click)='go()'title="submit" type="submit">Weiter</button>
     </div>
+    <div id="output"></div>
     <div #parent> </div>
   
   

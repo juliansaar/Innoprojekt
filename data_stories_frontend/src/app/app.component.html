@@ -4,6 +4,10 @@
     <p id="pad">Verfügbare Data Stories</p>
     <button class="dstories" (click)='click();drawer.toggle()'>Dichte</button>
     <button class="dstories"(click)='click1(); drawer.toggle()'>Kaffee</button>
+
+    <p id="pad">Abgeschlossene Data Stories</p>
+    <button class="dstories" (click)='click2();drawer.toggle()'>Dichte</button>
+    <button class="dstories"(click)='click3(); drawer.toggle()'>Kaffee</button>
   </mat-drawer>
 
   <!-- Toolbar -->
@@ -14,23 +18,11 @@
       <button type="button" id="mb" mat-button (click)="drawer.toggle()">
         Wähle Data Story
       </button>
+      <button type="button" id="createds" (click)='click4()'>
+        Erstelle Data Story
+      </button>
     </div>
     </div>
   </div>
-
-
-  <div class="content" role="main">
-   
-  
-    <router-outlet></router-outlet>
-
-    <footer>
-
-    </footer>
-
-  
-
-  </div>
-
   <router-outlet></router-outlet>
 </mat-drawer-container>

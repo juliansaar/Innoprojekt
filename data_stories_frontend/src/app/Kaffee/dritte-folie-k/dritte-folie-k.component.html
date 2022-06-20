@@ -5,13 +5,13 @@
       
      
       
-      <span  style="font-size: 2vw" >{{headline}}</span>
+      <span id="headline">{{headline}}</span>
   
     
     </div>
   
     <!-- Resources -->
-    <div  class="container">
+    <div  class="container" id="photo">
         <div>
        <h3>Erkannte Situation:</h3> <p> In dem angegebenen Ausschnitt scheint zuerst ein Kaffee ausgegeben und anschließend Wasser nachgezogen worden zu sein. </p> <br>
        <form #situationForm="ngForm" (ngSubmit)="onFormSubmit(situationForm)" novalidate>
@@ -27,7 +27,7 @@
          <br>
          <p> 2. Situation </p>
          
-         <mat-radio-group name="zweite_situation" aria-label="zweite_situation" ngModel required>
+         <mat-radio-group id="matte" name="zweite_situation" aria-label="zweite_situation" ngModel required>
           <mat-radio-button  value="3">Ja</mat-radio-button>
           <mat-radio-button value="4">Nein</mat-radio-button>
         </mat-radio-group>
@@ -35,8 +35,8 @@
           <div *ngIf="isFormSubmitted && situationForm.invalid" style="margin: 1vw; border-style: solid;border-color: red;">
             <p> Um fortfahren zu können, müssen sie alle Fragen beantworten!</p>
           </div>
-          <button (click)='back()'title="submit" type="button" style="font-size: 1vw; margin:1vw">Zurück</button>
-            <button title="submit" type="submit" style="font-size: 1vw; margin:1vw">Weiter</button>
+          <button  class="navigation" (click)='back()'title="submit" type="button">Zurück</button>
+            <button  class="navigation" title="submit" type="submit">Weiter</button>
           </div>
         </form>
        </div>
