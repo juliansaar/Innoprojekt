@@ -17,6 +17,39 @@
         <button (click)="click()" title="submit" type="submit" >Erstellen</button>
       </form>
     </div>
+    <div class="container">
+    <h2> Fragerunde:   </h2>
+    <input id="nr" placeholder="Nr." title="fragerunde" type="number" [(ngModel)]="fragerunde" [ngModelOptions]="{standalone: true}">
+  </div>
+    <div  class="container">
+     <div>
+      <div  class="container">
+    <h3>Adressat zum Beantworten der Fragen:</h3> <input title="adressat" type="text" [(ngModel)]="adressat" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div  class="container">
+      <h3> Stand:</h3><input title="stand" type="text" [(ngModel)]="stand" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div  class="container">
+      <h3>Datensatz:</h3><input title="datensatz" type="text" [(ngModel)]="datensatz" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div  class="container">
+      <h3>Zeitraum:</h3> <input title="zeitraum_von" type="date" [(ngModel)]="zeitraum_von" [ngModelOptions]="{standalone: true}">
+      <input title="zeitraum_bis" type="date" [(ngModel)]="zeitraum_bis" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div  class="container">
+      <h3>Messungsintervall:</h3> <input title="messungsintervall" type="text" [(ngModel)]="messungsintervall" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div  class="container">
+      <h3>Einträge:</h3> <input title="eintraege" type="number" [(ngModel)]="eintraege" [ngModelOptions]="{standalone: true}">
+     </div>
+    </div>
+      <img src="../assets/boxplot.png" alt="boxplot">
+      
+  </div>
+  <img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="500px"height="200px">
+  <div>
+      <button  class="navigation" (click)="click()" title="submit" type="submit">Weiter</button>
+    </div>
     
     <!-- Footer -->
     <footer>
