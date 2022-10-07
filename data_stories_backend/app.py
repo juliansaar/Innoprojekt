@@ -63,7 +63,20 @@ def register():
 	request_data = request.get_json()
 	name = request_data['datastory']
 	length = request_data['length']
-	doc = {'_id': uuid4().hex, 'datastory': name, 'length' : length}
+	adressat = request_data['adressat']
+	stand = request_data['stand']
+	datensatz = request_data['datensatz']
+	zeitraum = request_data['zeitraum']
+	messungsintervall = request_data['messungsintervall']
+	eintraege = request_data['eintraege']
+	doc = {'_id': uuid4().hex, 'datastory': name, 'length' : length,'erstefolie' :{
+		"adressat" : adressat,
+  		"stand" : stand,
+  		"datensatz" : datensatz,
+  		"zeitraum" : zeitraum,
+  		"messungsintervall" : messungsintervall,
+  		"eintraege:": eintraege
+	}}
 	db.save(doc)
 
 	return simplejson.dumps({'ok': ''})
