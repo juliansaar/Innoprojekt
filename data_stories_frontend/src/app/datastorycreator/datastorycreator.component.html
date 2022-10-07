@@ -1,59 +1,118 @@
 <div class="content" role="main">
-  
-    <!-- Highlight Card -->
-    <div class="card highlight-card card-small">
-  
-     
-  
-      <span id="headline">Editor für neue Data Stories</span>
-    
-    </div>
-  
-    <!-- Resources -->
-    <div>
-      <form>
-        <input placeholder="Name der Data Story" title="name" type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
-        <input placeholder="Länge der Data Story" title="number" type="number" [(ngModel)]="length" [ngModelOptions]="{standalone: true}">
-        <button (click)="click()" title="submit" type="submit" >Erstellen</button>
-      </form>
-    </div>
-    <div class="container">
-    <h2> Fragerunde:   </h2>
-    <input id="nr" placeholder="Nr." title="fragerunde" type="number" [(ngModel)]="fragerunde" [ngModelOptions]="{standalone: true}">
-  </div>
-    <div  class="container">
-     <div>
-      <div  class="container">
-    <h3>Adressat zum Beantworten der Fragen:</h3> <input title="adressat" type="text" [(ngModel)]="adressat" [ngModelOptions]="{standalone: true}">
-      </div>
-      <div  class="container">
-      <h3> Stand:</h3><input title="stand" type="text" [(ngModel)]="stand" [ngModelOptions]="{standalone: true}">
-      </div>
-      <div  class="container">
-      <h3>Datensatz:</h3><input title="datensatz" type="text" [(ngModel)]="datensatz" [ngModelOptions]="{standalone: true}">
-      </div>
-      <div  class="container">
-      <h3>Zeitraum:</h3> <input title="zeitraum_von" type="date" [(ngModel)]="zeitraum_von" [ngModelOptions]="{standalone: true}">
-      <input title="zeitraum_bis" type="date" [(ngModel)]="zeitraum_bis" [ngModelOptions]="{standalone: true}">
-      </div>
-      <div  class="container">
-      <h3>Messungsintervall:</h3> <input title="messungsintervall" type="text" [(ngModel)]="messungsintervall" [ngModelOptions]="{standalone: true}">
-      </div>
-      <div  class="container">
-      <h3>Einträge:</h3> <input title="eintraege" type="number" [(ngModel)]="eintraege" [ngModelOptions]="{standalone: true}">
-     </div>
-    </div>
-      <img src="../assets/boxplot.png" alt="boxplot">
-      
-  </div>
-  <img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="500px"height="200px">
-  <div>
-      <button  class="navigation" (click)="click()" title="submit" type="submit">Weiter</button>
-    </div>
-    
-    <!-- Footer -->
-    <footer>
-    </footer>
-  </div>
+
+  <!-- Highlight Card -->
+  <div class="card highlight-card card-small">
 
 
+
+    <span id="headline">Editor für neue Data Stories</span>
+
+  </div>
+
+  <!-- Resources -->
+
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="First"><div id="1">
+      <div>
+        <form>
+          <input placeholder="Name der Data Story" title="name" type="text" [(ngModel)]="name"
+            [ngModelOptions]="{standalone: true}">
+          <input placeholder="Länge der Data Story" title="number" type="number" [(ngModel)]="length"
+            [ngModelOptions]="{standalone: true}">
+          <button (click)="click()" title="submit" type="submit">Erstellen</button>
+        </form>
+      </div>
+      <div class="container">
+        <h2> Fragerunde: </h2>
+        <input id="nr" placeholder="Nr." title="fragerunde" type="number" [(ngModel)]="fragerunde"
+          [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="container">
+        <div>
+          <div class="container">
+            <h3>Adressat zum Beantworten der Fragen:</h3> <input title="adressat" type="text" [(ngModel)]="adressat"
+              [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="container">
+            <h3> Stand:</h3><input title="stand" type="text" [(ngModel)]="stand" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="container">
+            <h3>Datensatz:</h3><input title="datensatz" type="text" [(ngModel)]="datensatz"
+              [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="container">
+            <h3>Zeitraum:</h3> <input title="zeitraum_von" type="date" [(ngModel)]="zeitraum_von"
+              [ngModelOptions]="{standalone: true}">
+            <input title="zeitraum_bis" type="date" [(ngModel)]="zeitraum_bis" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="container">
+            <h3>Messungsintervall:</h3> <input title="messungsintervall" type="text" [(ngModel)]="messungsintervall"
+              [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="container">
+            <h3>Einträge:</h3> <input title="eintraege" type="number" [(ngModel)]="eintraege"
+              [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="wrap">
+          <div class="img">
+            <img src="../assets/boxplot.png" alt="boxplot">
+          </div>
+          <div class="text-center">
+            <div id="t1">
+              <input class="form-control" type="file" (change)="onChange1($event)">
+              <button (click)="onUpload()" class="btn btn-success">
+                Upload
+              </button>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+      <div class="wrap1">
+        <div class="img"><img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="500px" height="200px">
+        </div>
+        <div class="text-center1">
+          <input class="form-control" type="file" (change)="onChange1($event)">
+          <button (click)="onUpload()" class="btn btn-success">
+            Upload
+          </button>
+        </div>
+        <div></div>
+        <button class="navigation" (click)="go()" title="submit" type="submit">Weiter</button>
+      </div>
+    </div></mat-tab>
+
+
+<mat-tab label="Second">
+  <div class="wrap2">
+    <div class="img">
+      <img src="../assets/spaltenübersicht.png" alt="boxplot">
+    </div>
+    <div class="text-center2">
+      <div id="t1">
+        <input class="form-control" type="file" (change)="onChange1($event)">
+        <button (click)="onUpload()" class="btn btn-success">
+          Upload
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-tab>
+
+
+<mat-tab label="Third">Wähle eins der Designs
+
+  <div id="f">
+
+  
+  <form-builder [form]="form" (change)="onChange($event)"></form-builder>
+</div>
+
+
+</mat-tab>
+</mat-tab-group> 
+  <!-- Footer -->
+  <footer>
+  </footer>
+</div>

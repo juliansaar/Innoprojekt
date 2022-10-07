@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ApiClientService } from '../service/api-client.service';
 @Component({
   selector: 'app-datastorycreator',
@@ -16,12 +16,29 @@ export class DatastorycreatorComponent implements OnInit {
   zeitraum_bis: Date;
   messungsintervall: string;
   eintraege: number;
+  file: File = null; // Variable to store file
   constructor(private apiclient: ApiClientService) { }
 
   ngOnInit(): void {
+   
+  }
+  @ViewChild('json') jsonElement?: ElementRef;
+  public form: Object = {components: []};
+  onChange(event) {
+    console.log(event.form);
   }
 
+  go(){
+
+  }
+  
   click(){
     this.apiclient.createDataStory(this.name, this.length, this.fragerunde, this.adressat,this.stand,this.datensatz,this.zeitraum_bis,this.zeitraum_von,this.messungsintervall,this.eintraege);
+  }
+  onChange1(event){
+    this.file = event.target.files[0];
+  }
+  onUpload(){
+    this.apiclient.imageUploadAction(this.file,'name')
   }
 }
