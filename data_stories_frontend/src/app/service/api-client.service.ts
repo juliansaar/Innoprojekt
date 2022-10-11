@@ -29,8 +29,8 @@ export class ApiClientService {
 getImagesKaffee(){
   return this.http.get<any>('http://localhost:5000/fetchimg/kaffee');
 }
-  createDataStory(name: string,length: number){
-    var body = {datastory : name, length : length}
+  createDataStory(name: string,length: number,fragerunde: number,adressat: string,stand: string,datensatz: string,zeitraum_von: Date,zeitraum_bis: Date,messungsintervall: string,einträge: number){
+    var body = {datastory : name, length : length,fragerunde : fragerunde,adressat: adressat,stand: stand, datensatz : datensatz,zeitraum_von: zeitraum_von, zeitraum_bis: zeitraum_bis,messungsintervall: messungsintervall,einträge: einträge}
     this.http.post<any>('http://localhost:5000/createds',body).subscribe(data => {
       name
     })

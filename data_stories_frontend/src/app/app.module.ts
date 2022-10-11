@@ -23,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatastorycreatorComponent } from './datastorycreator/datastorycreator.component';
 import { AbgeschlosseneDsComponent } from './abgeschlossene-ds/abgeschlossene-ds.component';
 import { KaffeeComponent } from './abgeschlossene-ds/kaffee/kaffee.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { FormioModule } from '@formio/angular';
 
 
 
@@ -53,6 +55,8 @@ import { KaffeeComponent } from './abgeschlossene-ds/kaffee/kaffee.component';
     MatSidenavModule,
     CoreModule,
     HttpClientModule,
+    MatTabsModule,
+    FormioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

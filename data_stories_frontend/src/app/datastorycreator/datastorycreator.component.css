@@ -16,7 +16,69 @@
   h6 {
     margin: 8px 0;
   }
-  
+  .wrap{
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    width: 38vw;
+    height:48vh;
+  }
+  .img{
+    opacity: 0.2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+  }
+  .text-center{
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    opacity:1;
+    width: 38vw;
+    height:47vh;
+  }
+  .wrap1{
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    width:35vw;height:20vh;
+  }
+  .text-center1{
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    opacity:1;
+    width:35vw;height:"200px";
+  }
+  #f{
+    width: 50vw;
+    height: 40vh;
+  }
+  .text-center2{
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    opacity:1;
+    width:80vw;height:50vh;
+  }
+  .wrap2{
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    width:80vw;height:50vh;
+  }
+
+  #nr{
+    margin-left: 1vw;
+  }
   button{
     margin: 1vw;
     
