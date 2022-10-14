@@ -1,5 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {FormControl} from '@angular/forms';
 import { ApiClientService } from '../service/api-client.service';
+
+
 @Component({
   selector: 'app-datastorycreator',
   templateUrl: './datastorycreator.component.html',
@@ -17,11 +20,28 @@ export class DatastorycreatorComponent implements OnInit {
   messungsintervall: string;
   eintraege: number;
   file: File = null; // Variable to store file
+  showTemplate: number = 0;
   constructor(private apiclient: ApiClientService) { }
 
   ngOnInit(): void {
    
   }
+  tabs = ['First', 'Second', 'Third'];
+  tab: any= 'test';
+  selected = new FormControl(0);
+
+  addTab() {
+    this.tabs.push('New');
+    this.selected.setValue(this.tabs.length - 1);
+  }
+
+  removeTab(index: number) {
+    this.tabs.splice(index, 1);
+  }
+  @ViewChild(TemplateRef)
+  labelContent: TemplateRef<any>;
+  
+  //FormBuilder
   @ViewChild('json') jsonElement?: ElementRef;
   public form: Object = {components: []};
   onChange(event) {
@@ -29,7 +49,7 @@ export class DatastorycreatorComponent implements OnInit {
   }
 
   go(){
-
+    console.log(this.stand)
   }
   
   click(){
@@ -40,5 +60,8 @@ export class DatastorycreatorComponent implements OnInit {
   }
   onUpload(){
     this.apiclient.imageUploadAction(this.file,'name')
+  }
+  showFirstTemplate(){
+    this.showTemplate = 1
   }
 }

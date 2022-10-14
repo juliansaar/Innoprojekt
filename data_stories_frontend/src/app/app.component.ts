@@ -42,6 +42,9 @@ click3 = () => {
   click4 = () => {
     this.router.navigateByUrl('datastorycreator');
   };
+  click5 = () => {
+    this.router.navigateByUrl('dataexplorer');
+  };
 }
 
 
