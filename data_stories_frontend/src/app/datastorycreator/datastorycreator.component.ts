@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ApiClientService } from '../service/api-client.service';
+
 @Component({
   selector: 'app-datastorycreator',
   templateUrl: './datastorycreator.component.html',
@@ -22,6 +23,11 @@ export class DatastorycreatorComponent implements OnInit {
   ngOnInit(): void {
    
   }
+
+  @ViewChild(TemplateRef)
+  labelContent: TemplateRef<any>;
+  
+  //FormBuilder
   @ViewChild('json') jsonElement?: ElementRef;
   public form: Object = {components: []};
   onChange(event) {
@@ -29,7 +35,7 @@ export class DatastorycreatorComponent implements OnInit {
   }
 
   go(){
-
+    console.log(this.stand)
   }
   
   click(){

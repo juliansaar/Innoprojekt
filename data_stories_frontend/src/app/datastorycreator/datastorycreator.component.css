@@ -56,6 +56,12 @@
     opacity:1;
     width:35vw;height:"200px";
   }
+  label{
+    
+  }
+  input{
+    
+  }
   #f{
     width: 50vw;
     height: 40vh;
@@ -67,13 +73,13 @@
     align-items: center;
     position: relative;
     opacity:1;
-    width:80vw;height:50vh;
+    width:50vw;height:53vh;
   }
   .wrap2{
     overflow: hidden;
     display: flex;
     position: relative;
-    width:80vw;height:50vh;
+    width:50vw;height:54vh;
   }
 
   #nr{

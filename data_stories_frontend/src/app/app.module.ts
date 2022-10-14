@@ -25,6 +25,7 @@ import { AbgeschlosseneDsComponent } from './abgeschlossene-ds/abgeschlossene-ds
 import { KaffeeComponent } from './abgeschlossene-ds/kaffee/kaffee.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormioModule } from '@formio/angular';
+import { DataexplorerComponent } from './dataexplorer/dataexplorer.component';
 
 
 
@@ -45,6 +46,7 @@ import { FormioModule } from '@formio/angular';
     DatastorycreatorComponent,
     AbgeschlosseneDsComponent,
     KaffeeComponent,
+    DataexplorerComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { FormioModule } from '@formio/angular';
     CoreModule,
     HttpClientModule,
     MatTabsModule,
-    FormioModule
+    FormioModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

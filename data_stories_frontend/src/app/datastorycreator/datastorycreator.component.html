@@ -10,7 +10,7 @@
   </div>
 
   <!-- Resources -->
-
+  <ng-template><ng-content></ng-content></ng-template>  
   <mat-tab-group mat-align-tabs="start">
     <mat-tab label="First"><div id="1">
       <div>
@@ -28,32 +28,32 @@
           [ngModelOptions]="{standalone: true}">
       </div>
       <div class="container">
-        <div>
-          <div class="container">
-            <h3>Adressat zum Beantworten der Fragen:</h3> <input title="adressat" type="text" [(ngModel)]="adressat"
+          <form>
+             <!--<label for="name">Adressat zum Beantworten der Fragen: </label>-->
+             <h3>Adressat zum Beantworten der Fragen: </h3>
+            <input id="adressat" title="adressat" type="text" [(ngModel)]="adressat" placeholder="Bsp: Domänenexperte"
               [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="container">
-            <h3> Stand:</h3><input title="stand" type="text" [(ngModel)]="stand" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="container">
-            <h3>Datensatz:</h3><input title="datensatz" type="text" [(ngModel)]="datensatz"
+          
+              <h3>Stand: </h3>
+            <!--<label for="stand">Stand: </label>-->
+            <input id="stand"title="stand" type="text" [(ngModel)]="stand" placeholder="die Bedeutung aller 5 Statuskategorien wurde geklärt" [ngModelOptions]="{standalone: true}">
+          
+          
+            <h3>Datensatz:</h3><input title="datensatz" type="text" [(ngModel)]="datensatz" placeholder="Kontinuierlicher Druck- und Leckwert, 5 verschiedene Status, diverse Labels"
               [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="container">
-            <h3>Zeitraum:</h3> <input title="zeitraum_von" type="date" [(ngModel)]="zeitraum_von"
+          
+          
+            <h3>Zeitraum:</h3> <input title="zeitraum_von" type="date" [(ngModel)]="zeitraum_von" 
               [ngModelOptions]="{standalone: true}">
             <input title="zeitraum_bis" type="date" [(ngModel)]="zeitraum_bis" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="container">
-            <h3>Messungsintervall:</h3> <input title="messungsintervall" type="text" [(ngModel)]="messungsintervall"
+        
+            <h3>Messungsintervall:</h3> <input title="messungsintervall" type="text" [(ngModel)]="messungsintervall" placeholder="1 Millisekunde"
               [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="container">
-            <h3>Einträge:</h3> <input title="eintraege" type="number" [(ngModel)]="eintraege"
+       
+          
+            <h3>Einträge:</h3> <input title="eintraege" type="number" [(ngModel)]="eintraege" placeholder="1.455.424"
               [ngModelOptions]="{standalone: true}">
-          </div>
-        </div>
+          </form>
         <div class="wrap">
           <div class="img">
             <img src="../assets/boxplot.png" alt="boxplot">
@@ -78,7 +78,10 @@
             Upload
           </button>
         </div>
-        <div></div>
+        <div>
+
+        </div>
+      
         <button class="navigation" (click)="go()" title="submit" type="submit">Weiter</button>
       </div>
     </div></mat-tab>
@@ -104,11 +107,26 @@
 <mat-tab label="Third">Wähle eins der Designs
 
   <div id="f">
-
   
   <form-builder [form]="form" (change)="onChange($event)"></form-builder>
 </div>
 
+<mat-tab label="Fourth" disabled="True">
+  
+  <h2>Wähle eins der Designs</h2>
+
+</mat-tab>
+<mat-tab label="Fifth"> <h2>Wähle eins der Designs</h2>
+
+</mat-tab>
+<mat-tab label="Sixt"> <h2>Wähle eins der Designs</h2>
+
+</mat-tab>
+<mat-tab label="Seventh"> <h2>Wähle eins der Designs</h2>
+</mat-tab>
+<mat-tab label="Eigth"> <h2>Wähle eins der Designs</h2>
+
+</mat-tab>
 
 </mat-tab>
 </mat-tab-group> 
