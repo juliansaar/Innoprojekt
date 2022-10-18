@@ -75,6 +75,10 @@
     transform: scale(1.3); /* (130% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     cursor: pointer;
   }
+  #nameds{
+    text-align: center;
+    margin: 1vw;
+  }
   label{
     
   }
