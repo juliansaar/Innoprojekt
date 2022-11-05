@@ -1,0 +1,33 @@
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    border-top: 1px solid #f3f2ee;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 20px;
+  }
+
+.text{
+    padding: 20px 0px 10px 0px;
+    margin: 5px;
+   
+}
+
+.text1{
+    padding: 20px 20px 10px 0px;
+    margin: 5px;
+}
+
+.text :hover, .text1 :hover{
+    color:#62e497;
+}
+
+.text a, .text1 a{
+    color: #6b6b84;
+    text-decoration: none;
+}

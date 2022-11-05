@@ -1,35 +1,3 @@
-<mat-drawer-container class="example-container" autosize>
-
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p id="pad">Verfügbare Data Stories</p>
-    <button class="dstories" (click)='click();drawer.toggle()'>Dichte</button>
-    <button class="dstories"(click)='click1(); drawer.toggle()'>Kaffee</button>
-
-    <p id="pad">Abgeschlossene Data Stories</p>
-    <button class="dstories" (click)='click2();drawer.toggle()'>Dichte</button>
-    <button class="dstories"(click)='click3(); drawer.toggle()'>Kaffee</button>
-
-    <button type="button" id="anomaly" (click)='click4()'>
-      Finde Anomalie
-    </button>
-    <button type="button" id="datenexplorer" (click)='click5()'>
-      Datenexplorer
-    </button>
-  </mat-drawer>
-
-  <!-- Toolbar -->
-  <div class="toolbar" role="banner">
-    <img width="160" id="img1" alt="bytefabrik_logo" src="../assets/bytefabrik_logo.png" />
-    <div class="spacer">
-    <div class="example-sidenav-content">
-      <button type="button" id="mb" mat-button (click)="drawer.toggle()">
-        Wähle Data Story
-      </button>
-      <button type="button" id="createds" (click)='click4()'>
-        Erstelle Data Story
-      </button>
-    </div>
-    </div>
-  </div>
-  <router-outlet></router-outlet>
-</mat-drawer-container>
+<app-header></app-header>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
