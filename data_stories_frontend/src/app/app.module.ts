@@ -5,7 +5,7 @@ import { ZweiteFolieComponent } from './Dichte/zweite-folie/zweite-folie.compone
 import { ErsteFolieComponent } from './Dichte/erste-folie/erste-folie.component';
 import { DritteFolieComponent } from './Dichte/dritte-folie/dritte-folie.component';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatSidenavModule } from '@angular/material/sidenav'; 
+
 import { FormsModule, NgModel } from '@angular/forms';
 import { VierteFolieComponent } from './Dichte/vierte-folie/vierte-folie.component';
 import { ErsteFolieKComponent } from './Kaffee/erste-folie-k/erste-folie-k.component';
@@ -58,8 +58,8 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule,
     MatRadioModule,
     FormsModule,
-    MatSidenavModule,
-    CoreModule,
+ 
+   
     HttpClientModule,
     MatTabsModule,
     FormioModule,
