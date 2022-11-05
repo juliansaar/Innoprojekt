@@ -6,8 +6,10 @@ from flaskext.couchdb import Document
 from flaskext.couchdb import CouchDBManager
 from couchdb import Server
 import couchdb
+import json
 import simplejson
 from flask_cors import CORS
+
 
 couch = couchdb.Server('http://admin:admin@localhost:5984/')
 db = couch['datastories']
@@ -58,25 +60,67 @@ def fetchKaffee():
 	return simplejson.dumps(g)
 
 
+@app.route('/fetchds', methods=['GET'])
+def fetchAll():
+	rows = db.view('_all_docs', include_docs=True)
+	
+	print(type(rows.rows.index('')))
+	return simplejson.dumps(rows.rows[2:])
+
 @app.route('/createds', methods=['POST'])
 def register():
 	request_data = request.get_json()
 	name = request_data['datastory']
-	length = request_data['length']
+	foilnumber = request_data['foilnumber']
 	adressat = request_data['adressat']
 	stand = request_data['stand']
-	datensatz = request_data['datensatz']
-	zeitraum = request_data['zeitraum']
+	try:
+		datensatz = request_data['datensatz']
+	except KeyError:
+		datensatz = ''
+	zeitraum_von = request_data['zeitraum_von']
+	zeitraum_bis = request_data['zeitraum_bis']
 	messungsintervall = request_data['messungsintervall']
 	eintraege = request_data['eintraege']
-	doc = {'_id': uuid4().hex, 'datastory': name, 'length' : length,'erstefolie' :{
+	jsonForm= request_data['jsonForm']
+
+	mango = {'selector': {'datastory': name}}
+	y= list(db.find(mango))
+	s = ''.join(str(x) for x in y)
+	counter = 0
+	doc_id = ''
+	for char in s:
+		if char == "'":
+			counter += 1
+			continue
+		match counter:
+			case 1: doc_id += char
+			case 3: break
+	print(doc_id)
+	if doc_id != '':
+		doc = db.get(doc_id)
+		doc[f'content_foilnumber_{foilnumber}'] = {
 		"adressat" : adressat,
   		"stand" : stand,
   		"datensatz" : datensatz,
-  		"zeitraum" : zeitraum,
+  		"zeitraum_von" : zeitraum_von,
+		"zeitraum_bis" : zeitraum_bis,
   		"messungsintervall" : messungsintervall,
-  		"eintraege:": eintraege
-	}}
+  		"eintraege:": eintraege,
+		"jsonForm" : jsonForm
+		}
+	else: doc = {'_id': uuid4().hex, 'datastory': name, f'content_foilnumber_{foilnumber}' :{
+		"adressat" : adressat,
+  		"stand" : stand,
+  		"datensatz" : datensatz,
+  		"zeitraum_von" : zeitraum_von,
+		"zeitraum_bis" : zeitraum_bis,
+  		"messungsintervall" : messungsintervall,
+  		"eintraege:": eintraege,
+		"jsonForm" : jsonForm
+		}}
+
+	
 	db.save(doc)
 
 	return simplejson.dumps({'ok': ''})

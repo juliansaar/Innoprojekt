@@ -1,6 +1,6 @@
-<div class="content" role="main">
+<div role="main" [ngClass]="showTemplate != 4 ? 'content' : 'container1'" >
 
-  <!-- Highlight Card -->
+  <!-- Highlight Card showTemplate != 4 ? 'content': 'noc'" showTemplate != 4 ? 'container': 'noc'-->
   <div class="card highlight-card card-small">
 
 
@@ -10,7 +10,7 @@
   </div>
 
   <!-- Resources -->
-  <div class="container">
+  <div [ngClass]="{'container' : showTemplate != 4}">
 
 
     <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
@@ -119,13 +119,17 @@
         <div id="f" *ngIf="showTemplate == 4">
 
           <form-builder [form]="form" (change)="onChange($event)"></form-builder>
+          <h3 class="text-center text-muted">As JSON Schema</h3>
+<div>
+  <pre id="json"><code class="language-json" #json></code></pre>
+</div>
         </div>
         <ng-container *ngIf="showTemplate != 0">
         <button class="btn btn-info" (click)="showTemplate = 0">
           Zurück zur Design Auswahl
         </button>
         
-        <button class="btn btn-success" (click)="go()" title="submit" type="submit">Weiter</button>
+        <button class="btn btn-success" (click)="saveAndGo(tab)" title="submit" type="submit">Speichern & Weiter</button>
       </ng-container><button class="btn btn-danger" [disabled]="tabs.length === 1"
           (click)="removeTab(index)">
           Folie löschen

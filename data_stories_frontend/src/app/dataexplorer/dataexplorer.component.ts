@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ApiClientService } from '../service/api-client.service';
 
 @Component({
   selector: 'app-dataexplorer',
@@ -6,14 +7,18 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./dataexplorer.component.css']
 })
 export class DataexplorerComponent implements OnInit {
+  jsonRaw: Object;
 
-  constructor() { }
+  constructor(private apiClient: ApiClientService) {
+   }
 
   ngOnInit(): void {
-  }
-  @ViewChild('json') jsonElement?: ElementRef;
-  public form: Object = {components: []};
-  onChange(event) {
-    console.log(event.form);
+    this.apiClient.getAll().subscribe((data: any) => this.jsonRaw = {
+       ...data
+    });
+    this.jsonRaw = this.jsonRaw[0]
+    }
+  show(){
+    return this.jsonRaw.toString()
   }
 }

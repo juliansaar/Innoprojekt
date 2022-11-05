@@ -18,9 +18,9 @@ export class ApiClientService {
   postId : number;
   constructor(private http: HttpClient) { }
 
-  getKudos() {
+  getAll() {
     //return this.perform('get', '/kudos');
-    return this.http.get('http://localhost:5000/kudos')
+    return this.http.get<any>('http://localhost:5000/fetchds')
   }
   
   getImagesDichte(){
@@ -29,8 +29,8 @@ export class ApiClientService {
 getImagesKaffee(){
   return this.http.get<any>('http://localhost:5000/fetchimg/kaffee');
 }
-  createDataStory(name: string,length: number,fragerunde: number,adressat: string,stand: string,datensatz: string,zeitraum_von: Date,zeitraum_bis: Date,messungsintervall: string,einträge: number){
-    var body = {datastory : name, length : length,fragerunde : fragerunde,adressat: adressat,stand: stand, datensatz : datensatz,zeitraum_von: zeitraum_von, zeitraum_bis: zeitraum_bis,messungsintervall: messungsintervall,einträge: einträge}
+  createDataStory(name: string,foilnumber: number,fragerunde: number,adressat: string,stand: string,datensatz: string,zeitraum_von: Date,zeitraum_bis: Date,messungsintervall: string,einträge: number,jsonForm: string){
+    var body = {datastory : name, foilnumber:foilnumber,fragerunde : fragerunde,adressat: adressat,stand: stand, datensatz : datensatz,zeitraum_von: zeitraum_von, zeitraum_bis: zeitraum_bis,messungsintervall: messungsintervall,eintraege: einträge,jsonForm: jsonForm}
     this.http.post<any>('http://localhost:5000/createds',body).subscribe(data => {
       name
     })
