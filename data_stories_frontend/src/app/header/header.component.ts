@@ -8,7 +8,7 @@ import { ApiClientService } from '../service/api-client.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  datastorynames : string[]
+  datastorynames : string[] = []
   constructor(private router: Router,private apiClient: ApiClientService) { }
 
   ngOnInit(): void {
