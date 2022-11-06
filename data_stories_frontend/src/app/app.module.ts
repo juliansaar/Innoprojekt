@@ -26,6 +26,7 @@ import { KaffeeComponent } from './abgeschlossene-ds/kaffee/kaffee.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormioModule } from '@formio/angular';
 import { DataexplorerComponent } from './dataexplorer/dataexplorer.component';
+import { DisplaydatastoryComponent } from './displaydatastory/displaydatastory.component';
 
 
 
@@ -47,6 +48,7 @@ import { DataexplorerComponent } from './dataexplorer/dataexplorer.component';
     AbgeschlosseneDsComponent,
     KaffeeComponent,
     DataexplorerComponent,
+    DisplaydatastoryComponent,
   ],
   imports: [
     BrowserModule,

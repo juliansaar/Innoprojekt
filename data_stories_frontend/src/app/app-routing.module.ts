@@ -17,6 +17,7 @@ import { DatastorycreatorComponent } from './datastorycreator/datastorycreator.c
 import { AbgeschlosseneDsComponent } from './abgeschlossene-ds/abgeschlossene-ds.component';
 import { KaffeeComponent } from './abgeschlossene-ds/kaffee/kaffee.component';
 import { DataexplorerComponent } from './dataexplorer/dataexplorer.component';
+import { DisplaydatastoryComponent } from './displaydatastory/displaydatastory.component';
 
 const routes: Routes = [
   { path: 'dichte/2/0', component: ErsteFolieComponent },
@@ -36,7 +37,8 @@ const routes: Routes = [
   { path: 'datastorycreator', component: DatastorycreatorComponent },
   { path: 'abgeschlossen/dichte', component: AbgeschlosseneDsComponent},
   { path: 'abgeschlossen/kaffee', component: KaffeeComponent},
-  { path: 'dataexplorer', component: DataexplorerComponent}
+  { path: 'dataexplorer', component: DataexplorerComponent},
+  { path: 'displaydatastory/:datastoryname', component: DisplaydatastoryComponent }
 ];
 
 @NgModule({

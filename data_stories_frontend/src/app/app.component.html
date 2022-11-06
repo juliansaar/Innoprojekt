@@ -4,6 +4,8 @@
     <p id="pad">Verfügbare Data Stories</p>
     <button class="dstories" (click)='click();drawer.toggle()'>Dichte</button>
     <button class="dstories"(click)='click1(); drawer.toggle()'>Kaffee</button>
+    <button class="dstories" *ngFor="let datastoryname of datastorynames; let index=index" (click)='navigateToDatastory(datastoryname)'
+     >{{datastoryname}}</button>
 
     <p id="pad">Abgeschlossene Data Stories</p>
     <button class="dstories" (click)='click2();drawer.toggle()'>Dichte</button>
@@ -17,7 +19,7 @@
     </button>
   </mat-drawer>
 
-  <!-- Toolbar -->
+  <!-- Toolbar [routerLink]="['/displaydatastory', datastoryname]" -->
   <div class="toolbar" role="banner">
     <img width="160" id="img1" alt="bytefabrik_logo" src="../assets/bytefabrik_logo.png" />
     <div class="spacer">

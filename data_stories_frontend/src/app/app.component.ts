@@ -16,11 +16,24 @@ export class AppComponent {
   private componentRef: ComponentRef<any> | undefined;
   config: Config | undefined;
   error: any;
+  datastorynames = [];
   constructor(private router: Router,private apiClient: ApiClientService) {
     
   }
   ngOnInit(){
-
+  //   this.apiClient.getDatastoryNames1().subscribe(response => {
+  //     this.datastorynames = ..response;
+  //  });
+ 
+  this.apiClient.getDatastoryNames().subscribe(data => {
+    for (let key in data){
+      if (data.hasOwnProperty(key))
+      this.datastorynames.push(data[key]);
+    }
+});
+  }
+  navigateToDatastory(datastoryname: string){
+    this.router.navigate(['/displaydatastory', datastoryname]);
   }
   click = () => {
     this.router.navigateByUrl('dichte/2/0');

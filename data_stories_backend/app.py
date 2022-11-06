@@ -67,6 +67,28 @@ def fetchAll():
 	print(type(rows.rows.index('')))
 	return simplejson.dumps(rows.rows[2:])
 
+@app.route('/fetchNames', methods=['GET'])
+def fetchNames():
+	names = []
+	for item in db.view('_design/d1/_view/new-view'):
+		names.append(item.key)
+	
+	return simplejson.dumps(names)	
+
+@app.route('/fetchDatastory', methods=['POST'])
+def fetchDatastory():
+	request_data = request.get_json()
+	name = request_data['datastory']
+	items = []
+	#_all_docs
+	mango = {'selector': {'datastory': name}}
+	y= list(db.find(mango))
+	# for item in db.view('_all_docs',datastory=name):
+	# #for item in db.view('_design/d1/_view/new-view',key=name):
+	# 	items.append([item.key,item.value])
+	print(y)	
+	return simplejson.dumps(y)	
+
 @app.route('/createds', methods=['POST'])
 def register():
 	request_data = request.get_json()
