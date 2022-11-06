@@ -1,0 +1,53 @@
+.pre-header{
+    height: 40px;
+    background-color: #62e497;
+ 
+}
+
+.navbar{
+    background-color: white !important;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.nav-item a{
+    /*color:  !important;*/
+    color: #312a52;
+}
+
+#offcanvasNavbarLabel{
+    color: #312a52;
+}
+
+.dropdown-menu{
+    --bs-dropdown-border-color: white;
+}
+
+.content{
+    margin-top: 100px;
+}
+
+.container{
+    max-width: 100%;
+    padding: 0px;
+}
+
+.offcanvas {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #6b6b84;
+}
+
+#offcanvasNavbarLabel{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: #6b6b84;
+}
+
+.offcanvas-header{
+    padding-bottom: 0px;
+}
+
+

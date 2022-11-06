@@ -1,20 +1,34 @@
-<div class="content" role="main">
+<div class="content">
+    <h3>Kaffee-Datensatz</h3>
+    <p class="text">Deine schon erstellten Data-Stories zum Kaffee-Datensatz kannst du hier sehen:</p>
+        <div class="content-white ">
+            
+            <!--<div class="container">-->
+                <img src="../assets/titelfolie_kaffee.png" alt="titelfolie">
+                <img src="../assets/spaltenübersicht_kaffee.png" alt="spaltenübersicht">
+                 
+             <div *ngFor="let item of items" id="kaf">
+                    <p>Test</p>
+                    <img alt="alte ds" src="{{'data:image/png;base64,' + item}}">
+            </div>   
+            
+             <!--</div>-->
+        </div>
+</div>
+
+
+
+
+ <!-- <div class="content" role="main">
   
-    <!-- Highlight Card -->
+   
     <div class="card highlight-card card-small">
         <span id="headline">Abgeschlossene Data Stories: Kaffee</span>
     </div>
 
-<div class="container">
-    <img src="../assets/titelfolie_kaffee.png" alt="titelfolie">
-    <img src="../assets/spaltenübersicht_kaffee.png" alt="spaltenübersicht">
-     <div *ngFor="let item of items" id="kaf">
-    <img alt="alte ds" src="{{'data:image/png;base64,' + item}}">
-
-</div>
-
-</div>
+    Hier war Container
  
     <footer>
     </footer>
 </div>
+-->

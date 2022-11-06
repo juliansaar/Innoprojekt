@@ -1,14 +1,14 @@
 
-  :host {
+ /* :host {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
     color: #333;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+  }*/
   
-  h1,
+  /*h1,
   h2,
   h3,
   h4,
@@ -21,9 +21,11 @@
     margin: 1vw;
     
   }
-  .container { align-items: center; }
+  .container { 
+    align-items: center; 
+  }*/
   
-  .content {
+ /* .content {
     display: flex;
     margin: 82px auto 32px;
     padding: 0 16px;
@@ -50,8 +52,8 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 16px;
-  }
-  
+  }*/
+  /*
   .card {
     all: unset;
     border-radius: 4px;
@@ -112,7 +114,7 @@
     line-height: 20px;
   }
   
-  /* Responsive Styles */
+   Responsive Styles 
   @media screen and (max-width: 767px) {
     .card-container > *:not(.circle-link) ,
     .terminal {
@@ -129,6 +131,41 @@
     }
   
    
-  }
+  }*/
   
   
+.content-white{  
+  margin: 10px auto;
+  background-color: white;
+  padding: 20px 20px 20px 20px;  
+  display: flex;
+  flex-direction: column; 
+  gap: 10px;
+}
+
+.content{
+  margin: 40px auto;
+  width: 90%;
+  padding: 10px 10px 10px 10px;
+}
+
+h3{
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  color: #312a52 !important;
+}
+
+.text{
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  color: #6b6b84 !important;
+}
+
+img[alt="spaltenübersicht"] {
+  max-width: 100%;
+}
+
+img[alt="titelfolie"] {
+  max-width: 100%;
+}

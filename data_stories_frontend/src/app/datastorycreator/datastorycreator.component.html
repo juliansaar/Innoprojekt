@@ -1,148 +1,144 @@
-<div role="main" [ngClass]="showTemplate != 4 ? 'content' : 'container1'" >
-
-  <!-- Highlight Card showTemplate != 4 ? 'content': 'noc'" showTemplate != 4 ? 'container': 'noc'-->
-  <div class="card highlight-card card-small">
-
-
-
-    <span id="headline">Editor für neue Data Stories</span>
-
-  </div>
-
-  <!-- Resources -->
-  <div [ngClass]="{'container' : showTemplate != 4}">
+<div class="content1">
+  <h3>Editor</h3>
+  <p class="text">Stelle deine individuelle Data Story mithilfe unseres Editors zusammen.</p>
+      <div class="content-white ">
+          <div role="main" [ngClass]="showTemplate != 4 ? 'content' : 'container1'" >
 
 
-    <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-      <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
-        <ng-container *ngIf="showTemplate == 0"><span>
-            <h2>Wähle ein Design</h2>
-          </span></ng-container>
+        <!-- Resources -->
+        <div [ngClass]="{'container' : showTemplate != 4}">
 
-        <div class="imgs" *ngIf="showTemplate == 0">
 
-          <div></div>
-          <img class="i" src="../assets/basic_infos.PNG" alt="basic_infos" (click)="showTemplate = 1">
-          <a><img class="i" src="../assets/vollbild.PNG" alt="vollbild" (click)="showTemplate = 2"></a>
+          <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+            <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+              <ng-container *ngIf="showTemplate == 0"><span>
+                  <h2>Wähle ein Design</h2>
+                </span></ng-container>
 
-        </div>
-        <div class="imgs" *ngIf="showTemplate == 0">
+              <div class="imgs" *ngIf="showTemplate == 0">
 
-          <img class="i" src="../assets/boxplot.png" alt="basic_infos" (click)="showTemplate = 3">
-          <img class="i" src="../assets/custom_design.PNG" alt="custom_design" (click)="showTemplate = 4">
-        </div>
+                <div></div>
+                <img class="i" src="../assets/basic_infos.PNG" alt="basic_infos" (click)="showTemplate = 1">
+                <a><img class="i" src="../assets/vollbild.PNG" alt="vollbild" (click)="showTemplate = 2"></a>
 
-        <div id="1" *ngIf="showTemplate == 1">
-          <div>
-            <form>
-              <div id="nameds">
-                <input placeholder="Name der Data Story" id="name" title="name" type="text" [(ngModel)]="name"
-                  [ngModelOptions]="{standalone: true}">
               </div>
-              <!--  <button (click)="click()" title="submit" type="submit">Erstellen</button>-->
-            </form>
-          </div>
-          <div class="container">
-            <form>
-              <h2>Fragerunde: </h2>
-              <input id="nr" placeholder="Nr." title="fragerunde" type="number" [(ngModel)]="fragerunde"
-                [ngModelOptions]="{standalone: true}">
+              <div class="imgs" *ngIf="showTemplate == 0">
 
-              <h3>Adressat zum Beantworten der Fragen: </h3>
-              <input id="adressat" title="adressat" type="text" [(ngModel)]="adressat" placeholder="Bsp: Domänenexperte"
-                [ngModelOptions]="{standalone: true}">
-
-              <h3>Stand: </h3>
-              <input id="stand" title="stand" type="text" [(ngModel)]="stand"
-                placeholder="die Bedeutung aller 5 Statuskategorien wurde geklärt"
-                [ngModelOptions]="{standalone: true}">
-
-
-              <h3>Datensatz:</h3><input title="datensatz" type="text" [(ngModel)]="datensatz"
-                placeholder="Kontinuierlicher Druck- und Leckwert, 5 verschiedene Status, diverse Labels"
-                [ngModelOptions]="{standalone: true}">
-
-
-              <h3>Zeitraum:</h3> <input title="zeitraum_von" type="date" [(ngModel)]="zeitraum_von"
-                [ngModelOptions]="{standalone: true}">
-              <input title="zeitraum_bis" type="date" [(ngModel)]="zeitraum_bis" [ngModelOptions]="{standalone: true}">
-
-              <h3>Messungsintervall:</h3> <input title="messungsintervall" type="text" [(ngModel)]="messungsintervall"
-                placeholder="1 Millisekunde" [ngModelOptions]="{standalone: true}">
-
-
-              <h3>Einträge:</h3> <input title="eintraege" type="number" [(ngModel)]="eintraege" placeholder="1.455.424"
-                [ngModelOptions]="{standalone: true}">
-            </form>
-            <div class="wrap">
-              <div class="img">
-                <img src="../assets/boxplot.png" alt="boxplot">
+                <img class="i" src="../assets/boxplot.png" alt="basic_infos" (click)="showTemplate = 3">
+                <img class="i" src="../assets/custom_design.PNG" alt="custom_design" (click)="showTemplate = 4">
               </div>
-              <div class="text-center">
-                <div id="t1">
-                  <input class="form-control" type="file" (change)="onChange1($event)">
-                  <button (click)="onUpload()" class="btn btn-success">
-                    Upload
-                  </button>
+
+              <div id="1" *ngIf="showTemplate == 1">
+                <div>
+                  <form>
+                    <div id="nameds">
+                      <input placeholder="Name der Data Story" id="name" title="name" type="text" [(ngModel)]="name"
+                        [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <!--  <button (click)="click()" title="submit" type="submit">Erstellen</button>-->
+                  </form>
+                </div>
+                <div class="container">
+                  <form>
+                    <h2>Fragerunde: </h2>
+                    <input id="nr" placeholder="Nr." title="fragerunde" type="number" [(ngModel)]="fragerunde"
+                      [ngModelOptions]="{standalone: true}">
+
+                    <h3>Adressat zum Beantworten der Fragen: </h3>
+                    <input id="adressat" title="adressat" type="text" [(ngModel)]="adressat" placeholder="Bsp: Domänenexperte"
+                      [ngModelOptions]="{standalone: true}">
+
+                    <h3>Stand: </h3>
+                    <input id="stand" title="stand" type="text" [(ngModel)]="stand"
+                      placeholder="die Bedeutung aller 5 Statuskategorien wurde geklärt"
+                      [ngModelOptions]="{standalone: true}">
+
+
+                    <h3>Datensatz:</h3><input title="datensatz" type="text" [(ngModel)]="datensatz"
+                      placeholder="Kontinuierlicher Druck- und Leckwert, 5 verschiedene Status, diverse Labels"
+                      [ngModelOptions]="{standalone: true}">
+
+
+                    <h3>Zeitraum:</h3> <input title="zeitraum_von" type="date" [(ngModel)]="zeitraum_von"
+                      [ngModelOptions]="{standalone: true}">
+                    <input title="zeitraum_bis" type="date" [(ngModel)]="zeitraum_bis" [ngModelOptions]="{standalone: true}">
+
+                    <h3>Messungsintervall:</h3> <input title="messungsintervall" type="text" [(ngModel)]="messungsintervall"
+                      placeholder="1 Millisekunde" [ngModelOptions]="{standalone: true}">
+
+
+                    <h3>Einträge:</h3> <input title="eintraege" type="number" [(ngModel)]="eintraege" placeholder="1.455.424"
+                      [ngModelOptions]="{standalone: true}">
+                  </form>
+                  <div class="wrap">
+                    <div class="img">
+                      <img src="../assets/boxplot.png" alt="boxplot">
+                    </div>
+                    <div class="text-center">
+                      <div id="t1">
+                        <input class="form-control" type="file" (change)="onChange1($event)">
+                        <button (click)="onUpload()" class="btn btn-success">
+                          Upload
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="wrap1">
+                  <div class="img"><img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="500px"
+                      height="200px">
+                  </div>
+                  <div class="text-center1">
+                    <input class="form-control" type="file" (change)="onChange1($event)">
+                    <button (click)="onUpload()" class="btn btn-success">
+                      Upload
+                    </button>
+                  </div>
+                  <div>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div class="wrap2" *ngIf="showTemplate == 2">
+                <div class="img">
+                  <img src="../assets/spaltenübersicht.png" alt="boxplot">
+                </div>
+                <div class="text-center2">
+                  <div id="t1">
+                    <input class="form-control" type="file" (change)="onChange1($event)">
+                    <button (click)="onUpload()" class="btn btn-success">
+                      Upload
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div id="f" *ngIf="showTemplate == 4">
 
-          </div>
-          <div class="wrap1">
-            <div class="img"><img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="500px"
-                height="200px">
-            </div>
-            <div class="text-center1">
-              <input class="form-control" type="file" (change)="onChange1($event)">
-              <button (click)="onUpload()" class="btn btn-success">
-                Upload
+                <form-builder [form]="form" (change)="onChange($event)"></form-builder>
+                <h3 class="text-center text-muted">As JSON Schema</h3>
+      <div>
+        <pre id="json"><code class="language-json" #json></code></pre>
+      </div>
+              </div>
+              <ng-container *ngIf="showTemplate != 0">
+              <button class="btn btn-info" (click)="showTemplate = 0">
+                Zurück zur Design Auswahl
               </button>
-            </div>
-            <div>
-            </div>
+              
+              <button class="btn btn-success" (click)="saveAndGo(tab)" title="submit" type="submit">Speichern & Weiter</button>
+            </ng-container><button class="btn btn-danger" [disabled]="tabs.length === 1"
+                (click)="removeTab(index)">
+                Folie löschen
+              </button>
+            </mat-tab>
+          </mat-tab-group>
+          <div>
+            <button class="btn btn-secondary" (click)="addTab()">
+              Neue Folie
+            </button>
           </div>
         </div>
-        <div class="wrap2" *ngIf="showTemplate == 2">
-          <div class="img">
-            <img src="../assets/spaltenübersicht.png" alt="boxplot">
-          </div>
-          <div class="text-center2">
-            <div id="t1">
-              <input class="form-control" type="file" (change)="onChange1($event)">
-              <button (click)="onUpload()" class="btn btn-success">
-                Upload
-              </button>
-            </div>
-          </div>
-        </div>
-        <div id="f" *ngIf="showTemplate == 4">
-
-          <form-builder [form]="form" (change)="onChange($event)"></form-builder>
-          <h3 class="text-center text-muted">As JSON Schema</h3>
-<div>
-  <pre id="json"><code class="language-json" #json></code></pre>
+ 
 </div>
-        </div>
-        <ng-container *ngIf="showTemplate != 0">
-        <button class="btn btn-info" (click)="showTemplate = 0">
-          Zurück zur Design Auswahl
-        </button>
-        
-        <button class="btn btn-success" (click)="saveAndGo(tab)" title="submit" type="submit">Speichern & Weiter</button>
-      </ng-container><button class="btn btn-danger" [disabled]="tabs.length === 1"
-          (click)="removeTab(index)">
-          Folie löschen
-        </button>
-      </mat-tab>
-    </mat-tab-group>
-    <div>
-      <button class="btn btn-secondary" (click)="addTab()">
-        Neue Folie
-      </button>
-    </div>
-  </div>
-  <!-- Footer -->
-  <footer>
-  </footer>
+         
 </div>

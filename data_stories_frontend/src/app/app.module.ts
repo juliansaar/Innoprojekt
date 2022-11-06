@@ -5,7 +5,7 @@ import { ZweiteFolieComponent } from './Dichte/zweite-folie/zweite-folie.compone
 import { ErsteFolieComponent } from './Dichte/erste-folie/erste-folie.component';
 import { DritteFolieComponent } from './Dichte/dritte-folie/dritte-folie.component';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatSidenavModule } from '@angular/material/sidenav'; 
+
 import { FormsModule, NgModel } from '@angular/forms';
 import { VierteFolieComponent } from './Dichte/vierte-folie/vierte-folie.component';
 import { ErsteFolieKComponent } from './Kaffee/erste-folie-k/erste-folie-k.component';
@@ -27,6 +27,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FormioModule } from '@formio/angular';
 import { DataexplorerComponent } from './dataexplorer/dataexplorer.component';
 import { DisplaydatastoryComponent } from './displaydatastory/displaydatastory.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -49,6 +51,8 @@ import { DisplaydatastoryComponent } from './displaydatastory/displaydatastory.c
     KaffeeComponent,
     DataexplorerComponent,
     DisplaydatastoryComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,8 +60,8 @@ import { DisplaydatastoryComponent } from './displaydatastory/displaydatastory.c
     AppRoutingModule,
     MatRadioModule,
     FormsModule,
-    MatSidenavModule,
-    CoreModule,
+ 
+   
     HttpClientModule,
     MatTabsModule,
     FormioModule,
