@@ -1,1 +1,7 @@
-<p *ngFor="let item of items">{{item}}</p>
+<h2>{{datastory}}</h2>
+<p>{{foilnumber}}</p>
+<button (click)="click()"></button>
+<ng-container *ngIf="isFormBuilder">
+    <p>{{test}} </p>
+    <formio [form]="form"></formio>
+</ng-container>

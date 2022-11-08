@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { tap, catchError, Observable, throwError } from 'rxjs';
+import { Datastorymodel } from '../displaydatastory/datastorymodel';
 
-export interface Config {
-  url: string;
-}
 
 
 @Injectable({
@@ -15,13 +13,13 @@ export class ApiClientService {
   postResponse: any;
   successResponse: any;
   uploadedImage: Blob;
-  postId: number;
+
   constructor(private http: HttpClient) { }
 
   getAll() {
-    //return this.perform('get', '/kudos');
     return this.http.get<any>('http://localhost:5000/fetchds')
-  }
+  } 
+  
   getDatastory(name: string){
     var body = {datastory: name}
     console.log('Sent request with name:' + name)
@@ -43,9 +41,7 @@ export class ApiClientService {
     this.http.post<any>('http://localhost:5000/createds', body).subscribe(data => {
       name
     })
-    //this.http.post<any>('http://localhost:5000/createds', { title: 'Angular POST Request Example' }).subscribe(data => {
-    //  this.postId = data.id;
-    //})
+  
   }
 
   imageUploadAction(uploadedImage: Blob, filename: string): void {
@@ -64,27 +60,4 @@ export class ApiClientService {
       );
 
   }
-
-
-  async perform(method, resource, data = {}) {
-
-    const url = `http://localhost:5000${resource}`;
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.http.get<Config>(url, httpOptions)
-      .pipe(
-        tap(console.log),
-        catchError(this.handleError)
-      );
-
-  }
-  handleError(error: HttpErrorResponse): Observable<never> {
-    console.log(error);
-    return throwError(() => `Error Code: ${error.status}`);
-  }
 }
-

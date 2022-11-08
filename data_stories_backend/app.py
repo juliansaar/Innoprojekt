@@ -80,14 +80,24 @@ def fetchDatastory():
 	request_data = request.get_json()
 	name = request_data['datastory']
 	items = []
-	#_all_docs
+
 	mango = {'selector': {'datastory': name}}
 	y= list(db.find(mango))
 	# for item in db.view('_all_docs',datastory=name):
 	# #for item in db.view('_design/d1/_view/new-view',key=name):
 	# 	items.append([item.key,item.value])
-	print(y)	
-	return simplejson.dumps(y)	
+
+	datastory = y[0]['datastory']
+	foilnumber = y[0]['foilnumber']
+	content = y[0]['content']
+	dic = {'datastory' : y[0]['datastory'],
+		   'foilnumber' : y[0]['foilnumber'],
+		   'content' : y[0]['content']} 
+	#dict.fromkeys(['datastory,foilnumber,content'],[y[0]['datastory'],y[0]['foilnumber'],y[0]['content']])
+	#dic.keys
+	items.extend([datastory,foilnumber,content])
+	
+	return simplejson.dumps(dic)	
 
 @app.route('/createds', methods=['POST'])
 def register():
@@ -177,4 +187,8 @@ def upload_file():
   			"datastory": ds_name
 		}
 	db.put_attachment(content=file,doc=doc,filename=file.filename)
+	return simplejson.dumps({'ok': "state"})
+
+@app.route('/data', methods=['GET'])
+def fetchData():
 	return simplejson.dumps({'ok': "state"})

@@ -1,7 +1,7 @@
 import { Component, ComponentFactoryResolver, ComponentRef, ViewChild, ViewContainerRef, NgModule, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { VierteFolieComponent } from './Dichte/vierte-folie/vierte-folie.component';
-import { ApiClientService, Config } from './service/api-client.service';
+import { ApiClientService} from './service/api-client.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,6 @@ export class AppComponent {
   title = 'data_stories_frontend';
   @ViewChild('parent', { read: VierteFolieComponent })
   target!: VierteFolieComponent;
-  private componentRef: ComponentRef<any> | undefined;
-  config: Config | undefined;
   error: any;
   datastorynames = [];
   constructor(private router: Router,private apiClient: ApiClientService) {
