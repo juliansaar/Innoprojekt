@@ -6,9 +6,14 @@
 
 
     <div class="container">
-        <p>dataexplorer works!</p>
-        <p>{{jsonRaw[0] | json}}</p>
+        <form action="">
+        <input type="number" id="druck" [(ngModel)]="druck" [ngModelOptions]="{standalone: true}">
+        <input type="number" id="leck"  [(ngModel)]="leck" [ngModelOptions]="{standalone: true}">
+    <button type="submit" (click)="onClick()">Status Vorhersagen</button>
+    </form>
     </div>
+
+    <h1>{{status}}</h1>
  
     <footer>
     </footer>

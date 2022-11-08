@@ -9,6 +9,9 @@ import couchdb
 import json
 import simplejson
 from flask_cors import CORS
+from dichte import classification, lgr
+
+
 
 
 couch = couchdb.Server('http://admin:admin@localhost:5984/')
@@ -19,7 +22,7 @@ CORS(app)
 app.config.from_pyfile('config.py')
 # app.debug=True
 server = Server()
-
+scaler1, lgr1 = lgr()
 
 @app.route('/fetchimg/dichte', methods=['GET'])
 def fetchDichte():
@@ -189,6 +192,11 @@ def upload_file():
 	db.put_attachment(content=file,doc=doc,filename=file.filename)
 	return simplejson.dumps({'ok': "state"})
 
-@app.route('/data', methods=['GET'])
+@app.route('/data', methods=['POST'])
 def fetchData():
-	return simplejson.dumps({'ok': "state"})
+	request_data = request.get_json()
+	druck = request_data['druck']
+	leck = request_data['leck']
+	status = classification(druck,leck,scaler1,lgr1)
+
+	return simplejson.dumps(int(status))
