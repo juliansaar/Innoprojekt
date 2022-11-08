@@ -9,6 +9,8 @@ import couchdb
 import json
 import simplejson
 from flask_cors import CORS
+from dichte import function_name
+
 
 
 couch = couchdb.Server('http://admin:admin@localhost:5984/')
@@ -189,6 +191,10 @@ def upload_file():
 	db.put_attachment(content=file,doc=doc,filename=file.filename)
 	return simplejson.dumps({'ok': "state"})
 
-@app.route('/data', methods=['GET'])
+@app.route('/data', methods=['POST'])
 def fetchData():
+	request_data = request.get_json()
+	eingabe = request_data['eingabe']
+	function_name()
+
 	return simplejson.dumps({'ok': "state"})
