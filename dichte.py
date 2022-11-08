@@ -39,3 +39,4 @@ def classification(druck_wert, leck_wert):
     pred = lgr.predict(vals_scaled).astype('int')
 
     return pred
+    
