@@ -25,6 +25,13 @@ export class ApiClientService {
     console.log('Sent request with name:' + name)
     return this.http.post<any>('http://localhost:5000/fetchDatastory',body)
   }
+
+  getStatus(druck: number,leck: number){
+    var body = {druck: druck,leck:leck}
+    console.log('Sent request with name:' + druck + leck)
+    return this.http.post<any>('http://localhost:5000/data',body)
+  }
+
   getDatastoryNames(){
     return this.http.get<any>('http://localhost:5000/fetchNames');
   }

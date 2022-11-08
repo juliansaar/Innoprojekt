@@ -9,7 +9,8 @@ import couchdb
 import json
 import simplejson
 from flask_cors import CORS
-from dichte import function_name
+from dichte import classification, lgr
+
 
 
 
@@ -21,7 +22,7 @@ CORS(app)
 app.config.from_pyfile('config.py')
 # app.debug=True
 server = Server()
-
+scaler1, lgr1 = lgr()
 
 @app.route('/fetchimg/dichte', methods=['GET'])
 def fetchDichte():
@@ -194,7 +195,8 @@ def upload_file():
 @app.route('/data', methods=['POST'])
 def fetchData():
 	request_data = request.get_json()
-	eingabe = request_data['eingabe']
-	function_name()
+	druck = request_data['druck']
+	leck = request_data['leck']
+	status = classification(druck,leck,scaler1,lgr1)
 
-	return simplejson.dumps({'ok': "state"})
+	return simplejson.dumps(int(status))
