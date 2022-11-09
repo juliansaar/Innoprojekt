@@ -7,14 +7,16 @@
 
     <div class="container">
         <form action="">
+        <label for="druck">Druck</label>
         <input type="number" id="druck" [(ngModel)]="druck" [ngModelOptions]="{standalone: true}">
+        <label for="leck">Leckwert</label>
         <input type="number" id="leck"  [(ngModel)]="leck" [ngModelOptions]="{standalone: true}">
-    <button type="submit" (click)="onClick()">Status Vorhersagen</button>
+    <button type="submit" class="btn btn-info"(click)="onClick()">Status Vorhersagen</button>
     </form>
     </div>
 
-    <h1>{{status}}</h1>
- 
+    <h1 id="io" *ngIf="status == 1">Bauteil in Ordnung</h1>
+    <h1 id="nio"*ngIf="status == 4">Bauteil muss nachbearbeitet werden</h1>
     <footer>
     </footer>
 </div>
