@@ -16,7 +16,12 @@
   h6 {
     margin: 8px 0;
   }
-  
+  #io{
+    background-color:green;
+  }
+  #nio{
+    background-color: red;
+  }
   button{
     margin: 1vw;
     
@@ -33,14 +38,6 @@
   }
   
  
-  
-  footer {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 20px;
-  }
-  
    
 
   
