@@ -10,7 +10,7 @@
 
 
           <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-            <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+            <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab.toString()">
               <ng-container *ngIf="showTemplate == 0"><span>
                   <h2>Wähle ein Design</h2>
                 </span></ng-container>

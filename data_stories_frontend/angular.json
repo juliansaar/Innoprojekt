@@ -110,5 +110,8 @@
       }
     }
   },
-  "defaultProject": "data_stories_frontend"
+  "defaultProject": "data_stories_frontend",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -26,12 +26,12 @@ export class DatastorycreatorComponent implements OnInit {
   ngOnInit(): void {
    
   }
-  tabs = ['1', '2', '3'];
+  tabs = [1, 2, 3];
   selected = new FormControl(0);
 
   addTab() {
     if(this.tabs.length < 10){
-    this.tabs.push((this.tabs.length + 1).toString());
+    this.tabs.push((this.tabs.length + 1));
     this.selected.setValue(this.tabs.length - 1);}
   }
 
@@ -51,7 +51,7 @@ export class DatastorycreatorComponent implements OnInit {
     this.jsonForm = JSON.stringify(event.form, null, 4);
   }
   
-  saveAndGo(tab: string){
+  saveAndGo(tab: number){
     if (this.showTemplate == 1){
         this.apiclient.createDataStory(this.name,Number(tab), this.fragerunde, this.adressat,this.stand,this.datensatz,this.zeitraum_bis,this.zeitraum_von,this.messungsintervall,this.eintraege,null);
         this.selected.setValue(tab);
