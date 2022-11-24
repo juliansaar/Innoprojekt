@@ -23,7 +23,7 @@ CORS(app)
 app.config.from_pyfile('config.py')
 # app.debug=True
 #server = Server()
-scaler1, lgr1 = lgr()
+#scaler1, lgr1 = lgr()
 
 @app.route('/')
 def index():
