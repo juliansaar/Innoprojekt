@@ -18,7 +18,7 @@ from waitress import serve
 #couch = couchdb.Server('http://admin:admin@localhost:5984/')
 #db = couch['datastories']
 
-app = Flask(__name__, static_url_path='/static')
+app = Flask(__name__)
 CORS(app)
 app.config.from_pyfile('config.py')
 # app.debug=True
@@ -32,7 +32,7 @@ def index():
 
 if __name__ == '__main__':
    
-    serve(app, host="0.0.0.0", port=5000)
+    serve(app, host="0.0.0.0", port=os.getenv("PORT", default=5000))
 
 @app.route('/fetchimg/dichte', methods=['GET'])
 def fetchDichte():
