@@ -1,4 +1,5 @@
 import base64
+import os
 from uuid import uuid4
 from flask import Flask, request
 from couchdb import Server
@@ -23,6 +24,14 @@ app.config.from_pyfile('config.py')
 # app.debug=True
 server = Server()
 scaler1, lgr1 = lgr()
+
+@app.route('/')
+def index():
+    return simplejson.dumps({"Choo Choo": "Welcome to your Flask app 🚅"})
+
+
+if __name__ == '__main__':
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
 
 @app.route('/fetchimg/dichte', methods=['GET'])
 def fetchDichte():
