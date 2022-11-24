@@ -11,7 +11,7 @@ import json
 import simplejson
 from flask_cors import CORS
 from dichte import classification, lgr
-
+from waitress import serve
 
 
 
@@ -31,7 +31,8 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(debug=True,host="0.0.0.0:$PORT")
+   
+    serve(app, host="0.0.0.0", port=5000)
 
 @app.route('/fetchimg/dichte', methods=['GET'])
 def fetchDichte():
