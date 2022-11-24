@@ -15,14 +15,14 @@ from dichte import classification, lgr
 
 
 
-couch = couchdb.Server('http://admin:admin@localhost:5984/')
-db = couch['datastories']
+#couch = couchdb.Server('http://admin:admin@localhost:5984/')
+#db = couch['datastories']
 
 app = Flask(__name__, static_url_path='/static')
 CORS(app)
 app.config.from_pyfile('config.py')
 # app.debug=True
-server = Server()
+#server = Server()
 scaler1, lgr1 = lgr()
 
 @app.route('/')
