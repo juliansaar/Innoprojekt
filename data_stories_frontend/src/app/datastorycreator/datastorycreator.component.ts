@@ -24,7 +24,6 @@ export class DatastorycreatorComponent implements OnInit {
   constructor(private apiclient: ApiClientService) { }
 
   ngOnInit(): void {
-   
   }
   tabs = [1, 2, 3];
   selected = new FormControl(0);
@@ -53,7 +52,7 @@ export class DatastorycreatorComponent implements OnInit {
   
   saveAndGo(tab: number){
     if (this.showTemplate == 1){
-        this.apiclient.createDataStory(this.name,Number(tab), this.fragerunde, this.adressat,this.stand,this.datensatz,this.zeitraum_bis,this.zeitraum_von,this.messungsintervall,this.eintraege,null);
+        this.apiclient.createDataStory(this.name);
         this.selected.setValue(tab);
         this.showTemplate = 0;
     }
@@ -62,7 +61,7 @@ export class DatastorycreatorComponent implements OnInit {
       this.jsonForm = JSON.stringify(this.form, null, 4);
       console.log('Json:',this.jsonForm)
       console.log('tab:',tab)
-      this.apiclient.createDataStory(this.name,Number(tab),null,null,null,null,null,null,null,null,this.jsonForm);
+      this.apiclient.createDataStory(this.name);
       this.selected.setValue(tab);
       this.showTemplate = 0;
     }
@@ -72,7 +71,7 @@ export class DatastorycreatorComponent implements OnInit {
   }
   
   click(){
-    this.apiclient.createDataStory(this.name,null, this.fragerunde, this.adressat,this.stand,this.datensatz,this.zeitraum_bis,this.zeitraum_von,this.messungsintervall,this.eintraege,null);
+    this.apiclient.createDataStory(this.name);
   }
   onChange1(event){
     this.file = event.target.files[0];
@@ -82,5 +81,8 @@ export class DatastorycreatorComponent implements OnInit {
   }
   showFirstTemplate(){
     this.showTemplate = 1
+  }
+  onClick(){
+    console.log(this.name)
   }
 }

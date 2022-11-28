@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { tap, catchError, Observable, throwError } from 'rxjs';
 import { Datastorymodel } from '../displaydatastory/datastorymodel';
+import { environment } from 'src/environments/environment.prod';
 
 
 
@@ -9,18 +10,24 @@ import { Datastorymodel } from '../displaydatastory/datastorymodel';
   providedIn: 'root'
 })
 export class ApiClientService {
+  
   imgs: any;
   postResponse: any;
   successResponse: any;
   uploadedImage: Blob;
+  prodEnvironmentUrl : string;
+  
+  local: 'http://localhost:5000';
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {
+    this.prodEnvironmentUrl = environment.url;
+   }
+  
   getAll() {
     return this.http.get<any>('http://localhost:5000/fetchds')
   } 
   
-  getDatastory(name: string){
+  getDatastory(name: string) : Observable<any>{
     var body = {datastory: name}
     console.log('Sent request with name:' + name)
     return this.http.post<any>('http://localhost:5000/fetchDatastory',body)
@@ -33,9 +40,11 @@ export class ApiClientService {
   }
 
   getDatastoryNames(){
-    return this.http.get<any>('http://localhost:5000/fetchNames');
+    return this.http.get<any>('http://localhost:5000/fetchNotAnsweredDatastories');
   }
-
+  getDoneDataStories(){
+    return this.http.get<any>('http://localhost:5000/fetchDoneDatastories');
+  }
   getImagesDichte() {
     return this.http.get<any>('http://localhost:5000/fetchimg/dichte');
   }
@@ -43,19 +52,36 @@ export class ApiClientService {
   getImagesKaffee() {
     return this.http.get<any>('http://localhost:5000/fetchimg/kaffee');
   }
-  createDataStory(name: string, foilnumber: number, fragerunde: number, adressat: string, stand: string, datensatz: string, zeitraum_von: Date, zeitraum_bis: Date, messungsintervall: string, einträge: number, jsonForm: string) {
-    var body = { datastory: name, foilnumber: foilnumber, fragerunde: fragerunde, adressat: adressat, stand: stand, datensatz: datensatz, zeitraum_von: zeitraum_von, zeitraum_bis: zeitraum_bis, messungsintervall: messungsintervall, eintraege: einträge, jsonForm: jsonForm }
-    this.http.post<any>('http://localhost:5000/createds', body).subscribe(data => {
-      name
-    })
-  
+  createDataStory(body) {
+   return this.http.post<any>('http://localhost:5000/createds', body);
   }
-
+  createFoil(template: string, questions: string[],answers: string[], images: string[] ) {
+    var body = {template: template, questions: questions,answers:answers, images:images}
+    this.http.post<any>('http://localhost:5000/createfoil', body).subscribe(data => {
+      template
+    })
+  }
   imageUploadAction(uploadedImage: Blob, filename: string): void {
     const imageFormData = new FormData();
     imageFormData.append('image', uploadedImage, filename);
 
     this.http.post('http://localhost:5000/image', imageFormData, { observe: 'response' })
+      .subscribe((response) => {
+        if (response.status === 200) {
+          this.postResponse = response;
+          this.successResponse = this.postResponse.body.message;
+        } else {
+          this.successResponse = 'Image not uploaded due to some error!';
+        }
+      }
+      );
+
+  }
+  imageUploadAction2(uploadedImage: Blob, filename: string): void {
+    const imageFormData = new FormData();
+    imageFormData.append('image', uploadedImage, filename);
+
+    this.http.post('http://localhost:5000/images', imageFormData, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.postResponse = response;
