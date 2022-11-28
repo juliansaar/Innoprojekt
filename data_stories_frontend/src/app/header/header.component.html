@@ -30,6 +30,8 @@
                   <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown1">
                     <li><a class="dropdown-item" routerLink="abgeschlossen/kaffee" >Kaffee Datensatz</a></li>
                     <li><a class="dropdown-item" routerLink="abgeschlossen/dichte" >Dichte Datensatz</a></li>
+                    <li><a class="dropdown-item" *ngFor="let done_datastory of done_datastories; let index=index" (click)='navigateToDoneDatastory(done_datastory)'
+                      >{{done_datastory}}</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">

@@ -15,6 +15,7 @@ export class AppComponent {
   target!: VierteFolieComponent;
   error: any;
   datastorynames = [];
+  done_datastories = [];
   constructor(private router: Router,private apiClient: ApiClientService) {
     
   }
@@ -23,12 +24,7 @@ export class AppComponent {
   //     this.datastorynames = ..response;
   //  });
  
-  this.apiClient.getDatastoryNames().subscribe(data => {
-    for (let key in data){
-      if (data.hasOwnProperty(key))
-      this.datastorynames.push(data[key]);
-    }
-});
+
   }
   navigateToDatastory(datastoryname: string){
     this.router.navigate(['/displaydatastory', datastoryname]);

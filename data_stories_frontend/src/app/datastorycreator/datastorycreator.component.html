@@ -1,6 +1,8 @@
 <div class="content1">
   <h3>Editor</h3>
   <p class="text">Stelle deine individuelle Data Story mithilfe unseres Editors zusammen.</p>
+      <form> <input name="name" [(ngModel)]="name"><button type="submit" class="btn btn-info"(click)="onClick()">Submit</button>
+        </form>
       <div class="content-white ">
           <div role="main" [ngClass]="showTemplate != 4 ? 'content' : 'container1'" >
 
@@ -111,6 +113,9 @@
                     </button>
                   </div>
                 </div>
+              </div>
+              <div class="wrap2" *ngIf="showTemplate == 3">
+               <app-template1 [phase]=0 [datastory]="name" [foilnumber]="tab"></app-template1>
               </div>
               <div id="f" *ngIf="showTemplate == 4">
 

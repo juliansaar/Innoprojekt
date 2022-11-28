@@ -6,7 +6,7 @@ import { ErsteFolieComponent } from './Dichte/erste-folie/erste-folie.component'
 import { DritteFolieComponent } from './Dichte/dritte-folie/dritte-folie.component';
 import { MatRadioModule } from '@angular/material/radio';
 
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
 import { VierteFolieComponent } from './Dichte/vierte-folie/vierte-folie.component';
 import { ErsteFolieKComponent } from './Kaffee/erste-folie-k/erste-folie-k.component';
 import { NgModule } from '@angular/core';
@@ -29,6 +29,8 @@ import { DataexplorerComponent } from './dataexplorer/dataexplorer.component';
 import { DisplaydatastoryComponent } from './displaydatastory/displaydatastory.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { Template1Component } from './templates/template1/template1.component';
+import { DisplaydonedatastoriesComponent } from './displaydonedatastories/displaydonedatastories.component';
 
 
 
@@ -53,6 +55,8 @@ import { FooterComponent } from './footer/footer.component';
     DisplaydatastoryComponent,
     HeaderComponent,
     FooterComponent,
+    Template1Component,
+    DisplaydonedatastoriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,7 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule,
     MatRadioModule,
     FormsModule,
- 
+    ReactiveFormsModule,
    
     HttpClientModule,
     MatTabsModule,

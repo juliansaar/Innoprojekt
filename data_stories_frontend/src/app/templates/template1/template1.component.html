@@ -1,0 +1,85 @@
+<div class="content" role="main">
+    <form>
+    <!-- Highlight Card -->
+    <div>
+        <ng-container *ngIf="phase == 0; else fetchTheHeadline">
+            <span id="headline"><div><input type="text" placeholder="Überschrift" [(ngModel)]="headline" name="headline"></div></span>
+        </ng-container>
+        <ng-template #fetchTheHeadline>
+            <span id="headline">{{headline}}</span>
+        </ng-template>
+
+    </div>
+    
+    <!-- Resources -->
+    <div class="container" id="photo">
+        <div>
+            <div class="container">
+                <div>
+            <!-- Question 1 From Data Scientist -->
+            <div *ngIf="phase === 0; else fetchTheQuestion">
+                <div><textarea name="question1" [(ngModel)]="question1" aria-label="b" placeholder="Deine Frage" name="question1"></textarea></div>
+            </div>
+            <ng-template #fetchTheQuestion >
+                <p>{{question1}}</p>
+            </ng-template>
+
+            <!-- Answer 1 From Domain Expert -->
+            <div *ngIf="phase === 0"><textarea disabled placeholder="Antwortfeld des Domänenexperten"></textarea></div>
+            <div *ngIf="phase === 1"><textarea name="answer1" [(ngModel)]="answer1" aria-label="c" placeholder="Deine Antwort"></textarea></div>
+            <div *ngIf="phase === 2">{{answer1}}</div>
+
+            <!-- Question 2 From Data Scientist -->
+            <div *ngIf="phase === 0; else fetchTheQuestion1">
+                <textarea name="question2" [(ngModel)]="question2" name="question2" aria-label="e"></textarea>
+            </div>
+            <ng-template #fetchTheQuestion1>
+                <p>{{question2}}</p>
+            </ng-template>
+
+            <!-- Answer 2 From Domain Expert -->
+            <div *ngIf="phase === 0"><textarea disabled placeholder="Antwortfeld des Domänenexperten"></textarea></div>
+            <div *ngIf="phase === 1"><textarea name="answer2" [(ngModel)]="answer2" aria-label="d" placeholder="Deine Antwort"></textarea></div>
+            <div *ngIf="phase === 2">{{answer2}}</div>
+        </div>
+            <!-- Images -->
+            <!-- <div *ngIf="phase === 0; else fetchImgs">
+                <div class="wrap">
+                    <div class="img">
+                      <img src="../assets/boxplot.png" alt="boxplot">
+                    </div>
+                    <div class="text-center">
+                      <div id="t1">
+                        <input class="form-control" type="file" (change)="onChange1($event)">
+                        <button type="submit" (click)="onUpload()" class="btn btn-success">
+                          Upload
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <div class="wrap1">
+                    <div class="img"><img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="200px"
+                        height="200px">
+                    </div>
+                    <div class="text-center1">
+                      <input class="form-control" type="file" (change)="onChange1($event)">
+                      <button type="submit" (click)="onUpload()" class="btn btn-success">
+                        Upload
+                      </button>
+                    </div>
+                    <div>
+                    </div>
+                  </div>
+                
+            </div>
+            <ng-template #fetchImgs>
+            <!-- <img  alt="">
+            <img {{image2}} alt=""></ng-template> -->
+
+</div>
+    </div>
+   
+</div> <button *ngIf="phase !== 2" type="submit" (click)="onSubmit()" class="btn btn-success">Submit</button>
+</form>
+

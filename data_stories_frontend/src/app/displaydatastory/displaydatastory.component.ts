@@ -17,6 +17,7 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
   j: string;
   test: any;
   form: any;
+  component: any;
   constructor(private apiclient: ApiClientService, private route: ActivatedRoute) {   
   }
 
