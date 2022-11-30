@@ -24,7 +24,7 @@ CORS(app)
 app.config.from_pyfile('config.py')
 
 server = Server()
-scaler1, lgr1 = lgr()
+#scaler1, lgr1 = lgr()
 
 @app.route('/fetchimg/dichte', methods=['GET'])
 def fetchDichte():
@@ -96,11 +96,6 @@ def fetchDoneDatastories():
 
 @app.route('/fetchNotAnsweredDatastories', methods=['GET'])
 def fetchNames():
-	# names = []
-	# for item in db.view('_design/d1/_view/new-view'):
-	# 	names.append(item.key)
-	
-	# return simplejson.dumps(names)	
 	datastories = []
 	mango = {'selector': {"phase" : 0}}
 	y= list(db.find(mango))
@@ -117,16 +112,16 @@ def fetchDatastory():
 
 	mango = {'selector': {'datastory': name}}
 	y= list(db.find(mango))
-	# for item in db.view('_all_docs',datastory=name):
-	# #for item in db.view('_design/d1/_view/new-view',key=name):
-	# 	items.append([item.key,item.value])
+	print(y[0]['_id'])
+	print(y[0]['_id'])
+	xspecial = base64.b64encode(db.get_attachment(y[0]['_id'],y[0]['images']['filename']).read())
 	print(y)
 	datastory = y[0]['datastory']
 	content = y[0]['content']
 	dic = {'datastory' : y[0]['datastory'],
-		   'content' : y[0]['content']} 
-	#dict.fromkeys(['datastory,foilnumber,content'],[y[0]['datastory'],y[0]['foilnumber'],y[0]['content']])
-	#dic.keys
+		   'content' : y[0]['content'],
+		   'imgs' : xspecial} 
+
 	items.extend([datastory, content])
 	
 	return simplejson.dumps(dic)
@@ -174,7 +169,7 @@ def register():
 			"answers" : answers,
 			"images" : images
 		}
-		
+
 	if component == 'template2':
 		jsonForm= request_data['jsonForm']
 		specifics = {
@@ -201,13 +196,13 @@ def register():
 		rev  = doc["_rev"]
 		print(type(doc))
 	
-		#doc['content'][f'content_foilnumber_{foilnumber}'] = json.dumps(specifics)
-		doc = {'_id': doc_id, '_rev' : rev, 'datastory': name, 'phase' : phase, 'content': [{ f'content_foilnumber_{foilnumber}' :
-		json.dumps(specifics)}]
-		}
+		doc['phase'] = phase
+		print(answers,type(answers))
+		doc['content'][0]['content_foilnumber_1']['answers'] = answers
 		
-	else: doc = {'_id': uuid4().hex, 'datastory': name, 'phase' : phase, 'content': [{ f'content_foilnumber_{foilnumber}' :
-		json.dumps(specifics)}]
+	else: doc = {'_id': uuid4().hex, 'datastory': name, 'phase' : phase, 'content': [{ f'content_foilnumber_{foilnumber}' : 
+		specifics
+			}]
 		}
 	
 	db.save(doc)
@@ -217,7 +212,7 @@ def register():
 @app.route('/images', methods=['POST'])
 def upload_files():
 	try:
-		file = request.files["image"]
+		file = request.files["images"]
 		ds_name = file.filename.split('_')[0]
 		print(ds_name)
 	except:
@@ -239,11 +234,17 @@ def upload_files():
 			case 3: rev_id += char
 			case 4: break
 			
-	doc = {
-		  	"_id": doc_id,
-  			"_rev": rev_id
-		}
-	print (doc)
+	# doc = {
+	# 	  	"_id": doc_id,
+  	# 		"_rev": rev_id
+	# 	}
+	# print (doc)
+	doc = db.get(doc_id)
+	doc['images'] = {
+		"filename" : file.filename,
+		"foilnumber" : 'content_foilnumber_1'
+	}
+	db.save(doc)
 	db.put_attachment(content=file,doc=doc,filename=file.filename)
 	return simplejson.dumps({'ok': "state"})
 

@@ -13,7 +13,7 @@ export class Template1Component implements OnInit {
   headline: string
   question1: string
   question2: string
-  image1: string
+  image1: any
   file: File = null; // Variable to store file
   files: []
   image2: string
@@ -34,12 +34,14 @@ export class Template1Component implements OnInit {
   }
 
   async ngOnInit() {
+    console.log(this.phase)
     if (this.phase !== 0)
-    this.data = await this.apiclient.getDatastory(this.datastory).subscribe(response => {
-      this.datastory = response.datastory;
-      this.content = response.content;
-      this.update()
-    });
+      this.data = await this.apiclient.getDatastory(this.datastory).subscribe(response => {
+        this.datastory = response.datastory;
+        this.content = response.content;
+        this.image1 = response.imgs;
+        this.update()
+      });
 
   }
 
@@ -50,41 +52,50 @@ export class Template1Component implements OnInit {
     this.images = [this.image1, this.image2]
 
     if (this.phase === 0) {
-      this.body = { template: 'template1', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images,phase: this.phase }
+      this.body = { template: 'template1', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
+      this.postDataAndImage();
     }
     else if (this.phase === 1) {
-      this.body = { template: 'template1', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images,phase: this.phase }
+      this.body = { template: 'template1', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
+      this.apiclient.createDataStory(this.body).subscribe(resopnse => {
+        console.log(resopnse)
+      })
     }
-  
-    this.apiclient.createDataStory(this.body).subscribe(resopnse => {
-      console.log(resopnse)
-    })
-    
-    //this.images.forEach((element,index) => { ${index}
-      
-    //});
-    
+    else if (this.phase === 2) {
+    }
   }
-  
+  postDataAndImage() {
+    let promise = new Promise((resolve, reject) => {
+      this.apiclient.createDataStory(this.body).subscribe(resopnse => {
+        resolve(resopnse)
+      })
+    });
+
+    promise.then((resopnse) => {
+      console.log('Image successfully posted after getting response: ', resopnse)
+      this.apiclient.imageUploadAction2(this.file, `${this.datastory}_0`)
+    });
+  }
+
   update() {
-    
+
     this.basic_content = this.content[0].content_foilnumber_1
-    this.b = JSON.parse(this.basic_content)
-    this.headline = this.b.headline
-    this.question1 = this.b.questions[0]
-    this.question2 = this.b.questions[1]
     
-    if (this.phase == 2){
-      this.answer1 = this.b.answers[0]
-      this.answer2 = this.b.answers[1]
-     }
-    } 
-    // onChange1(event){
-    //   this.file = event.target.files[0];
-    // }
-    // onUpload(){
-    //  // this.apiclient.imageUploadAction(this.file,'name')
-    // }
+    this.headline = this.basic_content.headline
+    this.question1 = this.basic_content.questions[0]
+    this.question2 = this.basic_content.questions[1]
+
+    if (this.phase == 2) {
+      this.answer1 = this.basic_content.answers[0]
+      this.answer2 = this.basic_content.answers[1]
+    }
+  }
+  onChange1(event) {
+    this.file = event.target.files[0];
+  }
+  onUpload() {
+    this.apiclient.imageUploadAction2(this.file, `${this.datastory}_0`)
+  }
 }
 
 

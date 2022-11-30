@@ -77,9 +77,9 @@ export class ApiClientService {
       );
 
   }
-  imageUploadAction2(uploadedImage: Blob, filename: string): void {
+  imageUploadAction2(uploadedImage: any, filename: string): void {
     const imageFormData = new FormData();
-    imageFormData.append('image', uploadedImage, filename);
+    imageFormData.append('images', uploadedImage, filename);
 
     this.http.post('http://localhost:5000/images', imageFormData, { observe: 'response' })
       .subscribe((response) => {

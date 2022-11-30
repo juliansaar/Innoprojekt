@@ -43,7 +43,7 @@
             <div *ngIf="phase === 2">{{answer2}}</div>
         </div>
             <!-- Images -->
-            <!-- <div *ngIf="phase === 0; else fetchImgs">
+             <div *ngIf="phase === 0; else fetchImgs">
                 <div class="wrap">
                     <div class="img">
                       <img src="../assets/boxplot.png" alt="boxplot">
@@ -74,8 +74,8 @@
                 
             </div>
             <ng-template #fetchImgs>
-            <!-- <img  alt="">
-            <img {{image2}} alt=""></ng-template> -->
+              <img alt="alte ds" src="{{'data:image/png;base64,' + image1}}">
+            </ng-template> 
 
 </div>
     </div>
