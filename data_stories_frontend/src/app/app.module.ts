@@ -30,6 +30,7 @@ import { DisplaydatastoryComponent } from './displaydatastory/displaydatastory.c
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { Template1Component } from './templates/template1/template1.component';
+import { Template2Component } from './templates/template2/template2.component';
 import { DisplaydonedatastoriesComponent } from './displaydonedatastories/displaydonedatastories.component';
 
 
@@ -56,6 +57,7 @@ import { DisplaydonedatastoriesComponent } from './displaydonedatastories/displa
     HeaderComponent,
     FooterComponent,
     Template1Component,
+    Template2Component,
     DisplaydonedatastoriesComponent,
   ],
   imports: [

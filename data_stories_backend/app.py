@@ -37,9 +37,10 @@ def fetchDichte():
 		if char == "'":
 			counter += 1
 			continue
-		match counter:
-			case 1: doc_id += char
-			case 3: break
+		if counter == 1:
+			doc_id += char
+		elif counter == 3: 
+			break
 
 	x = {f'dichte_{i}' : base64.b64encode(db.get_attachment(doc_id,f'dichte_{i}').read()) for i in range(3,6)}
 
@@ -56,9 +57,10 @@ def fetchKaffee():
 		if char == "'":
 			counter += 1
 			continue
-		match counter:
-			case 1: doc_id += char
-			case 3: break
+		if counter == 1:
+			doc_id += char
+		elif counter == 3: 
+			break
 	xspecial = {f'kaffee_3_{i}' : base64.b64encode(db.get_attachment(doc_id,f'kaffee_3_{i}').read()) for i in range(1,4)}
 	x = {f'kaffee_{i}' : base64.b64encode(db.get_attachment(doc_id,f'kaffee_{i}').read()) for i in range(4,6)}
 	g = xspecial | x
@@ -192,9 +194,10 @@ def register():
 		if char == "'":
 			counter += 1
 			continue
-		match counter:
-			case 1: doc_id += char
-			case 3: break
+		if counter == 1:
+			doc_id += char
+		if counter == 3: 
+			break
 	
 	if doc_id != '':
 		doc = db.get(doc_id)
@@ -234,10 +237,13 @@ def upload_files():
 		if char == "'":
 			counter += 1
 			continue
-		match counter:
-			case 1: doc_id += char
-			case 3: rev_id += char
-			case 4: break
+
+		if counter == 1:
+			doc_id += char
+		elif counter == 3:
+			rev_id += char
+		elif counter == 4: 
+			break
 			
 	doc = {
 		  	"_id": doc_id,
@@ -265,10 +271,12 @@ def upload_file():
 		if char == "'":
 			counter += 1
 			continue
-		match counter:
-			case 1: doc_id += char
-			case 3: rev_id += char
-			case 4: break
+		if counter == 1:
+			doc_id += char
+		elif counter == 3:
+			rev_id += char
+		elif counter == 4: 
+			break
 			
 	doc = {
 		  	"_id": doc_id,
