@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "^14.1.0",
     "@angular/router": "^14.1.0",
     "@formio/angular": "5.4.0-rc.2",
-    "bootstrap": "^5.2.2",
+    "bootstrap": "^5.2.3",
     "bootswatch": "^4.5.3",
     "font-awesome": "^4.7.0",
     "formiojs": "^4.14.10",

@@ -102,17 +102,7 @@
                 </div>
               </div>
               <div class="wrap2" *ngIf="showTemplate == 2">
-                <div class="img">
-                  <img src="../assets/spaltenübersicht.png" alt="boxplot">
-                </div>
-                <div class="text-center2">
-                  <div id="t1">
-                    <input class="form-control" type="file" (change)="onChange1($event)">
-                    <button (click)="onUpload()" class="btn btn-success">
-                      Upload
-                    </button>
-                  </div>
-                </div>
+                <app-template2 [phase]=0 [datastory]="name" [foilnumber]="tab"></app-template2>
               </div>
               <div class="wrap2" *ngIf="showTemplate == 3">
                <app-template1 [phase]=0 [datastory]="name" [foilnumber]="tab"></app-template1>
