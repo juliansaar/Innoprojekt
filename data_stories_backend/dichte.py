@@ -15,6 +15,7 @@ def lgr():
     import warnings
 
     df = pd.read_csv("C:/Users/Julian/Documents/Simulation-Dichtprüfung/Simulation-Dichtprüfung/simulation-st5.csv", sep=';')
+    #df = pd.read_csv(r'C:\Users\pauls\OneDrive\InnoProjekt\02_Daten\Simulation-Dichteprüfung\simulation-st5.csv', sep=';')
 
     df_reduced = df[(df.status != 3) & (df.status != 0)]
 
