@@ -17,14 +17,18 @@ from waitress import serve
 prod = 'http://admin:admin@couchdb.azurewebsites.net'
 
 couch = couchdb.Server('http://admin:admin@localhost:5984/')
-db = couch['datastories']
+
+try:
+	db = couch['datastories']
+except:
+	db = couch.create('datastories')
 
 app = Flask(__name__)
 CORS(app)
 app.config.from_pyfile('config.py')
 
 server = Server()
-#scaler1, lgr1 = lgr()
+scaler1, lgr1 = lgr()
 
 @app.route('/fetchimg/dichte', methods=['GET'])
 def fetchDichte():
