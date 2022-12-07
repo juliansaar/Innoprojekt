@@ -23,10 +23,6 @@ export class ApiClientService {
     this.prodEnvironmentUrl = environment.url;
    }
   
-  getAll() {
-    return this.http.get<any>('http://localhost:5000/fetchds')
-  } 
-  
   getDatastory(name: string) : Observable<any>{
     var body = {datastory: name}
     console.log('Sent request with name:' + name)

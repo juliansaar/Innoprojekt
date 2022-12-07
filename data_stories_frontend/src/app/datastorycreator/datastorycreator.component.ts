@@ -61,7 +61,8 @@ export class DatastorycreatorComponent implements OnInit {
       this.jsonForm = JSON.stringify(this.form, null, 4);
       console.log('Json:',this.jsonForm)
       console.log('tab:',tab)
-      this.apiclient.createDataStory(this.name);
+      var body = {template: 'template2', datastory: this.name, foilnumber: tab, "jsonForm": this.jsonForm, phase: 0}
+      this.apiclient.createDataStory(body).subscribe((response) =>  { console.log(response) });
       this.selected.setValue(tab);
       this.showTemplate = 0;
     }
