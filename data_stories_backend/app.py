@@ -104,21 +104,16 @@ def register():
 		}
 		print(content_of_template)
 
-	mango = {'selector': {'datastory': name}}
-	y = list(db.find(mango))
-	try:
-		doc_id = y[0]['_id']
-	except:
-		doc_id = ''
+	doc_id = get_datastory_id(name)
 	
 	if doc_id != '':
 		doc = db.get(doc_id)
 		if component == 'template1':
 			doc['phase'] = phase
-			doc['content'][foilnumber-1]['content_foilnumber_{foilnumber}']['answers'] = content_of_template
+			doc['content'][foilnumber-1][f'content_foilnumber_{foilnumber}']['answers'] = content_of_template
 
 		if component == 'template2':
-			doc['content'][foilnumber-1]['content_foilnumber_{foilnumber}']['jsonForm'] = jsonForm
+			doc['content'][foilnumber-1][f'content_foilnumber_{foilnumber}']['jsonForm'] = jsonForm
 		
 	else: doc = {'_id': uuid4().hex, 'datastory': name, 'phase' : phase, 'content': [{ f'content_foilnumber_{foilnumber}' : 
 		content_of_template
@@ -138,24 +133,7 @@ def upload_files():
 	except:
 		print("Fehler bei request: ",file.filename)
 
-	counter = 0
-	mango = {'selector': {'datastory': ds_name}}
-	y= list(db.find(mango))
-	print(y)
-	s = ''.join(str(x) for x in y)
-	doc_id = ''
-	rev_id = ''
-	for char in s:
-		if char == "'":
-			counter += 1
-			continue
-
-		if counter == 1:
-			doc_id += char
-		elif counter == 3:
-			rev_id += char
-		elif counter == 4: 
-			break
+	doc_id = get_datastory_id(ds_name)
 			
 	doc = db.get(doc_id)
 	doc['images'] = {
@@ -176,6 +154,14 @@ def fetchData():
 
 	return simplejson.dumps(int(status))
 
+def get_datastory_id(name):
+    mango = {'selector': {'datastory': name}}
+    y = list(db.find(mango))
+    try:
+        doc_id = y[0]['_id']
+    except:
+        doc_id = ''
+    return doc_id
 
 # legacy
 @app.route('/image', methods=['POST'])
