@@ -97,12 +97,12 @@ def register():
 		content_of_template = functions.save_component1(request_data)
 
 	if component == 'template2':
-		jsonForm = request_data['jsonForm']
-		content_of_template = {
+		if phase == 1:
+			answeredform = request_data['answeredform']
+		else: content_of_template = {
 			"component" : component,
-			"jsonForm" : jsonForm
+			"jsonForm" : request_data['jsonForm']
 		}
-		print(content_of_template)
 
 	doc_id = get_datastory_id(name)
 	
@@ -113,7 +113,7 @@ def register():
 			doc['content'][foilnumber-1][f'content_foilnumber_{foilnumber}']['answers'] = content_of_template
 
 		if component == 'template2':
-			doc['content'][foilnumber-1][f'content_foilnumber_{foilnumber}']['jsonForm'] = jsonForm
+			doc['content'][foilnumber-1][f'content_foilnumber_{foilnumber}']['answeredform'] = answeredform
 		
 	else: doc = {'_id': uuid4().hex, 'datastory': name, 'phase' : phase, 'content': [{ f'content_foilnumber_{foilnumber}' : 
 		content_of_template

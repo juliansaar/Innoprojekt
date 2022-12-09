@@ -1,1 +1,7 @@
-<p>template4 works!</p>
+<ng-container *ngIf="phase == 1">
+    <formio [form]="jsonForm" (submit)="onSubmit($event)"></formio>
+</ng-container> 
+<ng-container>
+    <formio [form]="jsonForm" [submission]='{"data": {textArea: "Joe Smith", submit: true}}' [readOnly]="true"></formio>
+</ng-container>
+

@@ -41,13 +41,9 @@ export class DatastorycreatorComponent implements OnInit {
   labelContent: TemplateRef<any>;
   
   //FormBuilder
-  @ViewChild('json') jsonElement?: ElementRef;
+  //@ViewChild('json') jsonElement?: ElementRef;
   public form: Object = {components: []};
   onChange(event) {
-    console.log(event.form);
-    this.jsonElement.nativeElement.innerHTML = '';
-    this.jsonElement.nativeElement.appendChild(document.createTextNode(JSON.stringify(event.form, null, 4)));
-    this.jsonForm = JSON.stringify(event.form, null, 4);
   }
   
   saveAndGo(tab: number){
@@ -58,10 +54,7 @@ export class DatastorycreatorComponent implements OnInit {
     }
 
     if (this.showTemplate == 4){
-      this.jsonForm = JSON.stringify(this.form, null, 4);
-      console.log('Json:',this.jsonForm)
-      console.log('tab:',tab)
-      var body = {template: 'template2', datastory: this.name, foilnumber: tab, "jsonForm": this.jsonForm, phase: 0}
+      var body = {template: 'template2', datastory: this.name, foilnumber: tab, "jsonForm": this.form, phase: 0}
       this.apiclient.createDataStory(body).subscribe((response) =>  { console.log(response) });
       this.selected.setValue(tab);
       this.showTemplate = 0;
