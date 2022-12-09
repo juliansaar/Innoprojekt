@@ -48,6 +48,7 @@ export class Template2Component implements OnInit {
     this.questions = [this.question1] //, this.question2]
     this.answers = [this.answer1, this.answer2]
     //this.images = [this.image1, this.image2]
+    console.log(this.answers);
 
     if (this.phase === 0) {
       this.body = { template: 'template_paul', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, phase: this.phase }
@@ -57,7 +58,7 @@ export class Template2Component implements OnInit {
       this.body = { template: 'template_paul', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, phase: this.phase }
       this.apiclient.createDataStory(this.body).subscribe(resopnse => {
         console.log(resopnse)
-        console.log(this.answer1, this.answer2);
+        
       })
     }
     else if (this.phase === 2) {
