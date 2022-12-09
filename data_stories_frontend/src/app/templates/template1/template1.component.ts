@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ApiClientService } from 'src/app/service/api-client.service';
 @Component({
@@ -10,6 +10,7 @@ export class Template1Component implements OnInit {
   @Input() datastory: string
   @Input() foilnumber: number
   @Input() phase: number
+  
   headline: string
   question1: string
   question2: string
@@ -29,12 +30,14 @@ export class Template1Component implements OnInit {
   data = undefined;
   basic_content: any;
   b: any;
+  next: boolean;
   constructor(private apiclient: ApiClientService) {
 
   }
 
   async ngOnInit() {
-    console.log(this.phase)
+    this.next = false;
+    console.log('t1 oninit',this.phase)
     if (this.phase !== 0)
       this.data = await this.apiclient.getDatastory(this.datastory).subscribe(response => {
         this.datastory = response.datastory;
@@ -50,7 +53,7 @@ export class Template1Component implements OnInit {
     this.questions = [this.question1, this.question2]
     this.answers = [this.answer1, this.answer2]
     this.images = [this.image1, this.image2]
-    console.log(this.answers);
+    console.log('onSubmit',this.questions);
 
     if (this.phase === 0) {
       this.body = { template: 'template1', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
@@ -64,6 +67,7 @@ export class Template1Component implements OnInit {
     }
     else if (this.phase === 2) {
     }
+    this.next = true;
   }
   postDataAndImage() {
     let promise = new Promise((resolve, reject) => {
@@ -79,16 +83,13 @@ export class Template1Component implements OnInit {
   }
 
   update() {
-
-    this.basic_content = this.content[0].content_foilnumber_1
-    
-    this.headline = this.basic_content.headline
-    this.question1 = this.basic_content.questions[0]
-    this.question2 = this.basic_content.questions[1]
+    this.headline = this.content[this.foilnumber].headline
+    this.question1 = this.content[this.foilnumber].questions[0]
+    this.question2 = this.content[this.foilnumber].questions[1]
 
     if (this.phase == 2) {
-      this.answer1 = this.basic_content.answers[0]
-      this.answer2 = this.basic_content.answers[1]
+      this.answer1 = this.content[this.foilnumber].answers[0]
+      this.answer2 =  this.content[this.foilnumber].answers[1]
       console.log(this.question1, this.question2);
       console.log(this.answer1, this.answer2);
     }

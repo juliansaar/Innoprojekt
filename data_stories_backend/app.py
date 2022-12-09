@@ -94,10 +94,11 @@ def register():
 	if component == 'template1':
 		content_of_template = functions.save_component1(request_data)
 
-	if component == 'template_paul':
+	if component == 'template2':
 		content_of_template = functions.save_component2(request_data)
 
-	if component == 'template2':
+	if component == 'template4':
+		print(" in template4")
 		if phase == 1:
 			answeredform = request_data['answeredform']
 		else: content_of_template = {
@@ -109,20 +110,28 @@ def register():
 	
 	if doc_id != '':
 		doc = db.get(doc_id)
-		if component == 'template1':
+		if component == 'template1' and phase == 0:
 			doc['phase'] = phase
-			doc['content'][foilnumber-1][f'content_foilnumber_{foilnumber}']['answers'] = content_of_template
-
-		if component == 'template_paul':
+			doc['content'].append(content_of_template)
+		elif component == 'template1' and phase == 1:
 			doc['phase'] = phase
-			doc['content'][foilnumber-1][f'content_foilnumber_{foilnumber}']['answers'] = content_of_template
-
+			doc['content'][foilnumber]['answers'] = content_of_template
+			
 		if component == 'template2':
-			doc['content'][foilnumber-1][f'content_foilnumber_{foilnumber}']['answeredform'] = answeredform
-		
-	else: doc = {'_id': uuid4().hex, 'datastory': name, 'phase' : phase, 'content': [{ f'content_foilnumber_{foilnumber}' : 
+			doc['phase'] = phase
+			doc['content'].append(content_of_template)
+
+		if component == 'template4' and phase == 0:
+			doc['phase'] = phase
+			print(" in if component == 'template4' and phase == 0:")
+			doc['content'].append(content_of_template)
+		elif component == 'template4' and phase == 1:
+			doc['phase'] = phase
+			doc['content'][foilnumber]['answeredform'] = answeredform
+			
+	else: doc = {'_id': uuid4().hex, 'datastory': name, 'phase' : phase, 'content': [
 		content_of_template
-			}]
+			]#}
 		}
 	
 	db.save(doc)

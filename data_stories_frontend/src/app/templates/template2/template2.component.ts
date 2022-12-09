@@ -28,8 +28,7 @@ export class Template2Component implements OnInit {
   answers: string[]
   //images: string[]
   data = undefined;
-  basic_content: any;
-  b: any;
+ 
   constructor(private apiclient: ApiClientService) {
 
   }
@@ -51,11 +50,11 @@ export class Template2Component implements OnInit {
     console.log(this.answers);
 
     if (this.phase === 0) {
-      this.body = { template: 'template_paul', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, phase: this.phase }
+      this.body = { template: 'template2', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, phase: this.phase }
       //this.postDataAndImage();
     }
     else if (this.phase === 1) {
-      this.body = { template: 'template_paul', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, phase: this.phase }
+      this.body = { template: 'template2', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, phase: this.phase }
       this.apiclient.createDataStory(this.body).subscribe(resopnse => {
         console.log(resopnse)
         
@@ -66,16 +65,13 @@ export class Template2Component implements OnInit {
   }
   
   update() {
-
-    this.basic_content = this.content[0].content_foilnumber_1
-    
-    this.headline = this.basic_content.headline
-    this.question1 = this.basic_content.questions[0]
+    this.headline = this.content[this.foilnumber].headline
+    this.question1 = this.content[this.foilnumber].questions[0]
     //this.question2 = this.basic_content.questions[1]
 
     if (this.phase == 2) {
-      this.answer1 = this.basic_content.answers[0]
-      this.answer2 = this.basic_content.answers[1]
+      this.answer1 = this.content[this.foilnumber].answers[0]
+      this.answer2 = this.content[this.foilnumber].answers[1]
       console.log(this.answer1, this.answer2);
     }
   }

@@ -16,9 +16,10 @@ export class Template4Component implements OnInit {
   updatedData: any
   content: any;
   jsonForm: any;
+  answer: any;
   constructor(private apiclient: ApiClientService) { }
 
-  ngOnInit(): void {
+  async ngOnInit()  {
     if (this.phase !== 0)
       this.data = this.apiclient.getDatastory(this.datastory).subscribe(response => {
         this.datastory = response.datastory;
@@ -27,13 +28,17 @@ export class Template4Component implements OnInit {
       });
   }
   update() {
-    this.jsonForm = this.content[0].content_foilnumber_1.jsonForm
+    this.jsonForm = this.content[this.foilnumber].jsonForm
+    if (this.phase == 2) {
+    this.answer = this.content[this.foilnumber].answeredform
+    console.log(this.answer)
+    }
   }
   onSubmit(submission: any) {
     if (this.phase == 1){
-    var body = {template: "template2", datastory: this.datastory, foilnumber: this.foilnumber, "answeredform": this.data, phase: 1}
-    this.apiclient.createDataStory(this.datastory).subscribe(response => {
-      this.updatedData = response.content[0].content_foilnumber_1.jsonForm
+    var body = {template: "template4", datastory: this.datastory, foilnumber: this.foilnumber, "answeredform": submission.data, phase: 1}
+    this.apiclient.createDataStory(body).subscribe(response => {
+      this.updatedData = response.content[this.foilnumber].jsonForm
     })
     console.log(submission);
     }}
