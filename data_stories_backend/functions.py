@@ -23,7 +23,8 @@ def save_component0(request_data):
 		return specifics
 
 def save_component1(request_data):
-    if request_data['phase'] == '1':
+
+    if request_data['phase'] == 1:
         return request_data['answers']
 
     specifics = {

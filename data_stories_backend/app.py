@@ -64,13 +64,11 @@ def fetchDatastory():
 
 	mango = {'selector': {'datastory': name}}
 	y= list(db.find(mango))
-	print(y[0]['_id'])
 
 	try:
 		xspecial = base64.b64encode(db.get_attachment(y[0]['_id'],y[0]['images']['filename']).read())
 	except:
 		xspecial = ''
-	print(y)
 	datastory = y[0]['datastory']
 	content = y[0]['content']
 	dic = {'datastory' : y[0]['datastory'],
