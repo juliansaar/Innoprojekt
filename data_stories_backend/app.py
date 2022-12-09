@@ -96,6 +96,9 @@ def register():
 	if component == 'template1':
 		content_of_template = functions.save_component1(request_data)
 
+	if component == 'template_paul':
+		content_of_template = functions.save_component2(request_data)
+
 	if component == 'template2':
 		if phase == 1:
 			answeredform = request_data['answeredform']
@@ -109,6 +112,10 @@ def register():
 	if doc_id != '':
 		doc = db.get(doc_id)
 		if component == 'template1':
+			doc['phase'] = phase
+			doc['content'][foilnumber-1][f'content_foilnumber_{foilnumber}']['answers'] = content_of_template
+
+		if component == 'template_paul':
 			doc['phase'] = phase
 			doc['content'][foilnumber-1][f'content_foilnumber_{foilnumber}']['answers'] = content_of_template
 

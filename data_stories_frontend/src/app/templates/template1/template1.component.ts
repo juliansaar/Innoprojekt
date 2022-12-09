@@ -50,6 +50,7 @@ export class Template1Component implements OnInit {
     this.questions = [this.question1, this.question2]
     this.answers = [this.answer1, this.answer2]
     this.images = [this.image1, this.image2]
+    console.log(this.answers);
 
     if (this.phase === 0) {
       this.body = { template: 'template1', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
@@ -88,6 +89,8 @@ export class Template1Component implements OnInit {
     if (this.phase == 2) {
       this.answer1 = this.basic_content.answers[0]
       this.answer2 = this.basic_content.answers[1]
+      console.log(this.question1, this.question2);
+      console.log(this.answer1, this.answer2);
     }
   }
   onChange1(event) {
