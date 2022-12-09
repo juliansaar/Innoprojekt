@@ -34,3 +34,16 @@ def save_component1(request_data):
 			"images" : request_data['images']
 		}
     return specifics
+
+def save_component2(request_data):
+    if request_data['phase'] == '1':
+        return request_data['answers']
+
+    specifics = {
+			"component" : request_data['template'],
+			"headline" : request_data['headline'],
+			"questions" : request_data['questions'],
+			"answers" : request_data['answers']
+			#"images" : request_data['images']
+		}
+    return specifics
