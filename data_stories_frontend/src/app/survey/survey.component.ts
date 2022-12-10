@@ -14,16 +14,17 @@ export class SurveyComponent implements OnInit {
 
  ngOnInit(): void {
   
-let nein = document.getElementById('exampleRadios2');
+let nein = document.getElementById('question1no');
 let textfield = document.getElementById('text');
 
 console.log(nein)
 console.log(textfield)
 
 if(nein){
-  textfield.hidden==false;
+  console.log("in If")
+  this.show=true;
 }else{
-  textfield.hidden==true;
+  this.show=false;
 }
 
  }

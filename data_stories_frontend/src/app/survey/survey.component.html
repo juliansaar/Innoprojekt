@@ -19,7 +19,9 @@
                 Nein
               </label>
             </div>
-            <textarea hidden #text id="text" name="text" cols="35" rows="4"></textarea> 
+            <ng-template *ngIf="show">
+            <textarea #text id="text" name="text" cols="35" rows="4"></textarea> 
+            </ng-template>
           </div>
     </div>
     <!--FRAGE 1 ENDE-->
