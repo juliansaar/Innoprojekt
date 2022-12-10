@@ -5,12 +5,35 @@
     <p>{{test}} </p>
     <formio [form]="form"></formio>
 </ng-container> -->
-
-
-    <div >
-        <app-template1 [phase]=1 [datastory]="name" [foilnumber]="1"></app-template1>
+<mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+    <mat-tab *ngFor="let c of content; let index = index" [label]="(index+1).toString()">
+<!-- <div *ngFor="let c of content; let index = index"> -->
+<ng-container *ngIf="content[index].component == 'template1'">
+  <div >
+        <app-template1 [phase]=1 [datastory]="name" [foilnumber]="index"></app-template1>
     </div>
+</ng-container>
+<ng-container *ngIf="content[index].component == 'template2'">
+    <div >
+          <app-template2 [phase]=1 [datastory]="name" [foilnumber]="index"></app-template2>
+      </div>
+  </ng-container>
+  <ng-container *ngIf="content[index].component == 'template4'">
+    <div >
+          <app-template4 [phase]=1 [datastory]="name" [foilnumber]="index"></app-template4>
+      </div>
+  </ng-container>
+
+<!-- </div> -->
+    </mat-tab>
+    <!-- 
+    <div> 
+        
+    </div>
+    <div >
+        <
+    </div>-->
 <!--
 *ngIf="component === 'template1'"
-<div *ngFor="let c of content; let index = index"></div>
+
 -->

@@ -1,4 +1,25 @@
 <h1> Done Datastories</h1>
-<div >
+<!--<div >
     <app-template1 [phase]=2 [datastory]="name" [foilnumber]="1"></app-template1>
-</div>
+</div>-->
+<mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+    <mat-tab *ngFor="let c of content; let index = index" [label]="(index+1).toString()">
+<!-- <div *ngFor="let c of content; let index = index"> -->
+<ng-container *ngIf="content[index].component == 'template1'">
+  <div >
+        <app-template1 [phase]=2 [datastory]="name" [foilnumber]="index"></app-template1>
+    </div>
+</ng-container>
+<ng-container *ngIf="content[index].component == 'template2'">
+    <div >
+          <app-template2 [phase]=2 [datastory]="name" [foilnumber]="index"></app-template2>
+      </div>
+  </ng-container>
+  <ng-container *ngIf="content[index].component == 'template4'">
+    <div >
+          <app-template4 [phase]=2 [datastory]="name" [foilnumber]="index"></app-template4>
+      </div>
+  </ng-container>
+
+<!-- </div> -->
+    </mat-tab>

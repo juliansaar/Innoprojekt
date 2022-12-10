@@ -1,12 +1,13 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { ApiClientService } from '../service/api-client.service';
-
+import { Template1Component } from '../templates/template1/template1.component';
 
 @Component({
   selector: 'app-datastorycreator',
   templateUrl: './datastorycreator.component.html',
-  styleUrls: ['./datastorycreator.component.css']
+  styleUrls: ['./datastorycreator.component.css'],
+  
 })
 export class DatastorycreatorComponent implements OnInit {
   name : string;
@@ -22,12 +23,19 @@ export class DatastorycreatorComponent implements OnInit {
   showTemplate: number = 0;
   jsonForm: string;
   constructor(private apiclient: ApiClientService) { }
-
-  ngOnInit(): void {
-  }
+  @ViewChild(Template1Component, {static: false}) child:Template1Component;
+  //child1 = new Template1Component(  this.apiclient);
+  //FormBuilder
+  public form: Object = {components: []};
   tabs = [1, 2, 3];
   selected = new FormControl(0);
 
+  ngOnInit(): void {
+    console.log('init dscreator')
+  }
+  ngAfterViewInit(){
+    console.log('ngAfterViewInit',this.child)
+  }
   addTab() {
     if(this.tabs.length < 10){
     this.tabs.push((this.tabs.length + 1));
@@ -37,17 +45,8 @@ export class DatastorycreatorComponent implements OnInit {
   removeTab(index: number) {
     this.tabs.splice(index, 1);
   }
-  @ViewChild(TemplateRef)
-  labelContent: TemplateRef<any>;
   
-  //FormBuilder
-  @ViewChild('json') jsonElement?: ElementRef;
-  public form: Object = {components: []};
   onChange(event) {
-    console.log(event.form);
-    this.jsonElement.nativeElement.innerHTML = '';
-    this.jsonElement.nativeElement.appendChild(document.createTextNode(JSON.stringify(event.form, null, 4)));
-    this.jsonForm = JSON.stringify(event.form, null, 4);
   }
   
   saveAndGo(tab: number){
@@ -56,12 +55,16 @@ export class DatastorycreatorComponent implements OnInit {
         this.selected.setValue(tab);
         this.showTemplate = 0;
     }
-
+    if (this.showTemplate === 3){
+      console.log('showT = 3',this.child.headline)
+      this.child.onSubmit();
+      this.selected.setValue(tab);
+      this.showTemplate = 0;
+      
+  }
     if (this.showTemplate == 4){
-      this.jsonForm = JSON.stringify(this.form, null, 4);
-      console.log('Json:',this.jsonForm)
-      console.log('tab:',tab)
-      this.apiclient.createDataStory(this.name);
+      var body = {template: 'template4', datastory: this.name, foilnumber: tab, "jsonForm": this.form, phase: 0}
+      this.apiclient.createDataStory(body).subscribe((response) =>  { console.log(response) });
       this.selected.setValue(tab);
       this.showTemplate = 0;
     }

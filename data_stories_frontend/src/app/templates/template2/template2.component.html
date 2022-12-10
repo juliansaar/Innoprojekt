@@ -41,11 +41,11 @@
               <input type="radio" id="kp" name="radio" value="kp" [(ngModel)]="radio">
               <label for="kp">Weiß ich nicht</label>-->
 
-              <mat-radio-group class="radio-group" [(ngModel)]="answer1">
+              <mat-radio-group class="radio-group" [(ngModel)]="answer1" [ngModelOptions]="{standalone: true}">
                 <mat-radio-button class="radio-button" *ngFor="let radio of radio_answers" [value]="radio">{{radio}}</mat-radio-button>
               </mat-radio-group>
             </div>
-            <div *ngIf="phase === 2">{{answer1}}</div>
+            <div *ngIf="phase === 2">Antwort: {{answer1}}</div>
 
             <!-- Question 2 From Data Scientist 
             <div *ngIf="phase === 0; else fetchTheQuestion1">
@@ -60,41 +60,40 @@
             <div *ngIf="phase === 1"><textarea name="answer2" [(ngModel)]="answer2" aria-label="d" placeholder="Deine zusätzlichen Informationen"></textarea></div>
             <div *ngIf="phase === 2">{{answer2}}</div>
         </div>
-            <!-- Images -->
-            <!-- <div *ngIf="phase === 0; else fetchImgs">
-                <div class="wrap">
-                    <div class="img">
-                      <img src="../assets/boxplot.png" alt="boxplot">
-                    </div>
-                    <div class="text-center">
-                      <div id="t1">
-                        <input class="form-control" type="file" (change)="onChange1($event)">
-                        <button type="submit" (click)="onUpload()" class="btn btn-success">
-                          Upload
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-            
-                  <div class="wrap1">
-                    <div class="img"><img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="200px"
-                        height="200px">
-                    </div>
-                    <div class="text-center1">
-                      <input class="form-control" type="file" (change)="onChange1($event)">
-                      <button type="submit" (click)="onUpload()" class="btn btn-success">
-                        Upload
-                      </button>
-                    </div>
-                    <div>
-                    </div>
-                  </div>
-                
+        <!-- Images -->
+        <div *ngIf="phase === 0; else fetchImgs">
+          <div class="wrap">
+              <div class="img">
+                <img src="../assets/boxplot.png" alt="boxplot">
+              </div>
+              <div class="text-center">
+                <div id="t1">
+                  <input class="form-control" type="file" (change)="onChange1($event)">
+                  <button type="submit" (click)="onUpload()" class="btn btn-success">
+                    Upload
+                  </button>
+                </div>
+              </div>
             </div>
-            <ng-template #fetchImgs>
-            <!-- <img  alt="">
-            <img {{image2}} alt=""></ng-template> -->
-
+      
+            <div class="wrap1">
+              <div class="img"><img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="200px"
+                  height="200px">
+              </div>
+              <div class="text-center1">
+                <input class="form-control" type="file" (change)="onChange1($event)">
+                <button type="submit" (click)="onUpload()" class="btn btn-success">
+                  Upload
+                </button>
+              </div>
+              <div>
+              </div>
+            </div>
+          
+      </div>
+      <ng-template #fetchImgs>
+        <img alt="alte ds" src="{{'data:image/png;base64,' + image1}}">
+      </ng-template>
 </div>
     </div>
    

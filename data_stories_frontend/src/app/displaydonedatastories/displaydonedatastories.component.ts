@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ApiClientService } from '../service/api-client.service';
 
@@ -12,7 +13,7 @@ export class DisplaydonedatastoriesComponent implements OnInit {
   datastory: string;
   foilnumber: string;
   content: any;
-
+  selected = new FormControl(0);
   constructor(private apiclient: ApiClientService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {

@@ -19,6 +19,7 @@ export class AppComponent {
   constructor(private router: Router,private apiClient: ApiClientService) {
     
   }
+
   ngOnInit(){
   //   this.apiClient.getDatastoryNames1().subscribe(response => {
   //     this.datastorynames = ..response;

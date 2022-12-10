@@ -11,6 +11,9 @@ services:
     couchdb:
         image: couchdb
         environment:
-            COUCHDB_USER: Julian
-            COUCHDB_PASSWORD: z9cex9pt
+            COUCHDB_USER: admin
+            COUCHDB_PASSWORD: admin
+        ports:
+            - "5984:5984"
+
 

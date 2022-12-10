@@ -12,11 +12,13 @@ import simplejson
 from flask_cors import CORS
 from dichte import classification, lgr
 from waitress import serve
+import functions
 
 
-prod = 'http://admin:admin@couchdb.azurewebsites.net'
-
-couch = couchdb.Server('http://admin:admin@localhost:5984/')
+prod = 'http://admin:admin@couchdb.azurewebsites.net:5984'
+dev = 'http://admin:admin@localhost:5984/'
+test = 'http://admin:password@172.17.0.2:5984/'
+couch = couchdb.Server(dev)
 
 try:
 	db = couch['datastories']
@@ -27,8 +29,188 @@ app = Flask(__name__)
 CORS(app)
 app.config.from_pyfile('config.py')
 
-server = Server()
-scaler1, lgr1 = lgr()
+#server = Server()
+if __name__ == '__main__':
+	app.run(host='0.0.0.0', port=5000)
+    #serve(app, host="0.0.0.0", port=os.getenv("PORT", default=5000))
+#scaler1, lgr1 = lgr()
+
+@app.route('/fetchDoneDatastories', methods=['GET'])
+def fetchDoneDatastories():
+	datastories = []
+	mango = {'selector': {"phase" : 1}}
+	y= list(db.find(mango))
+	for index, t in enumerate(y):
+		datastories.append(y[index]['datastory']) 
+	 
+	return simplejson.dumps(datastories)
+
+@app.route('/fetchNotAnsweredDatastories', methods=['GET'])
+def fetchNames():
+	datastories = []
+	mango = {'selector': {"phase" : 0}}
+	y= list(db.find(mango))
+	for index, t in enumerate(y):
+		datastories.append(y[index]['datastory']) 
+	 
+	return simplejson.dumps(datastories)
+
+
+@app.route('/fetchDatastory', methods=['POST'])
+def fetchDatastory():
+	request_data = request.get_json()
+	name = request_data['datastory']
+	items = []
+
+	mango = {'selector': {'datastory': name}}
+	y= list(db.find(mango))
+
+	try:
+		xspecial = base64.b64encode(db.get_attachment(y[0]['_id'],y[0]['images']['filename']).read())
+	except:
+		xspecial = ''
+	datastory = y[0]['datastory']
+	content = y[0]['content']
+	dic = {'datastory' : y[0]['datastory'],
+		   'content' : y[0]['content'],
+		   'imgs' : xspecial} 
+
+	items.extend([datastory, content])
+	
+	return simplejson.dumps(dic)
+
+
+@app.route('/createds', methods=['POST'])
+def register():
+	request_data = request.get_json()
+	component = request_data['template']
+	name = request_data['datastory']
+	foilnumber = request_data['foilnumber']
+	phase = request_data['phase']
+	
+	if component == 'template0':
+		content_of_template = functions.save_component0(request_data)
+	
+	if component == 'template1':
+		content_of_template = functions.save_component1(request_data)
+
+	if component == 'template2':
+		content_of_template = functions.save_component2(request_data)
+
+	if component == 'template4':
+		print(" in template4")
+		if phase == 1:
+			answeredform = request_data['answeredform']
+		else: content_of_template = {
+			"component" : component,
+			"jsonForm" : request_data['jsonForm']
+		}
+
+	doc_id = get_datastory_id(name)
+	
+	if doc_id != '':
+		doc = db.get(doc_id)
+		if component == 'template1' and phase == 0:
+			doc['phase'] = phase
+			doc['content'].append(content_of_template)
+		elif component == 'template1' and phase == 1:
+			doc['phase'] = phase
+			doc['content'][foilnumber]['answers'] = content_of_template
+			
+		if component == 'template2':
+			doc['phase'] = phase
+			doc['content'].append(content_of_template)
+
+		if component == 'template4' and phase == 0:
+			doc['phase'] = phase
+			print(" in if component == 'template4' and phase == 0:")
+			doc['content'].append(content_of_template)
+		elif component == 'template4' and phase == 1:
+			doc['phase'] = phase
+			doc['content'][foilnumber]['answeredform'] = answeredform
+			
+	else: doc = {'_id': uuid4().hex, 'datastory': name, 'phase' : phase, 'content': [
+		content_of_template
+			]#}
+		}
+	
+	db.save(doc)
+
+	return simplejson.dumps({'ok': ''})
+
+@app.route('/images', methods=['POST'])
+def upload_files():
+	try:
+		file = request.files["images"]
+		ds_name = file.filename.split('_')[0]
+		print(ds_name)
+	except:
+		print("Fehler bei request: ",file.filename)
+
+	doc_id = get_datastory_id(ds_name)
+			
+	doc = db.get(doc_id)
+	doc['images'] = {
+		"filename" : file.filename,
+		"foilnumber" : 'content_foilnumber_1'
+	}
+	db.save(doc)
+	db.put_attachment(content=file,doc=doc,filename=file.filename)
+	return simplejson.dumps({'ok': "state"})
+
+
+@app.route('/data', methods=['POST'])
+def fetchData():
+	request_data = request.get_json()
+	druck = request_data['druck']
+	leck = request_data['leck']
+	status = classification(druck,leck,scaler1,lgr1)
+
+	return simplejson.dumps(int(status))
+
+def get_datastory_id(name):
+    mango = {'selector': {'datastory': name}}
+    y = list(db.find(mango))
+    try:
+        doc_id = y[0]['_id']
+    except:
+        doc_id = ''
+    return doc_id
+
+# legacy
+@app.route('/image', methods=['POST'])
+def upload_file():
+	try:
+		file = request.files["image"]
+		ds_name = file.filename.split('_')[0]
+	except:
+		print("Fehler bei request: ",file.filename)
+
+	counter = 0
+	mango = {'selector': {'datastory': ds_name}}
+	y= list(db.find(mango))
+	s = ''.join(str(x) for x in y)
+	doc_id = ''
+	rev_id = ''
+	for char in s:
+		if char == "'":
+			counter += 1
+			continue
+		if counter == 1:
+			doc_id += char
+		elif counter == 3:
+			rev_id += char
+		elif counter == 4: 
+			break
+			
+	doc = {
+		  	"_id": doc_id,
+  			"_rev": rev_id,
+  			"datastory": ds_name
+		}
+	db.put_attachment(content=file,doc=doc,filename=file.filename)
+	return simplejson.dumps({'ok': "state"})
+
 
 @app.route('/fetchimg/dichte', methods=['GET'])
 def fetchDichte():
@@ -70,7 +252,6 @@ def fetchKaffee():
 	g = xspecial | x
 	return simplejson.dumps(g)
 
-
 @app.route('/fetchds', methods=['GET'])
 def fetchDs():
 	
@@ -89,213 +270,3 @@ def fetchDs():
 	items.extend([datastory, content])
 	
 	return simplejson.dumps(dic)
-	
-@app.route('/fetchDoneDatastories', methods=['GET'])
-def fetchDoneDatastories():
-	datastories = []
-	mango = {'selector': {"phase" : 1}}
-	y= list(db.find(mango))
-	for index, t in enumerate(y):
-		datastories.append(y[index]['datastory']) 
-	 
-	return simplejson.dumps(datastories)
-
-@app.route('/fetchNotAnsweredDatastories', methods=['GET'])
-def fetchNames():
-	datastories = []
-	mango = {'selector': {"phase" : 0}}
-	y= list(db.find(mango))
-	for index, t in enumerate(y):
-		datastories.append(y[index]['datastory']) 
-	 
-	return simplejson.dumps(datastories)
-
-@app.route('/fetchDatastory', methods=['POST'])
-def fetchDatastory():
-	request_data = request.get_json()
-	name = request_data['datastory']
-	items = []
-
-	mango = {'selector': {'datastory': name}}
-	y= list(db.find(mango))
-	print(y[0]['_id'])
-	print(y[0]['_id'])
-	xspecial = base64.b64encode(db.get_attachment(y[0]['_id'],y[0]['images']['filename']).read())
-	print(y)
-	datastory = y[0]['datastory']
-	content = y[0]['content']
-	dic = {'datastory' : y[0]['datastory'],
-		   'content' : y[0]['content'],
-		   'imgs' : xspecial} 
-
-	items.extend([datastory, content])
-	
-	return simplejson.dumps(dic)
-
-@app.route('/createds', methods=['POST'])
-def register():
-	request_data = request.get_json()
-	component = request_data['template']
-	name = request_data['datastory']
-	foilnumber = request_data['foilnumber']
-	headline = request_data['headline']
-	phase = request_data['phase']
-	
-	if component == 'template0':
-		adressat = request_data['adressat']
-		stand = request_data['stand']
-		try:
-			datensatz = request_data['datensatz']
-		except KeyError:
-			datensatz = ''
-		zeitraum_von = request_data['zeitraum_von']
-		zeitraum_bis = request_data['zeitraum_bis']
-		messungsintervall = request_data['messungsintervall']
-		eintraege = request_data['eintraege']
-		specifics = {
-			"component" : component,
-			"headline" : headline,
-			"adressat" : adressat,
-			"stand" : stand,
-			"datensatz" : datensatz,
-			"zeitraum_von" : zeitraum_von,
-			"zeitraum_bis" : zeitraum_bis,
-			"messungsintervall" : messungsintervall,
-			"eintraege:": eintraege
-		}
-	
-	if component == 'template1':
-		questions = request_data['questions']
-		answers = request_data['answers']
-		images = request_data['images']
-		specifics = {
-			"component" : component,
-			"headline" : headline,
-			"questions" : questions,
-			"answers" : answers,
-			"images" : images
-		}
-
-	if component == 'template2':
-		jsonForm= request_data['jsonForm']
-		specifics = {
-			"component" : component,
-			"jsonForm" : jsonForm
-		}
-
-	mango = {'selector': {'datastory': name}}
-	y= list(db.find(mango))
-	print(y)
-	s = ''.join(str(x) for x in y)
-	counter = 0
-	doc_id = ''
-	for char in s:
-		if char == "'":
-			counter += 1
-			continue
-		if counter == 1:
-			doc_id += char
-		if counter == 3: 
-			break
-	
-	if doc_id != '':
-		doc = db.get(doc_id)
-		rev  = doc["_rev"]
-		print(type(doc))
-	
-		doc['phase'] = phase
-		print(answers,type(answers))
-		doc['content'][0]['content_foilnumber_1']['answers'] = answers
-		
-	else: doc = {'_id': uuid4().hex, 'datastory': name, 'phase' : phase, 'content': [{ f'content_foilnumber_{foilnumber}' : 
-		specifics
-			}]
-		}
-	
-	db.save(doc)
-
-	return simplejson.dumps({'ok': ''})
-
-@app.route('/images', methods=['POST'])
-def upload_files():
-	try:
-		file = request.files["images"]
-		ds_name = file.filename.split('_')[0]
-		print(ds_name)
-	except:
-		print("Fehler bei request: ",file.filename)
-
-	counter = 0
-	mango = {'selector': {'datastory': ds_name}}
-	y= list(db.find(mango))
-	print(y)
-	s = ''.join(str(x) for x in y)
-	doc_id = ''
-	rev_id = ''
-	for char in s:
-		if char == "'":
-			counter += 1
-			continue
-
-		if counter == 1:
-			doc_id += char
-		elif counter == 3:
-			rev_id += char
-		elif counter == 4: 
-			break
-			
-	# doc = {
-	# 	  	"_id": doc_id,
-  	# 		"_rev": rev_id
-	# 	}
-	# print (doc)
-	doc = db.get(doc_id)
-	doc['images'] = {
-		"filename" : file.filename,
-		"foilnumber" : 'content_foilnumber_1'
-	}
-	db.save(doc)
-	db.put_attachment(content=file,doc=doc,filename=file.filename)
-	return simplejson.dumps({'ok': "state"})
-
-@app.route('/image', methods=['POST'])
-def upload_file():
-	try:
-		file = request.files["image"]
-		ds_name = file.filename.split('_')[0]
-	except:
-		print("Fehler bei request: ",file.filename)
-
-	counter = 0
-	mango = {'selector': {'datastory': ds_name}}
-	y= list(db.find(mango))
-	s = ''.join(str(x) for x in y)
-	doc_id = ''
-	rev_id = ''
-	for char in s:
-		if char == "'":
-			counter += 1
-			continue
-		if counter == 1:
-			doc_id += char
-		elif counter == 3:
-			rev_id += char
-		elif counter == 4: 
-			break
-			
-	doc = {
-		  	"_id": doc_id,
-  			"_rev": rev_id,
-  			"datastory": ds_name
-		}
-	db.put_attachment(content=file,doc=doc,filename=file.filename)
-	return simplejson.dumps({'ok': "state"})
-
-@app.route('/data', methods=['POST'])
-def fetchData():
-	request_data = request.get_json()
-	druck = request_data['druck']
-	leck = request_data['leck']
-	status = classification(druck,leck,scaler1,lgr1)
-
-	return simplejson.dumps(int(status))

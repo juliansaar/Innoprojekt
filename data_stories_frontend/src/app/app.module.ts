@@ -33,6 +33,7 @@ import { Template1Component } from './templates/template1/template1.component';
 import { Template2Component } from './templates/template2/template2.component';
 import { DisplaydonedatastoriesComponent } from './displaydonedatastories/displaydonedatastories.component';
 import { SurveyComponent } from './survey/survey.component';
+import { Template4Component } from './templates/template4/template4.component';
 
 
 
@@ -61,6 +62,7 @@ import { SurveyComponent } from './survey/survey.component';
     Template2Component,
     DisplaydonedatastoriesComponent,
     SurveyComponent,
+    Template4Component,
   ],
   imports: [
     BrowserModule,

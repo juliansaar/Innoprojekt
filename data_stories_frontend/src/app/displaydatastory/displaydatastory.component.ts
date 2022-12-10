@@ -2,6 +2,7 @@ import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { ApiClientService } from '../service/api-client.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Datastorymodel } from './datastorymodel';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-displaydatastory',
@@ -18,6 +19,7 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
   test: any;
   form: any;
   component: any;
+  selected = new FormControl(0);
   constructor(private apiclient: ApiClientService, private route: ActivatedRoute) {   
   }
 
@@ -33,9 +35,14 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
       this.datastory =  response.datastory;
       this.foilnumber = response.foilnumber;
       this.content = response.content;
+      this.update()
      });
     
 }   
+  update() {
+    //var basic_content = this.content[0];
+    //this.component = basic_content.component;
+  }
   
 
 showForm() : any{

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiClientService } from '../service/api-client.service';
 
+declare const hideNavbar: any;
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -32,5 +34,9 @@ export class HeaderComponent implements OnInit {
   navigateToDoneDatastory(datastoryname: string){
     this.router.navigate(['/displaydonedatastory', datastoryname]);
 }
+
+  hideNav(){
+    hideNavbar();
+  }
 
 }
