@@ -1,20 +1,20 @@
-.success-animation { margin:100px auto;
-margin-top: 150px;}
+.success-animation { 
+    margin:100px auto;
+    margin-top: 150px;
+}
 
 .checkmark {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    display: block;
+    
     stroke-width: 2;
     stroke: #62e497;
     stroke-miterlimit: 10;
     box-shadow: inset 0px 0px 0px #4bb71b;
     animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
-    position:relative;
-    top: 5px;
-    right: 5px;
-   margin: 0 auto;
+   
+   
 }
 .checkmark__circle {
     stroke-dasharray: 166;
@@ -57,14 +57,35 @@ margin-top: 150px;}
 }
 #successdiv{
   
-    align-items: center;
+  
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 16px;
     color: #6b6b84;
 }
 p{
-    position: absolute;
-    right: 40%;
+   
     font-size: large;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    gap: 10px;
+}
+
+.btn{
+    color: #312a52;
+    border: 0px;
+    background-color: #62e497;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.btn:hover{
+    color: #62e497;
+    background-color: #312a52;
 }

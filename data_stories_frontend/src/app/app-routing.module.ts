@@ -19,6 +19,7 @@ import { KaffeeComponent } from './abgeschlossene-ds/kaffee/kaffee.component';
 import { DataexplorerComponent } from './dataexplorer/dataexplorer.component';
 import { DisplaydatastoryComponent } from './displaydatastory/displaydatastory.component';
 import { DisplaydonedatastoriesComponent } from './displaydonedatastories/displaydonedatastories.component';
+import { SurveyComponent } from './survey/survey.component';
 
 const routes: Routes = [
   { path: 'dichte/2/0', component: ErsteFolieComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'kaffee/2/5', component: FuenfteFolieKComponent },
 
   { path: 'success', component: SuccessComponent },
+  { path: 'survey', component: SurveyComponent},
   { path: 'datastorycreator', component: DatastorycreatorComponent },
   { path: 'abgeschlossen/dichte', component: AbgeschlosseneDsComponent},
   { path: 'abgeschlossen/kaffee', component: KaffeeComponent},
