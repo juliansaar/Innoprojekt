@@ -15,10 +15,10 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link" routerLink="datastorycreator" href="#">Neue Data-Story erstellen</a>
+                  <a class="nav-link" routerLink="datastorycreator" href="#" data-bs-dismiss="offcanvas">Neue Data-Story erstellen</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" routerLink="dataexplorer" href="#">Daten Explorieren</a>
+                  <a class="nav-link" routerLink="dataexplorer" href="#" data-bs-dismiss="offcanvas">Daten Explorieren</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,8 +27,9 @@
                   <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown1">
                     <li><a class="dropdown-item" routerLink="abgeschlossen/kaffee" >Kaffee Datensatz</a></li>
                     <li><a class="dropdown-item" routerLink="abgeschlossen/dichte" >Dichte Datensatz</a></li>
-                    <li><a class="dropdown-item" *ngFor="let done_datastory of done_datastories; let index=index" (click)='navigateToDoneDatastory(done_datastory)'
-                      >{{done_datastory}}</a></li>
+                    <li><a class="dropdown-item" *ngFor="let done_datastory of done_datastories; let index=index" data-bs-dismiss="offcanvas" (click)='navigateToDoneDatastory(done_datastory)'>
+                      {{done_datastory}}
+                      </a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -38,8 +39,9 @@
                     <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
                       <li><a class="dropdown-item" routerLink="kaffee/2/0" >Kaffee Datensatz</a></li>
                       <li><a class="dropdown-item" routerLink="dichte/2/0" >Dichte Datensatz</a></li>
-                      <li><a class="dropdown-item" *ngFor="let datastoryname of datastorynames; let index=index" (click)='navigateToDatastory(datastoryname)'
-                      >{{datastoryname}}</a></li></ul>
+                      <li><a class="dropdown-item" *ngFor="let datastoryname of datastorynames; let index=index" data-bs-dismiss="offcanvas" (click)='navigateToDatastory(datastoryname)'>
+                        {{datastoryname}}</a></li>
+                    </ul>
                   </li>
               </ul>
             </div>
@@ -50,6 +52,8 @@
         </div>
       </nav>
     
-  </div>    
+</div>
+
+
   
   

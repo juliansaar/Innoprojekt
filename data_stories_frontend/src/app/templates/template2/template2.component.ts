@@ -70,6 +70,8 @@ export class Template2Component implements OnInit {
       console.log(this.answers);
     }
     else if (this.phase === 2) {
+      this.body = { template: 'template2', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
+      this.postDataAndImage();
     }
     this.next = true;
   }

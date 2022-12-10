@@ -44,7 +44,6 @@
               <mat-radio-group class="radio-group" [(ngModel)]="answer1" [ngModelOptions]="{standalone: true}">
                 <mat-radio-button class="radio-button" *ngFor="let radio of radio_answers" [value]="radio">{{radio}}</mat-radio-button>
               </mat-radio-group>
-              <div>Antwort: {{answer1}}</div>
             </div>
             <div *ngIf="phase === 2">Antwort: {{answer1}}</div>
 
