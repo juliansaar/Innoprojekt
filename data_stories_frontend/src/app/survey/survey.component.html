@@ -8,20 +8,20 @@
         <h5>Frage 1: Hast du die Fragen der vorangegangenen Data-Stories inhaltlich verstanden?</h5>
         <div class="answer">
           <div>
-              <input class="form-check-input" type="radio" name="question1" id="question1yes" value="option1" checked>
+              <input class="form-check-input" type="radio" name="question1" id="question1yes" [(ngModel)]="show" [value]="false"checked>
               <label class="form-check-label" for="exampleRadios1">
                 Ja
               </label>
             </div>
             <div>
-              <input #nein class="form-check-input" type="radio" name="question1" id="question1no" value="option2">
+              <input #nein class="form-check-input" type="radio" name="question1" id="question1no" [(ngModel)]="show" [value]="true">
               <label class="form-check-label" for="exampleRadios2">
                 Nein
               </label>
             </div>
-            <ng-template *ngIf="show">
-            <textarea #text id="text" name="text" cols="35" rows="4"></textarea> 
-            </ng-template>
+          
+            <textarea *ngIf="show" #text id="text" name="text" cols="35" rows="4"></textarea> 
+           
           </div>
     </div>
     <!--FRAGE 1 ENDE-->
@@ -30,18 +30,18 @@
         <h5>Frage 2: Konntest du gut dich ohne Probleme zum Antwort-Bereich der Data Stories navigieren?</h5>
         <div class="answer">
           <div>
-              <input class="form-check-input" type="radio" name="question2" id="exampleRadios1" value="option1" checked>
+              <input class="form-check-input" type="radio" name="question2" id="exampleRadios1" [(ngModel)]="show2" [value]="false" checked>
               <label class="form-check-label" for="exampleRadios1">
                 Ja
               </label>
             </div>
             <div>
-              <input #nein class="form-check-input" type="radio" name="question2" id="exampleRadios2" value="option2">
+              <input #nein class="form-check-input" type="radio" name="question2" id="exampleRadios2" [(ngModel)]="show2" [value]="true">
               <label class="form-check-label" for="exampleRadios2">
                 Nein
               </label>
             </div>
-            <textarea hidden #text id="text" name="text" cols="35" rows="4"></textarea> 
+            <textarea *ngIf="show2" #text id="text" name="text" cols="35" rows="4"></textarea> 
           </div>
     </div>
     <!--FRAGE 2 ENDE-->
@@ -50,18 +50,18 @@
         <h5>Frage 3: Hättest du gerne zusätzliche inhaltliche Themen zu deinem Fachbereich außerhalb der Data Stories mit uns geteilt?</h5>
         <div class="answer">
           <div>
-              <input class="form-check-input" type="radio" name="question3" id="question3yes" value="option1" checked>
+              <input class="form-check-input" type="radio" name="question3" id="question3yes" [(ngModel)]="show3" [value]="false" checked>
               <label class="form-check-label" for="exampleRadios1">
                 Ja
               </label>
             </div>
             <div>
-              <input #nein class="form-check-input" type="radio" name="question3" id="question3no" value="option2">
+              <input #nein class="form-check-input" type="radio" name="question3" id="question3no" [(ngModel)]="show3" [value]="true">
               <label class="form-check-label" for="exampleRadios2">
                 Nein
               </label>
             </div>
-            <textarea hidden #text id="text" name="text" cols="35" rows="4"></textarea> 
+            <textarea *ngIf="show3" #text id="text" name="text" cols="35" rows="4"></textarea> 
           </div>
     </div>
     <!--FRAGE 3 ENDE-->
@@ -70,18 +70,18 @@
         <h5>Frage 4: Benötigst du mehr Freitextfelder bei der Beantwortung der Data Stories? </h5>
         <div class="answer">
           <div>
-              <input class="form-check-input" type="radio" name="question4" id="question4yes" value="option1" checked>
+              <input class="form-check-input" type="radio" name="question4" id="question4yes" [(ngModel)]="show4" [value]="false" checked>
               <label class="form-check-label" for="exampleRadios1">
                 Ja
               </label>
             </div>
             <div>
-              <input #nein class="form-check-input" type="radio" name="question4" id="question4no" value="option2">
+              <input #nein class="form-check-input" type="radio" name="question4" id="question4no" [(ngModel)]="show4" [value]="true">
               <label class="form-check-label" for="exampleRadios2">
                 Nein
               </label>
             </div>
-            <textarea hidden #text id="text" name="text" cols="35" rows="4"></textarea> 
+            <textarea *ngIf="show4" #text id="text" name="text" cols="35" rows="4"></textarea> 
           </div>
     </div>
     <!--FRAGE 4 ENDE-->
