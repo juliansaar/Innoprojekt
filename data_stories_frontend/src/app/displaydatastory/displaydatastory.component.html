@@ -5,6 +5,7 @@
     <p>{{test}} </p>
     <formio [form]="form"></formio>
 </ng-container> -->
+<div class="test">
 <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
     <mat-tab *ngFor="let c of content; let index = index" [label]="(index+1).toString()">
 <!-- <div *ngFor="let c of content; let index = index"> -->
@@ -26,6 +27,9 @@
 
 <!-- </div> -->
     </mat-tab>
+    </mat-tab-group>
+</div>
+
     <!-- 
     <div> 
         
