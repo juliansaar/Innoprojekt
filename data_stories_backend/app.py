@@ -14,25 +14,19 @@ from dichte import classification, lgr
 from waitress import serve
 import functions
 
+app = Flask(__name__)
+CORS(app)
 
-prod = 'http://admin:admin@couchdb.azurewebsites.net:5984'
-dev = 'http://admin:admin@localhost:5984/'
-test = 'http://admin:password@172.17.0.2:5984/'
-couch = couchdb.Server(dev)
+prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
+local = 'http://admin:admin@localhost:5984/'
+
+couch = couchdb.Server(prod)
 
 try:
 	db = couch['datastories']
 except:
 	db = couch.create('datastories')
 
-app = Flask(__name__)
-CORS(app)
-app.config.from_pyfile('config.py')
-
-#server = Server()
-if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=5000)
-    #serve(app, host="0.0.0.0", port=os.getenv("PORT", default=5000))
 #scaler1, lgr1 = lgr()
 
 @app.route('/fetchDoneDatastories', methods=['GET'])
@@ -270,3 +264,6 @@ def fetchDs():
 	items.extend([datastory, content])
 	
 	return simplejson.dumps(dic)
+
+if __name__ == '__main__':
+	app.run()

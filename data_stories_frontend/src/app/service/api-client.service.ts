@@ -15,45 +15,45 @@ export class ApiClientService {
   postResponse: any;
   successResponse: any;
   uploadedImage: Blob;
-  prodEnvironmentUrl : string;
+  url : string;
   
-  local: 'http://localhost:5000';
-
+  //local: 'http://localhost:5000';
+  //prod: 'https://datastoriesbackend.azurewebsites.net';
   constructor(private http: HttpClient) {
-    this.prodEnvironmentUrl = environment.url;
+    this.url = environment.url;
    }
   
   getDatastory(name: string) : Observable<any>{
     var body = {datastory: name}
     console.log('Sent request with name:' + name)
-    return this.http.post<any>('http://localhost:5000/fetchDatastory',body)
+    return this.http.post<any>(`${this.url}/fetchDatastory`,body)
   }
 
   getStatus(druck: number,leck: number){
     var body = {druck: druck,leck:leck}
     console.log('Sent request with name:' + druck + leck)
-    return this.http.post<any>('http://localhost:5000/data',body)
+    return this.http.post<any>(`${this.url}/data`,body)
   }
 
   getDatastoryNames(){
-    return this.http.get<any>('http://localhost:5000/fetchNotAnsweredDatastories');
+    return this.http.get<any>(`${this.url}/fetchNotAnsweredDatastories`);
   }
   getDoneDataStories(){
-    return this.http.get<any>('http://localhost:5000/fetchDoneDatastories');
+    return this.http.get<any>(`${this.url}/fetchDoneDatastories`);
   }
   getImagesDichte() {
-    return this.http.get<any>('http://localhost:5000/fetchimg/dichte');
+    return this.http.get<any>(`${this.url}/fetchimg/dichte`);
   }
 
   getImagesKaffee() {
-    return this.http.get<any>('http://localhost:5000/fetchimg/kaffee');
+    return this.http.get<any>(`${this.url}/fetchimg/kaffee`);
   }
   createDataStory(body) {
-   return this.http.post<any>('http://localhost:5000/createds', body);
+   return this.http.post<any>(`${this.url}/createds`, body);
   }
   createFoil(template: string, questions: string[],answers: string[], images: string[] ) {
     var body = {template: template, questions: questions,answers:answers, images:images}
-    this.http.post<any>('http://localhost:5000/createfoil', body).subscribe(data => {
+    this.http.post<any>(`${this.url}/createfoil`, body).subscribe(data => {
       template
     })
   }
@@ -61,7 +61,7 @@ export class ApiClientService {
     const imageFormData = new FormData();
     imageFormData.append('image', uploadedImage, filename);
 
-    this.http.post('http://localhost:5000/image', imageFormData, { observe: 'response' })
+    this.http.post(`${this.url}/image`, imageFormData, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.postResponse = response;
@@ -77,7 +77,7 @@ export class ApiClientService {
     const imageFormData = new FormData();
     imageFormData.append('images', uploadedImage, filename);
 
-    this.http.post('http://localhost:5000/images', imageFormData, { observe: 'response' })
+    this.http.post(`${this.url}/images`, imageFormData, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.postResponse = response;
