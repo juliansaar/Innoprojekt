@@ -64,6 +64,7 @@ export class Template1Component implements OnInit {
       this.apiclient.createDataStory(this.body).subscribe(resopnse => {
         console.log(resopnse)
       })
+      window.alert("Barbeitung dieser Folie erfolgreich. Wenn möglich, bitte mit nächster Folie fortsetzen.")
     }
     else if (this.phase === 2) {
     }
