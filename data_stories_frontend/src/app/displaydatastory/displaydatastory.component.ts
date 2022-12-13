@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Datastorymodel } from './datastorymodel';
 import { FormControl } from '@angular/forms';
 import { Template1Component } from '../templates/template1/template1.component';
+import { Template2Component } from '../templates/template2/template2.component';
 
 @Component({
   selector: 'app-displaydatastory',
@@ -12,6 +13,7 @@ import { Template1Component } from '../templates/template1/template1.component';
 })
 export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
   @ViewChild(Template1Component, {static: false}) child:Template1Component;
+  @ViewChild(Template2Component, {static: false}) childt2:Template2Component;
   name : string;
   datastory: string;
   foilnumber: string;
@@ -48,16 +50,25 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
   }
   
   onSubmit(tab: number) {
-      if (this.content[tab].component == 'template1'){
-       
+      if (this.content[tab].component == 'template1'){ 
       this.child.onSubmit();
       this.selected.setValue(tab+1);
     }
+      if(this.content[tab].component == 'template2'){
+      this.childt2.onSubmit();
+      this.selected.setValue(tab+1);
+      }
  }
   
 
-  onFinalSubmit() {
-    this.child.onSubmit()
+  onFinalSubmit(tab: number) {
+    if (this.content[tab].component == 'template1'){ 
+      this.child.onSubmit();
+    }
+    if(this.content[tab].component == 'template2'){
+      this.childt2.onSubmit();
+      }
+    
     this.router.navigateByUrl('/success/' + this.name);
   }
 
