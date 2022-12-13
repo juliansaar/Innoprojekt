@@ -13,6 +13,7 @@
 .nav-item a{
     /*color:  !important;*/
     color: #312a52;
+    cursor: pointer;
 }
 
 #offcanvasNavbarLabel{
