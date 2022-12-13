@@ -26,7 +26,7 @@
 
             <!-- Answer 1 From Domain Expert -->
             <div *ngIf="phase === 0"><textarea disabled placeholder="Antwortfeld des Domänenexperten"></textarea></div>
-            <div *ngIf="phase === 1"><textarea name="answer1" [(ngModel)]="answer1" aria-label="c" placeholder="Deine Antwort"></textarea></div>
+            <div *ngIf="phase === 1"><textarea name="answer1" [(ngModel)]="answer1" aria-label="c" placeholder="Ihre Antwort"></textarea></div>
             <div *ngIf="phase === 2">{{answer1}}</div>
 
             <!-- Question 2 From Data Scientist -->
@@ -39,7 +39,7 @@
 
             <!-- Answer 2 From Domain Expert -->
             <div *ngIf="phase === 0"><textarea disabled placeholder="Antwortfeld des Domänenexperten"></textarea></div>
-            <div *ngIf="phase === 1"><textarea name="answer2" [(ngModel)]="answer2" aria-label="d" placeholder="Deine Antwort"></textarea></div>
+            <div *ngIf="phase === 1"><textarea name="answer2" [(ngModel)]="answer2" aria-label="d" placeholder="Ihre Antwort"></textarea></div>
             <div *ngIf="phase === 2">{{answer2}}</div>
         </div>
             <!-- Images -->
@@ -74,7 +74,7 @@
                 
             </div>
             <ng-template #fetchImgs>
-              <img alt="alte ds" src="{{'data:image/png;base64,' + image1}}">
+              <img src="{{'data:image/png;base64,' + image1}}">
             </ng-template> 
 
 </div>
