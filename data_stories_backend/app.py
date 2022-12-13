@@ -20,7 +20,7 @@ CORS(app)
 prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
 local = 'http://admin:admin@localhost:5984/'
 
-couch = couchdb.Server(prod)
+couch = couchdb.Server(local)
 
 try:
 	db = couch['datastories']
@@ -116,13 +116,16 @@ def register():
 			doc['phase'] = phase
 			doc['content'][foilnumber]['answers'] = content_of_template
 			
-		if component == 'template2':
+		if component == 'template2' and phase == 0:
 			doc['phase'] = phase
 			doc['content'].append(content_of_template)
 
+		elif component == 'template2' and phase == 1:
+			doc['phase'] = phase
+			doc['content'][foilnumber]['answers'] = content_of_template
+
 		if component == 'template4' and phase == 0:
 			doc['phase'] = phase
-			print(" in if component == 'template4' and phase == 0:")
 			doc['content'].append(content_of_template)
 
 		elif component == 'template4' and phase == 1:

@@ -19,7 +19,7 @@ export class SurveyComponent implements OnInit {
 
   datastory: string;
   feedback: any;
-  constructor(private apiClient: ApiClientService, private route: ActivatedRoute) { }
+  constructor(private apiClient: ApiClientService, private route: ActivatedRoute,private router: Router) { }
 
  ngOnInit(): void {
   this.route.params.subscribe(params => {
@@ -43,6 +43,9 @@ onSubmit(){
   this.apiClient.createDataStory(body).subscribe((response) => {
     console.log(response);
   });
+  window.alert("Vielen Dank für Ihre Teilnahme! Sie werden nun zur Startseite weitergeleitet.");
+  this.router.navigate(['/']);
+  
 }
 }
 
