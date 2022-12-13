@@ -20,7 +20,7 @@ CORS(app)
 prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
 local = 'http://admin:admin@localhost:5984/'
 
-couch = couchdb.Server(local)
+couch = couchdb.Server(prod)
 
 try:
 	db = couch['datastories']
