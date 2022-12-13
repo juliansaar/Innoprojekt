@@ -1,8 +1,9 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ViewChild } from '@angular/core';
 import { ApiClientService } from '../service/api-client.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Datastorymodel } from './datastorymodel';
 import { FormControl } from '@angular/forms';
+import { Template1Component } from '../templates/template1/template1.component';
 
 @Component({
   selector: 'app-displaydatastory',
@@ -10,6 +11,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./displaydatastory.component.css']
 })
 export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
+  @ViewChild(Template1Component, {static: false}) child:Template1Component;
   name : string;
   datastory: string;
   foilnumber: string;
@@ -20,7 +22,7 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
   form: any;
   component: any;
   selected = new FormControl(0);
-  constructor(private apiclient: ApiClientService, private route: ActivatedRoute) {   
+  constructor(private apiclient: ApiClientService, private route: ActivatedRoute, private router: Router) {   
   }
 
 
@@ -42,22 +44,22 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
   update() {
     //var basic_content = this.content[0];
     //this.component = basic_content.component;
+    //console.log(this.content.length);
   }
   
+  onSubmit(tab: number) {
+      if (this.content[tab].component == 'template1'){
+       
+      this.child.onSubmit();
+      this.selected.setValue(tab+1);
+    }
+ }
+  
 
-showForm() : any{
-return this.content.jsonForm;
-}
-click(){
-  this.isFormBuilder = true;
-  console.log(this.content.jsonForm);
-  this.form = this.content.jsonForm;
-  // this.test = JSON.parse(this.content);
-  // console.log(this.test)
-}
-
+  onFinalSubmit() {
+    this.child.onSubmit()
+    this.router.navigateByUrl('/success/' + this.name);
   }
- 
+
    
-
-
+}

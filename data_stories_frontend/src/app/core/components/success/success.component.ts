@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-success',
@@ -8,12 +8,16 @@ import { Router } from '@angular/router';
 })
 export class SuccessComponent implements OnInit {
   showSuccessAnimation = true;
-  constructor(private router: Router) { }
+  datastory: string;
+  constructor(private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.datastory = params['datastoryname'];
+    }); 
   }
 
   btnClick= function () {
-    this.router.navigateByUrl('/survey');
+    this.router.navigateByUrl('/survey/' + this.datastory);
   };
 }

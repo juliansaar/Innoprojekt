@@ -20,7 +20,7 @@ CORS(app)
 prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
 local = 'http://admin:admin@localhost:5984/'
 
-couch = couchdb.Server(prod)
+couch = couchdb.Server(local)
 
 try:
 	db = couch['datastories']
@@ -79,8 +79,13 @@ def register():
 	request_data = request.get_json()
 	component = request_data['template']
 	name = request_data['datastory']
-	foilnumber = request_data['foilnumber']
+	try:
+		foilnumber = request_data['foilnumber']
+	except:
+		foilnumber = 0
+	
 	phase = request_data['phase']
+	
 	
 	if component == 'template0':
 		content_of_template = functions.save_component0(request_data)
@@ -99,7 +104,6 @@ def register():
 			"component" : component,
 			"jsonForm" : request_data['jsonForm']
 		}
-
 	doc_id = get_datastory_id(name)
 	
 	if doc_id != '':
@@ -107,6 +111,7 @@ def register():
 		if component == 'template1' and phase == 0:
 			doc['phase'] = phase
 			doc['content'].append(content_of_template)
+
 		elif component == 'template1' and phase == 1:
 			doc['phase'] = phase
 			doc['content'][foilnumber]['answers'] = content_of_template
@@ -119,9 +124,13 @@ def register():
 			doc['phase'] = phase
 			print(" in if component == 'template4' and phase == 0:")
 			doc['content'].append(content_of_template)
+
 		elif component == 'template4' and phase == 1:
 			doc['phase'] = phase
 			doc['content'][foilnumber]['answeredform'] = answeredform
+
+		if component == 'survey':
+			doc['survey'] = request_data['feedback']
 			
 	else: doc = {'_id': uuid4().hex, 'datastory': name, 'phase' : phase, 'content': [
 		content_of_template

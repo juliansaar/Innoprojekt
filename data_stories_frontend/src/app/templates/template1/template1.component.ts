@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit, Injectable } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ApiClientService } from 'src/app/service/api-client.service';
 @Component({
   selector: 'app-template1',
@@ -10,7 +10,12 @@ export class Template1Component implements OnInit {
   @Input() datastory: string
   @Input() foilnumber: number
   @Input() phase: number
-  
+  // profileForm = new FormGroup({
+  //   answer1 : new FormControl(''),
+  //   answer2 : new FormControl(''),
+  // });
+  name: any;
+  name1: any;
   headline: string
   question1: string
   question2: string
@@ -31,6 +36,7 @@ export class Template1Component implements OnInit {
   basic_content: any;
   b: any;
   next: boolean;
+ 
   constructor(private apiclient: ApiClientService) {
 
   }
@@ -47,7 +53,9 @@ export class Template1Component implements OnInit {
       });
 
   }
-
+  onSubmit2() {
+    
+  }
 
   onSubmit() {
     this.questions = [this.question1, this.question2]
@@ -59,12 +67,12 @@ export class Template1Component implements OnInit {
       this.body = { template: 'template1', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
       this.postDataAndImage();
     }
-    else if (this.phase === 1) {
+    else if (this.phase === 1 && this.answers[0] !== undefined && this.answers[1] !== undefined) {
       this.body = { template: 'template1', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
       this.apiclient.createDataStory(this.body).subscribe(resopnse => {
         console.log(resopnse)
       })
-      window.alert("Barbeitung dieser Folie erfolgreich. Wenn möglich, bitte mit nächster Folie fortsetzen.")
+      //window.alert("Barbeitung dieser Folie erfolgreich. Wenn möglich, bitte mit nächster Folie fortsetzen.")
     }
     else if (this.phase === 2) {
     }
