@@ -15,7 +15,7 @@ from waitress import serve
 import functions
 
 app = Flask(__name__)
-CORS(app)
+CORS(app,resources={"/*":{"origins":"*"}})
 
 prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
 local = 'http://admin:admin@localhost:5984/'
@@ -28,7 +28,13 @@ except:
 	db = couch.create('datastories')
 
 #scaler1, lgr1 = lgr()
-
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    return response
+	
 @app.route('/fetchDoneDatastories', methods=['GET'])
 def fetchDoneDatastories():
 	datastories = []
