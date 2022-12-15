@@ -16,6 +16,7 @@ export class SurveyComponent implements OnInit {
   text2: string;
   text3: string;
   text4: string;
+  text5: string;
 
   datastory: string;
   feedback: any;
@@ -36,9 +37,10 @@ onSubmit(){
     t1 : this.text1,
     t2 : this.text2,
     t3 : this.text3,
-    t4 : this.text4
+    t4 : this.text4,
+    t5 : this.text5
   }
-
+  
   var body = {template: 'survey', datastory: this.datastory, feedback:this.feedback, phase: 1}
   this.apiClient.createDataStory(body).subscribe((response) => {
     console.log(response);

@@ -12,15 +12,25 @@ import simplejson
 from flask_cors import CORS
 from dichte import classification, lgr
 from waitress import serve
+from applicationinsights.flask.ext import AppInsights
 import functions
 
 app = Flask(__name__)
-CORS(app,resources={"/*":{"origins":"*"}})
+CORS(app,resources={r"*":{"origins":"*"}})
+app.config['APPINSIGHTS_INSTRUMENTATIONKEY'] = '45e828dd-0e3a-43fa-b586-4c0167c2c9ed'
+appinsights = AppInsights(app)
 
+# force flushing application insights handler after each request
+@app.after_request
+def after_request(response):
+    appinsights.flush()
+    return response
+
+#
 prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
 local = 'http://admin:admin@localhost:5984/'
 
-couch = couchdb.Server(local)
+couch = couchdb.Server(prod)
 
 try:
 	db = couch['datastories']
@@ -28,13 +38,16 @@ except:
 	db = couch.create('datastories')
 
 #scaler1, lgr1 = lgr()
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-    return response
-	
+# @app.after_request
+# def after_request(response):
+#     response.headers.add('Access-Control-Allow-Origin', '*')
+#     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+#     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+#     return response
+@app.route('/', methods=['GET'])
+def base():
+	return simplejson.dumps({'status': "okay"})
+
 @app.route('/fetchDoneDatastories', methods=['GET'])
 def fetchDoneDatastories():
 	datastories = []

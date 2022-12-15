@@ -28,7 +28,7 @@
     <!--FRAGE 1 ENDE-->
     <!--FRAGE 2-->
     <div class="question2 section">
-        <h5>Frage 2: Konntest du gut dich ohne Probleme zum Antwort-Bereich der Data Stories navigieren?</h5>
+        <h5>Frage 2: Konntest du dich ohne Probleme zum Antwort-Bereich der Data Stories navigieren?</h5>
         <div class="answer">
           <div>
               <input class="form-check-input" type="radio" name="question2" id="exampleRadios1" [(ngModel)]="show2" [value]="false" checked>
@@ -86,6 +86,12 @@
           </div>
     </div>
     <!--FRAGE 4 ENDE-->
+    <div class="question5 section">
+      <h5>Hast du weitere Verbesserungsvorschläge? </h5>
+      <div class="answer">
+          <textarea [(ngModel)]="text5" name="text5" cols="35" rows="4"></textarea> 
+        </div>
+  </div>
     <button type="submit" (click)="onSubmit()" class="btn btn-success">Absenden</button>
   </form>
 </div>
