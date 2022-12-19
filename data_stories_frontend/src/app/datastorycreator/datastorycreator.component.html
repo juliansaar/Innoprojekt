@@ -102,10 +102,10 @@
                 </div>
               </div>
               <div class="wrap2" *ngIf="showTemplate == 2">
-                <app-template2 [phase]=0 [datastory]="name" [foilnumber]="tab"></app-template2>
+                <app-template2 [phase]=0 [datastory]="name" [foilnumber]="tab" ></app-template2>
               </div>
               <div class="wrap2" *ngIf="showTemplate == 3">
-                <app-template1 #test [phase]=0 [datastory]="name" [foilnumber]="tab"></app-template1>
+                <app-template1 #test [phase]=0 [datastory]="name" [foilnumber]="tab" [last]="false"></app-template1>
               </div>
               <div id="f" *ngIf="showTemplate == 4">
 

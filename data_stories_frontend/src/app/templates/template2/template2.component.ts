@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, AfterViewInit, Injectable } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, Input,EventEmitter, Output } from '@angular/core';
 import { ApiClientService } from 'src/app/service/api-client.service';
-import {MatRadioModule} from '@angular/material/radio';
+
 @Component({
   selector: 'app-template2',
   templateUrl: './template2.component.html',
@@ -11,6 +10,8 @@ export class Template2Component implements OnInit {
   @Input() datastory: string
   @Input() foilnumber: number
   @Input() phase: number
+  @Input() last: boolean
+  @Output() newItemEvent = new EventEmitter<number>();
   
   headline: string;
   question1: string;
@@ -74,6 +75,7 @@ export class Template2Component implements OnInit {
       // this.body = { template: 'template2', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
       // this.postDataAndImage();
     }
+    this.newItemEvent.emit(this.foilnumber);
     this.next = true;
   }
   postDataAndImage() {

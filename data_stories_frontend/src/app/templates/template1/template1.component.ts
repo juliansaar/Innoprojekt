@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, Injectable } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApiClientService } from 'src/app/service/api-client.service';
 @Component({
@@ -7,13 +7,13 @@ import { ApiClientService } from 'src/app/service/api-client.service';
   styleUrls: ['./template1.component.css']
 })
 export class Template1Component implements OnInit {
+  
   @Input() datastory: string
   @Input() foilnumber: number
   @Input() phase: number
-  // profileForm = new FormGroup({
-  //   answer1 : new FormControl(''),
-  //   answer2 : new FormControl(''),
-  // });
+  @Input() last: boolean
+  @Output() newItemEvent = new EventEmitter<number>();
+
   name: any;
   name1: any;
   headline: string
@@ -48,35 +48,31 @@ export class Template1Component implements OnInit {
       this.data = await this.apiclient.getDatastory(this.datastory).subscribe(response => {
         this.datastory = response.datastory;
         this.content = response.content;
-        //this.image1 = response.imgs;
         this.update()
       });
 
-  }
-  onSubmit2() {
-    
   }
 
   onSubmit() {
     this.questions = [this.question1, this.question2]
     this.answers = [this.answer1, this.answer2]
     this.images = [this.image1, this.image2]
-    console.log('onSubmit',this.questions);
+    console.log('onSubmit',this.answers);
 
     if (this.phase === 0) {
       this.body = { template: 'template1', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
-      //this.postDataAndImage();
       this.apiclient.createDataStory(this.body).subscribe(resopnse => {})
     }
-    else if (this.phase === 1 && this.answers[0] !== undefined && this.answers[1] !== undefined) {
+    else if (this.phase === 1) {
       this.body = { template: 'template1', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
       this.apiclient.createDataStory(this.body).subscribe(resopnse => {
         console.log(resopnse)
       })
-      //window.alert("Barbeitung dieser Folie erfolgreich. Wenn möglich, bitte mit nächster Folie fortsetzen.")
+  
     }
     else if (this.phase === 2) {
     }
+    this.newItemEvent.emit(this.foilnumber);
     this.next = true;
   }
   postDataAndImage() {

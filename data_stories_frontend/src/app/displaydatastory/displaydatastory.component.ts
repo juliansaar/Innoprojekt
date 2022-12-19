@@ -1,6 +1,6 @@
-import { AfterViewChecked, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiClientService } from '../service/api-client.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Datastorymodel } from './datastorymodel';
 import { FormControl } from '@angular/forms';
 import { Template1Component } from '../templates/template1/template1.component';
@@ -19,11 +19,8 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
   foilnumber: string;
   content: any;
   isFormBuilder: boolean;
-  j: string;
-  test: any;
-  form: any;
-  component: any;
   selected = new FormControl(0);
+  last: boolean;
   constructor(private apiclient: ApiClientService, private route: ActivatedRoute, private router: Router) {   
   }
 
@@ -39,37 +36,25 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
       this.datastory =  response.datastory;
       this.foilnumber = response.foilnumber;
       this.content = response.content;
-      this.update()
      });
-    
+    this.last=false;
 }   
-  update() {
-    //var basic_content = this.content[0];
-    //this.component = basic_content.component;
-    //console.log(this.content.length);
-  }
-  
-  onSubmit(tab: number) {
-      if (this.content[tab].component == 'template1'){ 
-      this.child.onSubmit();
-      this.selected.setValue(tab+1);
+
+  nextT(tab: number) {
+    console.log('nextT',tab)
+    if (tab+2 == this.content.length){
+      this.last = true;
     }
-      if(this.content[tab].component == 'template2'){
-      this.childt2.onSubmit();
-      this.selected.setValue(tab+1);
-      }
- }
-  
+    if (tab+1 == this.content.length){
+      
+      this.router.navigateByUrl('/success/' + this.name);
+    }
+    console.log('nextT',tab)
+    this.selected.setValue(tab+1);
+  }
 
   onFinalSubmit(tab: number) {
-    if (this.content[tab].component == 'template1'){ 
-      this.child.onSubmit();
-    }
-    if(this.content[tab].component == 'template2'){
-      this.childt2.onSubmit();
-      }
-    
-    this.router.navigateByUrl('/success/' + this.name);
+   this.router.navigateByUrl('/success/' + this.name);
   }
 
    
