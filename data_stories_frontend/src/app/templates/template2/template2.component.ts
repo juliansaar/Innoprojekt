@@ -44,7 +44,7 @@ export class Template2Component implements OnInit {
       this.data = await this.apiclient.getDatastory(this.datastory).subscribe(response => {
         this.datastory = response.datastory;
         this.content = response.content;
-        this.image1 = response.imgs;
+        //this.image1 = response.imgs;
         this.update()
       });
 
@@ -59,7 +59,8 @@ export class Template2Component implements OnInit {
 
     if (this.phase === 0) {
       this.body = { template: 'template2', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
-      this.postDataAndImage();
+      //this.postDataAndImage();
+      this.apiclient.createDataStory(this.body).subscribe(resopnse => {})
     }
     else if (this.phase === 1) {
       this.body = { template: 'template2', datastory: this.datastory, foilnumber: this.foilnumber, headline: this.headline, questions: this.questions, answers: this.answers, images: this.images, phase: this.phase }
@@ -92,6 +93,7 @@ export class Template2Component implements OnInit {
     this.headline = this.content[this.foilnumber].headline
     this.question1 = this.content[this.foilnumber].questions[0]
     //this.question2 = this.content[this.foilnumber].questions[1]
+    this.image1 = this.content[this.foilnumber].images[0]
 
     if (this.phase == 2) {
       this.answer1 = this.content[this.foilnumber].answers[0]
@@ -102,6 +104,11 @@ export class Template2Component implements OnInit {
   }
   onChange1(event) {
     this.file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(this.file);
+    reader.onload = () => {
+      this.image1 = reader.result as string;
+    }
   }
   onUpload() {
     this.apiclient.imageUploadAction2(this.file, `${this.datastory}_0`)

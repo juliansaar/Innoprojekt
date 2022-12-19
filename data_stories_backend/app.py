@@ -11,26 +11,26 @@ import json
 import simplejson
 from flask_cors import CORS
 from dichte import classification, lgr
-from waitress import serve
-from applicationinsights.flask.ext import AppInsights
+#from waitress import serve
+#from applicationinsights.flask.ext import AppInsights
 import functions
 
 app = Flask(__name__)
 CORS(app,resources={r"*":{"origins":"*"}})
-app.config['APPINSIGHTS_INSTRUMENTATIONKEY'] = '45e828dd-0e3a-43fa-b586-4c0167c2c9ed'
-appinsights = AppInsights(app)
+#app.config['APPINSIGHTS_INSTRUMENTATIONKEY'] = '45e828dd-0e3a-43fa-b586-4c0167c2c9ed'
+#appinsights = AppInsights(app)
 
 # force flushing application insights handler after each request
-@app.after_request
-def after_request(response):
-    appinsights.flush()
-    return response
+# @app.after_request
+# def after_request(response):
+#     appinsights.flush()
+#     return response
 
 #
 prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
 local = 'http://admin:admin@localhost:5984/'
 
-couch = couchdb.Server(prod)
+couch = couchdb.Server(local)
 
 try:
 	db = couch['datastories']

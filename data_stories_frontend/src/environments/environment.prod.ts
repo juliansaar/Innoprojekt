@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url: 'https://datastoriesbackend.azurewebsites.net'
+  url: 'https://20.107.50.230'
 };

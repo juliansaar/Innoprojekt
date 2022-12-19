@@ -67,24 +67,24 @@
                 <img src="../assets/boxplot.png" alt="boxplot">
               </div>
               <div class="text-center">
-                <div id="t1">
+                <!-- <div id="t1">
                   <input class="form-control" type="file" (change)="onChange1($event)">
                   <button type="submit" (click)="onUpload()" class="btn btn-success">
                     Upload
                   </button>
-                </div>
+                </div> -->
               </div>
             </div>
       
             <div class="wrap1">
-              <div class="img"><img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="200px"
-                  height="200px">
-              </div>
+              <!-- <div class="img"><img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="200px"
+                  height="200px"> 
+              </div>-->
               <div class="text-center1">
                 <input class="form-control" type="file" (change)="onChange1($event)">
-                <button type="submit" (click)="onUpload()" class="btn btn-success">
+                <!-- <button type="submit" (click)="onUpload()" class="btn btn-success">
                   Upload
-                </button>
+                </button> -->
               </div>
               <div>
               </div>
@@ -92,7 +92,7 @@
           
       </div>
       <ng-template #fetchImgs>
-        <img src="{{'data:image/png;base64,' + image1}}">
+        <img src="{{image1}}">
       </ng-template>
 </div>
     </div>

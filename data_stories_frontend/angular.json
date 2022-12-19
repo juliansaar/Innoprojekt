@@ -79,10 +79,6 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "data_stories_frontend:build",
-            "proxyConfig": "src/proxy.conf.json"
-            },
           "configurations": {
             "production": {
               "browserTarget": "data_stories_frontend:build:production"
