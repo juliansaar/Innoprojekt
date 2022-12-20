@@ -49,6 +49,9 @@ export class DatastorycreatorComponent implements OnInit {
   nextT(tab: number) {
     this.selected.setValue(tab);
     this.showTemplate = 0;
+    if(tab === this.tabs.length){
+      this.addTab();
+    }
   }
   submitFormBuilderForm(tab: number){
       var body = {template: 'template4', datastory: this.name, foilnumber: tab, "jsonForm": this.form, phase: 0}
@@ -67,7 +70,5 @@ export class DatastorycreatorComponent implements OnInit {
   onUpload(){
     this.apiclient.imageUploadAction(this.file,'name')
   }
-  showFirstTemplate(){
-    this.showTemplate = 1
-  }
+  
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { tap, catchError, Observable, throwError } from 'rxjs';
-import { Datastorymodel } from '../displaydatastory/datastorymodel';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 
 
@@ -16,9 +15,7 @@ export class ApiClientService {
   successResponse: any;
   uploadedImage: Blob;
   url : string;
-  
-  //local: 'http://localhost:5000';
-  //prod: 'https://datastoriesbackend.azurewebsites.net';
+
   constructor(private http: HttpClient) {
     this.url = environment.url;
    }
