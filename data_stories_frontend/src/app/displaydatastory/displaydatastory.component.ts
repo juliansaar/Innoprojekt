@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApiClientService } from '../service/api-client.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Datastorymodel } from './datastorymodel';
 import { FormControl } from '@angular/forms';
+import { ApiClientService } from '../service/api-client.service';
 import { Template1Component } from '../templates/template1/template1.component';
 import { Template2Component } from '../templates/template2/template2.component';
 
@@ -21,7 +21,7 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
   isFormBuilder: boolean;
   selected = new FormControl(0);
   last: boolean;
-  constructor(private apiclient: ApiClientService, private route: ActivatedRoute, private router: Router) {   
+  constructor(private route: ActivatedRoute, private router: Router, private apiclient: ApiClientService) {   
   }
 
 
@@ -29,9 +29,8 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
 
     this.route.params.subscribe(params => {
       this.name = params['datastoryname'];
-    }); 
-
-  this.apiclient.getDatastory(this.name).subscribe((response) =>
+    });
+    this.apiclient.getDatastory(this.name).subscribe((response) =>
      {
       this.datastory =  response.datastory;
       this.foilnumber = response.foilnumber;
@@ -47,14 +46,14 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
     }
     if (tab+1 == this.content.length){
       
-      this.router.navigateByUrl('/success/' + this.name);
+      this.router.navigateByUrl('/success/' + this.name + '/' + 1);
     }
     console.log('nextT',tab)
     this.selected.setValue(tab+1);
   }
 
-  onFinalSubmit(tab: number) {
-   this.router.navigateByUrl('/success/' + this.name);
+  onFinalSubmit() {
+   this.router.navigateByUrl('/success/' + this.name + '/' + 1);
   }
 
    

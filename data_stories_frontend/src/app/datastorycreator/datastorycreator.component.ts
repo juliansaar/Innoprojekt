@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiClientService } from '../service/api-client.service';
 import { Template1Component } from '../templates/template1/template1.component';
 
@@ -10,6 +11,10 @@ import { Template1Component } from '../templates/template1/template1.component';
   
 })
 export class DatastorycreatorComponent implements OnInit {
+  @ViewChild(Template1Component, {static: false}) child:Template1Component;
+  public form: Object = {components: []};
+  tabs = [1, 2, 3];
+  selected = new FormControl(0);
   name : string;
   fragerunde: number;
   adressat: string;
@@ -21,21 +26,14 @@ export class DatastorycreatorComponent implements OnInit {
   eintraege: number;
   file: File = null; // Variable to store file
   showTemplate: number = 0;
-  jsonForm: string;
-  constructor(private apiclient: ApiClientService) { }
-  @ViewChild(Template1Component, {static: false}) child:Template1Component;
-  //child1 = new Template1Component(  this.apiclient);
-  //FormBuilder
-  public form: Object = {components: []};
-  tabs = [1, 2, 3];
-  selected = new FormControl(0);
+  
+  constructor(private apiclient: ApiClientService, private router: Router) { }
+
 
   ngOnInit(): void {
-    console.log('init dscreator')
+
   }
-  ngAfterViewInit(){
-    console.log('ngAfterViewInit',this.child)
-  }
+ 
   addTab() {
     if(this.tabs.length < 10){
     this.tabs.push((this.tabs.length + 1));
@@ -48,34 +46,21 @@ export class DatastorycreatorComponent implements OnInit {
   
   onChange(event) {
   }
-  
-  saveAndGo(tab: number){
-    if (this.showTemplate == 1){
-        this.apiclient.createDataStory(this.name);
-        this.selected.setValue(tab);
-        this.showTemplate = 0;
-    }
-    if (this.showTemplate === 3){
-      console.log('showT = 3',this.child.headline)
-      this.child.onSubmit();
-      this.selected.setValue(tab);
-      this.showTemplate = 0;
-      
+  nextT(tab: number) {
+    this.selected.setValue(tab);
+    this.showTemplate = 0;
   }
-    if (this.showTemplate == 4){
+  submitFormBuilderForm(tab: number){
       var body = {template: 'template4', datastory: this.name, foilnumber: tab, "jsonForm": this.form, phase: 0}
       this.apiclient.createDataStory(body).subscribe((response) =>  { console.log(response) });
       this.selected.setValue(tab);
       this.showTemplate = 0;
-    }
     
-    
-    
+  }
+  send(){
+  this.router.navigateByUrl('/success/' + this.name + '/' + 0);
   }
   
-  click(){
-    this.apiclient.createDataStory(this.name);
-  }
   onChange1(event){
     this.file = event.target.files[0];
   }
@@ -84,8 +69,5 @@ export class DatastorycreatorComponent implements OnInit {
   }
   showFirstTemplate(){
     this.showTemplate = 1
-  }
-  onClick(){
-    console.log(this.name)
   }
 }

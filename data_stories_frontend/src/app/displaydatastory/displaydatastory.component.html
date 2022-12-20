@@ -18,20 +18,9 @@
                 
                     <app-template4 [phase]=1 [datastory]="name" [foilnumber]="index"></app-template4>
                     <ng-container *ngIf=" index+1 === content.length">
-                        <button type="submit" (click)="onFinalSubmit(index)" class="btn btn-success">Data Story Abschicken</button>
+                        <button type="submit" (click)="onFinalSubmit()" class="btn btn-success">Data Story Abschicken</button>
                     </ng-container>
             </ng-container>
-           
-
-            
-            <!-- <ng-container *ngIf="index+1 !== content.length && content[index].component !== 'template4'">
-                <button type="submit" (click)="onSubmit(index)" class="btn btn-success">Speichern und Weiter</button>
-            </ng-container> -->
-            <!-- <ng-container *ngIf=" index+1 === content.length">
-                <button type="submit" (click)="onFinalSubmit(index)" class="btn btn-success">Data Story beenden und Abschicken</button>
-            </ng-container> -->
-            
-        
         </mat-tab>
     </mat-tab-group>
     </div>

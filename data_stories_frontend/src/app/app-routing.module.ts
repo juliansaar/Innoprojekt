@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'kaffee/2/4', component: VierteFolieKComponent },
   { path: 'kaffee/2/5', component: FuenfteFolieKComponent },
 
-  { path: 'success/:datastoryname', component: SuccessComponent },
+  { path: 'success/:datastoryname/:phase', component: SuccessComponent },
   { path: 'survey/:datastoryname', component: SurveyComponent},
   { path: 'datastorycreator', component: DatastorycreatorComponent },
   { path: 'abgeschlossen/dichte', component: AbgeschlosseneDsComponent},

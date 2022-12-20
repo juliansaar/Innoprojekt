@@ -1,7 +1,7 @@
 <div class="content1">
   <h3>Editor</h3>
   <p class="text">Stelle deine individuelle Data Story mithilfe unseres Editors zusammen.</p>
-      <form> <input name="name" [(ngModel)]="name"><button type="submit" class="btn btn-info"(click)="onClick()">Submit</button>
+      <form> <input name="name" [(ngModel)]="name" placeholder="Name der Data Story">
         </form>
       <div class="content-white ">
           <div role="main" [ngClass]="showTemplate != 4 ? 'content' : 'container1'" >
@@ -102,26 +102,27 @@
                 </div>
               </div>
               <div class="wrap2" *ngIf="showTemplate == 2">
-                <app-template2 [phase]=0 [datastory]="name" [foilnumber]="tab" ></app-template2>
+                <app-template2 [phase]=0 [datastory]="name" [foilnumber]="tab" [last]="false" (newItemEvent)="nextT($event)"></app-template2>
               </div>
               <div class="wrap2" *ngIf="showTemplate == 3">
-                <app-template1 #test [phase]=0 [datastory]="name" [foilnumber]="tab" [last]="false"></app-template1>
+                <app-template1 [phase]=0 [datastory]="name" [foilnumber]="tab" [last]="false" (newItemEvent)="nextT($event)"></app-template1>
               </div>
               <div id="f" *ngIf="showTemplate == 4">
 
                 <form-builder [form]="form" (change)="onChange($event)"></form-builder>
-           
+                <button type="submit" (click)="submitFormBuilderForm(tab)" class="btn btn-success">Speichern und Weiter</button>
               </div>
               <ng-container *ngIf="showTemplate != 0">
               <button class="btn btn-info" (click)="showTemplate = 0">
                 Zurück zur Design Auswahl
               </button>
               
-              <button class="btn btn-success" (click)="saveAndGo(tab)" title="submit" type="submit">Speichern & Weiter</button>
+              
             </ng-container><button class="btn btn-danger" [disabled]="tabs.length === 1"
                 (click)="removeTab(index)">
                 Folie löschen
               </button>
+              <button class="btn btn-success" (click)="send()" title="submit" type="submit">Data Story Abschicken</button>
             </mat-tab>
           </mat-tab-group>
           <div>
