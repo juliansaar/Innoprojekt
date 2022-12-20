@@ -1,7 +1,8 @@
 <div class="content1">
-  <h3>Editor</h3>
+  <h1>Data-Story erstellen</h1>
   <p class="text">Stelle deine individuelle Data Story mithilfe unseres Editors zusammen.</p>
-      <form> <input name="name" [(ngModel)]="name"><button type="submit" class="btn btn-info"(click)="onClick()">Submit</button>
+  <p class="text">Vergebe deiner Data-Story einen eindeutigen Namen:</p>
+      <form> <input name="name" [(ngModel)]="name"><button type="submit" class="btn btn-info auswahl"(click)="onClick()">Name vergeben</button>
         </form>
       <div class="content-white ">
           <div role="main" [ngClass]="showTemplate != 4 ? 'content' : 'container1'" >
@@ -14,20 +15,32 @@
           <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
             <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab.toString()">
               <ng-container *ngIf="showTemplate == 0"><span>
-                  <h2>Wähle ein Design</h2>
+                  
                 </span></ng-container>
 
               <div class="imgs" *ngIf="showTemplate == 0">
 
-                <div></div>
-                <img class="i" src="../assets/basic_infos.PNG" alt="basic_infos" (click)="showTemplate = 1">
-                <a><img class="i" src="../assets/vollbild.PNG" alt="vollbild" (click)="showTemplate = 2"></a>
+               
+                <div class="i">
+                  <h4>Basic Template</h4>
+                  <button class="btn btn-primary auswahl" (click)="showTemplate = 1">Jetzt erstellen </button>
+                </div>
+                <div class="i">
+                  <h4>Ja/Nein Auswahl</h4>
+                  <button class="btn btn-primary auswahl" (click)="showTemplate = 2">Jetzt erstellen </button>
+                </div>
 
               </div>
               <div class="imgs" *ngIf="showTemplate == 0">
 
-                <img class="i" src="../assets/boxplot.png" alt="basic_infos" (click)="showTemplate = 3">
-                <img class="i" src="../assets/custom_design.PNG" alt="custom_design" (click)="showTemplate = 4">
+                <div class="i">
+                  <h4>Zwei Freitextfelder</h4>
+                  <button class="btn btn-primary auswahl" (click)="showTemplate = 3">Jetzt erstellen </button>
+                </div>
+                <div class="i">
+                  <h4>Editor</h4>
+                  <button class="btn btn-primary auswahl" (click)="showTemplate = 4">Jetzt erstellen </button>
+                </div>
               </div>
 
               <div id="1" *ngIf="showTemplate == 1">
@@ -118,18 +131,27 @@
               </button>
               
               <button class="btn btn-success" (click)="saveAndGo(tab)" title="submit" type="submit">Speichern & Weiter</button>
-            </ng-container><button class="btn btn-danger" [disabled]="tabs.length === 1"
-                (click)="removeTab(index)">
-                Folie löschen
+            </ng-container>
+            
+            <div class="weitereFolie">
+            <button class="btn btn-danger löschen" [disabled]="tabs.length === 1"
+                (click)="removeTab(index)">Folie löschen
               </button>
+            
+            
+              <button class="btn btn-secondary" (click)="addTab()">
+                <span class="material-symbols-outlined">
+                  </span>
+              Weiter Folie hinzufügen
+              </button>
+            </div>
             </mat-tab>
           </mat-tab-group>
           <div>
-            <button class="btn btn-secondary" (click)="addTab()">
-              Neue Folie
-            </button>
+            
           </div>
         </div>
+        
   
 </div>    
 </div>
