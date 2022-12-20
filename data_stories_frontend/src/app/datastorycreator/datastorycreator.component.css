@@ -21,6 +21,7 @@
     margin: 0px;
     padding: 0;
     border: 10px solid red !important;
+    
   
   }
 
@@ -31,14 +32,14 @@
     width: 38vw;
     height:48vh;
   }
-  .img{
+  /*.img{
     opacity: 0.2;
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: auto;
-  }
+  }*/
   .text-center{
     border: 2px solid black;
     display: flex;
@@ -64,23 +65,54 @@
     opacity:1;
     width:35vw;height:"200px";
   }
+
   .imgs{
     display: flex;
     opacity:0,3;
+    gap: 10px;
+    margin-top: 10px;
   }
   
 
   .i{
-    width: 25vw;
-    height: 23vh;
-    opacity: 0,3;
-    margin: 2vw;
-    transition: transform .2s; /* Animation */
+    flex-grow: 1;
+    border-radius: 5px;
+    border: 2px solid #62e497;
+    padding-top: 50px;
+    background-color: white;
+    color: #312a52;
+    text-align: center;
+    width: 400px;
+    height: 300px;
+
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    /*transition: transform .2s; /* Animation */
   }
+
+
   .i:hover {
-    transform: scale(1.3); /* (130% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    /*transform: scale(1.3); /* (130% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     cursor: pointer;
+    border-color: #312a52;
+    transition: 0.3s;
   }
+
+  .auswahl{
+    background-color: white;
+    color: #312a52;
+    background-color: #62e497;
+    border: none;
+  }
+
+  .auswahl:hover{
+    background-color: #312a52;
+    color:#62e497;
+    transition: 0.3s;
+  }
+
+
   #nameds{
     text-align: center;
     margin: 1vw;
@@ -118,16 +150,22 @@
     margin-left: 1vw;
   }
   button{
-    margin: 1vw;
+    margin: 10px 5px;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 800;
+    font-size: 16px;
     
   }
-  .container { display: flex }
+  
+  .löschen{
+    margin-left: 0px !important;
+  }
   
   .content {
     display: flex;
     margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
+    
+    
     flex-direction: column;
     align-items: center;
   }
@@ -200,6 +238,10 @@
     min-width: 30%;
     position: relative;
   }
+
+  .weitereFolie{
+    text-align: right;
+  }
   
   .card.card.highlight-card span {
     margin-left: 60px;
@@ -247,6 +289,7 @@
     width: 90%;
     padding: 10px 10px 10px 10px;
     position: relative;
+    font-family: 'Poppins', sans-serif;
   }
   
   h3{

@@ -27,7 +27,7 @@
                   <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown1">
                     <!--<li><a class="dropdown-item" routerLink="abgeschlossen/kaffee" >Kaffee Datensatz</a></li>
                     <li><a class="dropdown-item" routerLink="abgeschlossen/dichte" >Dichte Datensatz</a></li>-->
-                    <li><a class="dropdown-item" *ngFor="let done_datastory of done_datastories; let index=index" data-bs-dismiss="offcanvas" (click)='navigateToDoneDatastory(done_datastory)'>
+                    <li id="liste"><a class="dropdown-item" *ngFor="let done_datastory of done_datastories; let index=index" data-bs-dismiss="offcanvas" (click)='navigateToDoneDatastory(done_datastory)'>
                       {{done_datastory}}
                       </a></li>
                   </ul>
@@ -39,7 +39,7 @@
                     <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
                       <!--<li><a class="dropdown-item" routerLink="kaffee/2/0" >Kaffee Datensatz</a></li>
                       <li><a class="dropdown-item" routerLink="dichte/2/0" >Dichte Datensatz</a></li>-->
-                      <li><a class="dropdown-item" *ngFor="let datastoryname of datastorynames; let index=index" data-bs-dismiss="offcanvas" (click)='navigateToDatastory(datastoryname)'>
+                      <li id="liste2"><a class="dropdown-item" *ngFor="let datastoryname of datastorynames; let index=index" data-bs-dismiss="offcanvas" (click)='navigateToDatastory(datastoryname)'>
                         {{datastoryname}}</a></li>
                     </ul>
                   </li>
