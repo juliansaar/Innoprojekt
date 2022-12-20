@@ -20,6 +20,7 @@ import { DataexplorerComponent } from './dataexplorer/dataexplorer.component';
 import { DisplaydatastoryComponent } from './displaydatastory/displaydatastory.component';
 import { DisplaydonedatastoriesComponent } from './displaydonedatastories/displaydonedatastories.component';
 import { SurveyComponent } from './survey/survey.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'dichte/2/0', component: ErsteFolieComponent },
@@ -42,7 +43,9 @@ const routes: Routes = [
   { path: 'abgeschlossen/kaffee', component: KaffeeComponent},
   { path: 'dataexplorer', component: DataexplorerComponent},
   { path: 'displaydatastory/:datastoryname', component: DisplaydatastoryComponent },
-  { path: 'displaydonedatastory/:donedatastoryname', component: DisplaydonedatastoriesComponent }
+  { path: 'displaydonedatastory/:donedatastoryname', component: DisplaydonedatastoriesComponent },
+  { path: '', component: HomeComponent}
+
 ];
 
 @NgModule({

@@ -27,6 +27,8 @@ export class HeaderComponent implements OnInit {
       this.done_datastories.push(data[key]);
     }
 });
+
+
     }
     navigateToDatastory(datastoryname: string){
       this.router.navigate(['/displaydatastory', datastoryname]);
