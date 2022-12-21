@@ -1,0 +1,25 @@
+.inhalt{
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    flex-direction: column;
+    margin-left: 10%;
+  }
+  
+  .box{
+    background-color: white;
+    margin-top: 10px;
+    width: 70%;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .überschrift{
+    font-family: 'Poppins', sans-serif;
+    font-style: bold;
+    margin-left: 10%;
+    margin-top: 50px;
+
+  }
+
+ 

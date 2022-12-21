@@ -1,7 +1,13 @@
-<h1> Done Datastories</h1>
+
 <!--<div >
     <app-template1 [phase]=2 [datastory]="name" [foilnumber]="1"></app-template1>
 </div>-->
+<div class="überschrift">
+<h2> Abgeschlossene Data-Story</h2>
+<p>Name der DataStory: {{datastory}}</p>
+<div class="inhalt">
+</div>    
+    <div class="box">
 <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
     <mat-tab *ngFor="let c of content; let index = index" [label]="(index+1).toString()">
 <!-- <div *ngFor="let c of content; let index = index"> -->
@@ -23,3 +29,6 @@
 
 <!-- </div> -->
     </mat-tab>
+    </mat-tab-group>
+</div>
+</div>
