@@ -35,6 +35,7 @@ import { DisplaydonedatastoriesComponent } from './displaydonedatastories/displa
 import { SurveyComponent } from './survey/survey.component';
 import { Template4Component } from './templates/template4/template4.component';
 import { HomeComponent } from './home/home.component';
+import { OverviewDsAbgeschlossenComponent } from './overview-ds-abgeschlossen/overview-ds-abgeschlossen.component';
 
 
 
@@ -65,6 +66,7 @@ import { HomeComponent } from './home/home.component';
     SurveyComponent,
     Template4Component,
     HomeComponent,
+    OverviewDsAbgeschlossenComponent,
   ],
   imports: [
     BrowserModule,
