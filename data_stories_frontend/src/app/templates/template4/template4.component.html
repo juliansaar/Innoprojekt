@@ -2,6 +2,6 @@
     <formio [form]="jsonForm" (submit)="onSubmit($event)"></formio>
 </ng-container> 
 <ng-container *ngIf="phase == 2">
-    <formio [form]="jsonForm" [submission]='{"data": answer}' [readOnly]="true"></formio>
+    <formio [form]="jsonForm" [submission]='{"data": answer}' [readOnly]="true" [viewOnly]="true"></formio>
 </ng-container>
 

@@ -25,12 +25,14 @@ CORS(app,resources={r"*":{"origins":"*"}})
 # def after_request(response):
 #     appinsights.flush()
 #     return response
-
-#
 prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
 local = 'http://admin:admin@localhost:5984/'
 
-couch = couchdb.Server(prod)
+import platform
+platform.system()
+if platform.system() == 'Windows':
+	couch = couchdb.Server(local)
+else: couch = couchdb.Server(prod)
 
 try:
 	db = couch['datastories']
