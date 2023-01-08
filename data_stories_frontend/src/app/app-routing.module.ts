@@ -21,8 +21,6 @@ import { DisplaydatastoryComponent } from './displaydatastory/displaydatastory.c
 import { DisplaydonedatastoriesComponent } from './displaydonedatastories/displaydonedatastories.component';
 import { SurveyComponent } from './survey/survey.component';
 import { HomeComponent } from './home/home.component';
-import { DoneComponent } from './overviews/done/done.component';
-import { NotansweredComponent } from './overviews/notanswered/notanswered.component';
 
 const routes: Routes = [
   { path: 'dichte/2/0', component: ErsteFolieComponent },
@@ -46,8 +44,6 @@ const routes: Routes = [
   { path: 'dataexplorer', component: DataexplorerComponent},
   { path: 'displaydatastory/:datastoryname', component: DisplaydatastoryComponent },
   { path: 'displaydonedatastory/:donedatastoryname', component: DisplaydonedatastoriesComponent },
-  { path: 'overview/done', component: DoneComponent},
-  { path: 'overview/notanswered', component: NotansweredComponent},
   { path: '', component: HomeComponent}
 
 ];
