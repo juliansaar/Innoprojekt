@@ -15,7 +15,6 @@ export class SurveyComponent implements OnInit {
   text1: string;
   text2: string;
   text3: string;
-  text4: string;
   text5: string;
 
   datastory: string;
@@ -37,7 +36,6 @@ onSubmit(){
     t1 : this.text1,
     t2 : this.text2,
     t3 : this.text3,
-    t4 : this.text4,
     t5 : this.text5
   }
   

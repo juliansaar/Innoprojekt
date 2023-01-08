@@ -1,0 +1,11 @@
+<div class="container">
+    <h2>Unbeantwortete Data-Stories auswählen</h2>
+
+    <div *ngFor="let datastory of datastorynames" class="card" >
+        <div class="card-body">
+            <p class="card-text">{{datastory}}</p>
+        </div>    
+        <div>
+            <a (click)='navigateToDatastory(datastory)' class="btn btn-primary">Jetzt ansehen</a>
+        </div> 
+</div>

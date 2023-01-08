@@ -62,7 +62,7 @@
                 Nein
               </label>
             </div>
-            <textarea *ngIf="show3" name="text3" [(ngModel)]="text3" cols="35" rows="4"></textarea> 
+            <textarea *ngIf="show3 === false" name="text3" [(ngModel)]="text3" cols="35" rows="4"></textarea> 
           </div>
     </div>
     <!--FRAGE 3 ENDE-->
@@ -82,7 +82,6 @@
                 Nein
               </label>
             </div>
-            <textarea *ngIf="show4" [(ngModel)]="text4" name="text4" cols="35" rows="4"></textarea> 
           </div>
     </div>
     <!--FRAGE 4 ENDE-->

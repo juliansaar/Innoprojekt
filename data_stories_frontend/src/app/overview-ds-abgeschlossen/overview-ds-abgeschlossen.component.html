@@ -1,0 +1,14 @@
+<div class="container">
+    <h2>Abgeschlossene Data-Stories auswählen</h2>
+
+    <div class="card" *ngFor="let done_datastory of done_datastories">
+        <div class="card-body">
+            <p class="card-text">{{done_datastory}}</p>
+        </div>    
+        <div>
+            <a (click)='navigateToDoneDatastory(done_datastory)'  class="btn btn-primary">Jetzt ansehen</a>
+        </div>   
+    </div>
+
+    
+</div>
