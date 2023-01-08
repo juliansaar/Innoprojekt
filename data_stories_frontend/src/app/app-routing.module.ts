@@ -22,6 +22,7 @@ import { DisplaydonedatastoriesComponent } from './displaydonedatastories/displa
 import { SurveyComponent } from './survey/survey.component';
 import { HomeComponent } from './home/home.component';
 import { OverviewDsAbgeschlossenComponent } from './overview-ds-abgeschlossen/overview-ds-abgeschlossen.component';
+import { OverviewDsUnbeantwortetComponent } from './overview-ds-unbeantwortet/overview-ds-unbeantwortet.component';
 
 const routes: Routes = [
   { path: 'dichte/2/0', component: ErsteFolieComponent },
@@ -46,7 +47,8 @@ const routes: Routes = [
   { path: 'displaydatastory/:datastoryname', component: DisplaydatastoryComponent },
   { path: 'displaydonedatastory/:donedatastoryname', component: DisplaydonedatastoriesComponent },
   { path: '', component: HomeComponent},
-  { path: 'ueberblick/abgeschlossen', component: OverviewDsAbgeschlossenComponent}
+  { path: 'ueberblick/abgeschlossen', component: OverviewDsAbgeschlossenComponent},
+  { path: 'ueberblick/unbeantwortet', component: OverviewDsUnbeantwortetComponent}
 
 ];
 

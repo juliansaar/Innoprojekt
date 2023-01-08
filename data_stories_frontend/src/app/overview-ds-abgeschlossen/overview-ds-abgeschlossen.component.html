@@ -1,35 +1,13 @@
 <div class="container">
     <h2>Abgeschlossene Data-Stories auswählen</h2>
 
-    <div class="card" >
+    <div class="card" *ngFor="let done_datastory of done_datastories">
         <div class="card-body">
-            <p class="card-text">Validierung_1</p>
+            <p class="card-text">{{done_datastory}}</p>
         </div>    
         <div>
-            <a routerLink="/displaydonedatastory/Validierung_1" class="btn btn-primary">Jetzt ansehen</a>
-        </div>
-        
-        
-    </div>
-    <div class="card" >
-        <div class="card-body">
-            <p class="card-text">Validierung_2</p>
-        </div>    
-        <div>
-            <a routerLink="/displaydonedatastory/Validierung_2" class="btn btn-primary">Jetzt ansehen</a>
-        </div>
-        
-        
-    </div>
-    <div class="card" >
-        <div class="card-body">
-            <p class="card-text">Validierung_3</p>
-        </div>    
-        <div>
-            <a routerLink="/displaydonedatastory/Validierung_3" class="btn btn-primary">Jetzt ansehen</a>
-        </div>
-        
-        
+            <a (click)='navigateToDoneDatastory(done_datastory)'  class="btn btn-primary">Jetzt ansehen</a>
+        </div>   
     </div>
 
     
