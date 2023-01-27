@@ -21,6 +21,11 @@
           <app-template2 [phase]=2 [datastory]="name" [foilnumber]="index"></app-template2>
       </div>
   </ng-container>
+  <ng-container *ngIf="content[index].component == 'template3'">
+    <div >
+          <app-template3 [phase]=2 [datastory]="name" [foilnumber]="index"></app-template3>
+      </div>
+  </ng-container>
   <ng-container *ngIf="content[index].component == 'template4'">
     <div >
           <app-template4 [phase]=2 [datastory]="name" [foilnumber]="index"></app-template4>

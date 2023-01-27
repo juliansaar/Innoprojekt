@@ -35,20 +35,19 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
       this.datastory =  response.datastory;
       this.foilnumber = response.foilnumber;
       this.content = response.content;
+      this.content.length == 1 ? this.last = true : this.last = false;
      });
-    this.last=false;
-}   
-
+     
+  }
+  
   nextT(tab: number) {
-    console.log('nextT',tab)
-    if (tab+2 == this.content.length){
+    if (tab+2 === this.content.length) {
       this.last = true;
     }
     if (tab+1 == this.content.length){
       
       this.router.navigateByUrl('/success/' + this.name + '/' + 1);
     }
-    console.log('nextT',tab)
     this.selected.setValue(tab+1);
   }
 
@@ -56,5 +55,4 @@ export class DisplaydatastoryComponent implements OnInit, Datastorymodel {
    this.router.navigateByUrl('/success/' + this.name + '/' + 1);
   }
 
-   
 }

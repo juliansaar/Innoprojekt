@@ -1,0 +1,70 @@
+
+<div class="container">
+  <form>
+ <div  class="container">
+       <!-- Question 1 From Data Scientist -->
+       <div *ngIf="phase === 0; else other">
+        <h2>Fragerunde: </h2>
+        <input id="nr" placeholder="Nr." title="fragerunde" type="number" [(ngModel)]="foilnumber"
+          [ngModelOptions]="{standalone: true}">
+
+        <h3>Adressat zum Beantworten der Fragen: </h3>
+        <input id="adressat" title="adressat" type="text" [(ngModel)]="adressat" placeholder="Bsp: Domänenexperte"
+          [ngModelOptions]="{standalone: true}">
+
+        <h3>Stand: </h3>
+        <input id="stand" title="stand" type="text" [(ngModel)]="stand"
+          placeholder="die Bedeutung aller 5 Statuskategorien wurde geklärt"
+          [ngModelOptions]="{standalone: true}">
+
+        <h3>Datensatz:</h3><input title="datensatz" type="text" [(ngModel)]="datensatz"
+          placeholder="Kontinuierlicher Druck- und Leckwert, 5 verschiedene Status, diverse Labels"
+          [ngModelOptions]="{standalone: true}">
+
+        <h3>Zeitraum:</h3> <input title="zeitraum_von" type="date" [(ngModel)]="zeitraum_von"
+          [ngModelOptions]="{standalone: true}">
+        <input title="zeitraum_bis" type="date" [(ngModel)]="zeitraum_bis" [ngModelOptions]="{standalone: true}">
+
+        <h3>Messungsintervall:</h3> <input title="messungsintervall" type="text" [(ngModel)]="messungsintervall"
+          placeholder="1 Millisekunde" [ngModelOptions]="{standalone: true}">
+
+        <h3>Einträge:</h3> <input title="eintraege" type="number" [(ngModel)]="eintraege" placeholder="1.455.424"
+          [ngModelOptions]="{standalone: true}">
+    </div>
+    <ng-template #other>
+      <div>
+        <h2>Fragerunde: </h2>
+        <p >{{foilnumber}}</p>
+        <h3>Adressat zum Beantworten der Fragen: </h3>
+        <p> {{adressat}}</p>
+        <h3>Stand: </h3>
+       <p>{{stand}} </p>
+        <h3>Datensatz:</h3><p> {{datensatz}}</p>
+        <h3>Zeitraum:</h3> <p> {{zeitraum_von}}</p>
+        <p> {{zeitraum_bis}}</p>
+        <h3>Messungsintervall:</h3> <p> {{messungsintervall}}</p> 
+       <h3>Einträge:</h3> <p>{{eintraege}} </p></div>
+    </ng-template>
+
+
+    <div *ngIf="phase === 0; else fetchImgs">
+    <div class="wrap">
+      <div class="img">
+        <img src="../assets/boxplot.png" alt="boxplot">
+      </div>
+
+    </div>
+
+
+  <div class="wrap1">
+    <div class="text-center1">
+      <input class="form-control" type="file" (change)="onChange1($event)">
+    </div>
+  </div> </div>
+  <ng-template #fetchImgs>
+    <img src="{{image1}}">
+  </ng-template>
+</div>
+  <button *ngIf="phase !== 2 && last === false &&  datastory !== ''" type="submit" (click)="onSubmit()" class="btn btn-success">Speichern und Weiter</button>
+  <button *ngIf="phase === 1 && last === true &&  datastory !== ''" type="submit" (click)="onSubmit()" class="btn btn-success">Speichern und Data Story Abschicken</button>
+</form>

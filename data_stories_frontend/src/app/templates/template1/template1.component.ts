@@ -44,6 +44,11 @@ export class Template1Component implements OnInit {
   }
 
   onSubmit() {
+    if (this.phase === 0 && this.datastory === undefined) {
+      window.alert("Bitte zuerst oben einen Namen für die Datastory vergeben!")
+      return
+    }
+    
     this.questions = [this.question1, this.question2]
     this.answers = [this.answer1, this.answer2]
     this.images = [this.image1, this.image2]

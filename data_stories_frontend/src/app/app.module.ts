@@ -37,6 +37,7 @@ import { Template4Component } from './templates/template4/template4.component';
 import { HomeComponent } from './home/home.component';
 import { OverviewDsAbgeschlossenComponent } from './overview-ds-abgeschlossen/overview-ds-abgeschlossen.component';
 import { OverviewDsUnbeantwortetComponent } from './overview-ds-unbeantwortet/overview-ds-unbeantwortet.component';
+import { Template3Component } from './templates/template3/template3.component';
 
 
 
@@ -69,6 +70,7 @@ import { OverviewDsUnbeantwortetComponent } from './overview-ds-unbeantwortet/ov
     HomeComponent,
     OverviewDsAbgeschlossenComponent,
     OverviewDsUnbeantwortetComponent,
+    Template3Component,
   ],
   imports: [
     BrowserModule,

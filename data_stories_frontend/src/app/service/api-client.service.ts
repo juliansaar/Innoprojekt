@@ -70,20 +70,5 @@ export class ApiClientService {
       );
 
   }
-  imageUploadAction2(uploadedImage: any, filename: string): void {
-    const imageFormData = new FormData();
-    imageFormData.append('images', uploadedImage, filename);
 
-    this.http.post(`${this.url}/images`, imageFormData, { observe: 'response' })
-      .subscribe((response) => {
-        if (response.status === 200) {
-          this.postResponse = response;
-          this.successResponse = this.postResponse.body.message;
-        } else {
-          this.successResponse = 'Image not uploaded due to some error!';
-        }
-      }
-      );
-
-  }
 }

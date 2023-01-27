@@ -14,6 +14,11 @@
                     <app-template2 [phase]=1 [datastory]="name" [foilnumber]="index" [last]="last" (newItemEvent)="nextT($event)"></app-template2>
                 
             </ng-container>
+            <ng-container *ngIf="content[index].component === 'template3'">
+               
+                <app-template3 [phase]=1 [datastory]="name" [foilnumber]="index" [last]="last" (newItemEvent)="nextT($event)"></app-template3>
+            
+        </ng-container>
             <ng-container *ngIf="content[index].component === 'template4'">
                 
                     <app-template4 [phase]=1 [datastory]="name" [foilnumber]="index"></app-template4>

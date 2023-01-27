@@ -117,6 +117,9 @@ def register():
 	if component == 'template2':
 		content_of_template = functions.save_component2(request_data)
 
+	if component == 'template3':
+		content_of_template = functions.save_component3(request_data)
+
 	if component == 'template4':
 		print(" in template4")
 		if phase == 1:
@@ -129,23 +132,7 @@ def register():
 	
 	if doc_id != '':
 		doc = db.get(doc_id)
-		if component == 'template1' and phase == 0:
-			doc['phase'] = phase
-			doc['content'].append(content_of_template)
-
-		elif component == 'template1' and phase == 1:
-			doc['phase'] = phase
-			doc['content'][foilnumber]['answers'] = content_of_template
-			
-		if component == 'template2' and phase == 0:
-			doc['phase'] = phase
-			doc['content'].append(content_of_template)
-
-		elif component == 'template2' and phase == 1:
-			doc['phase'] = phase
-			doc['content'][foilnumber]['answers'] = content_of_template
-
-		if component == 'template4' and phase == 0:
+		if phase == 0 and component != 'survey':
 			doc['phase'] = phase
 			doc['content'].append(content_of_template)
 
@@ -153,12 +140,16 @@ def register():
 			doc['phase'] = phase
 			doc['content'][foilnumber]['answeredform'] = answeredform
 
+		elif phase == 1 and component != 'survey':
+			doc['phase'] = phase
+			doc['content'][foilnumber]['answers'] = content_of_template
+
 		if component == 'survey':
 			doc['survey'] = request_data['feedback']
 			
 	else: doc = {'_id': uuid4().hex, 'datastory': name, 'phase' : phase, 'content': [
 		content_of_template
-			]#}
+			]
 		}
 	
 	db.save(doc)
