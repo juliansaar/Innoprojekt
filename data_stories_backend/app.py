@@ -1,30 +1,14 @@
 import base64
-import os
 from uuid import uuid4
 from flask import Flask, request
-from couchdb import Server
-from flaskext.couchdb import Document
-from flaskext.couchdb import CouchDBManager
-from couchdb import Server
 import couchdb
-import json
 import simplejson
 from flask_cors import CORS
-from dichte import classification, lgr
-#from waitress import serve
-#from applicationinsights.flask.ext import AppInsights
 import functions
 
 app = Flask(__name__)
 CORS(app,resources={r"*":{"origins":"*"}})
-#app.config['APPINSIGHTS_INSTRUMENTATIONKEY'] = '45e828dd-0e3a-43fa-b586-4c0167c2c9ed'
-#appinsights = AppInsights(app)
 
-# force flushing application insights handler after each request
-# @app.after_request
-# def after_request(response):
-#     appinsights.flush()
-#     return response
 prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
 local = 'http://admin:admin@localhost:5984/'
 
@@ -39,13 +23,6 @@ try:
 except:
 	db = couch.create('datastories')
 
-#scaler1, lgr1 = lgr()
-# @app.after_request
-# def after_request(response):
-#     response.headers.add('Access-Control-Allow-Origin', '*')
-#     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-#     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-#     return response
 @app.route('/', methods=['GET'])
 def base():
 	return simplejson.dumps({'status': "okay"})
@@ -176,16 +153,6 @@ def upload_files():
 	db.put_attachment(content=file,doc=doc,filename=file.filename)
 	return simplejson.dumps({'ok': "state"})
 
-
-@app.route('/data', methods=['POST'])
-def fetchData():
-	request_data = request.get_json()
-	druck = request_data['druck']
-	leck = request_data['leck']
-	status = classification(druck,leck,scaler1,lgr1)
-
-	return simplejson.dumps(int(status))
-
 def get_datastory_id(name):
     mango = {'selector': {'datastory': name}}
     y = list(db.find(mango))
@@ -195,99 +162,114 @@ def get_datastory_id(name):
         doc_id = ''
     return doc_id
 
-# legacy
-@app.route('/image', methods=['POST'])
-def upload_file():
-	try:
-		file = request.files["image"]
-		ds_name = file.filename.split('_')[0]
-	except:
-		print("Fehler bei request: ",file.filename)
+# legacy code for documentation purposes
 
-	counter = 0
-	mango = {'selector': {'datastory': ds_name}}
-	y= list(db.find(mango))
-	s = ''.join(str(x) for x in y)
-	doc_id = ''
-	rev_id = ''
-	for char in s:
-		if char == "'":
-			counter += 1
-			continue
-		if counter == 1:
-			doc_id += char
-		elif counter == 3:
-			rev_id += char
-		elif counter == 4: 
-			break
+#method to show how you can use a classification model in the frontend
+
+#from dichte import classification, lgr
+#scaler1, lgr1 = lgr()
+# @app.route('/data', methods=['POST'])
+# def fetchData():
+# 	request_data = request.get_json()
+# 	druck = request_data['druck']
+# 	leck = request_data['leck']
+# 	status = classification(druck,leck,scaler1,lgr1)
+#	return simplejson.dumps(int(status))
+
+
+#method to store images as attachments in the database
+# @app.route('/image', methods=['POST'])
+# def upload_file():
+# 	try:
+# 		file = request.files["image"]
+# 		ds_name = file.filename.split('_')[0]
+# 	except:
+# 		print("Fehler bei request: ",file.filename)
+
+# 	counter = 0
+# 	mango = {'selector': {'datastory': ds_name}}
+# 	y= list(db.find(mango))
+# 	s = ''.join(str(x) for x in y)
+# 	doc_id = ''
+# 	rev_id = ''
+# 	for char in s:
+# 		if char == "'":
+# 			counter += 1
+# 			continue
+# 		if counter == 1:
+# 			doc_id += char
+# 		elif counter == 3:
+# 			rev_id += char
+# 		elif counter == 4: 
+# 			break
 			
-	doc = {
-		  	"_id": doc_id,
-  			"_rev": rev_id,
-  			"datastory": ds_name
-		}
-	db.put_attachment(content=file,doc=doc,filename=file.filename)
-	return simplejson.dumps({'ok': "state"})
+# 	doc = {
+# 		  	"_id": doc_id,
+#   			"_rev": rev_id,
+#   			"datastory": ds_name
+# 		}
+# 	db.put_attachment(content=file,doc=doc,filename=file.filename)
+# 	return simplejson.dumps({'ok': "state"})
 
+#methods from the first prototype when we created the datastories programmatically
+# @app.route('/fetchimg/dichte', methods=['GET'])
+# def fetchDichte():
+# 	mango = {'selector': {'datastory': 'dichte'}}
+# 	y= list(db.find(mango))
+# 	s = ''.join(str(x) for x in y)
+# 	counter = 0
+# 	doc_id = ''
+# 	for char in s:
+# 		if char == "'":
+# 			counter += 1
+# 			continue
+# 		if counter == 1:
+# 			doc_id += char
+# 		elif counter == 3: 
+# 			break
 
-@app.route('/fetchimg/dichte', methods=['GET'])
-def fetchDichte():
-	mango = {'selector': {'datastory': 'dichte'}}
-	y= list(db.find(mango))
-	s = ''.join(str(x) for x in y)
-	counter = 0
-	doc_id = ''
-	for char in s:
-		if char == "'":
-			counter += 1
-			continue
-		if counter == 1:
-			doc_id += char
-		elif counter == 3: 
-			break
+# 	x = {f'dichte_{i}' : base64.b64encode(db.get_attachment(doc_id,f'dichte_{i}').read()) for i in range(3,6)}
 
-	x = {f'dichte_{i}' : base64.b64encode(db.get_attachment(doc_id,f'dichte_{i}').read()) for i in range(3,6)}
+# 	return simplejson.dumps(x)
 
-	return simplejson.dumps(x)
+# @app.route('/fetchimg/kaffee', methods=['GET'])
+# def fetchKaffee():
+# 	mango = {'selector': {'datastory': 'kaffee'}}
+# 	y= list(db.find(mango))
+# 	s = ''.join(str(x) for x in y)
+# 	counter = 0
+# 	doc_id = ''
+# 	for char in s:
+# 		if char == "'":
+# 			counter += 1
+# 			continue
+# 		if counter == 1:
+# 			doc_id += char
+# 		elif counter == 3: 
+# 			break
+# 	xspecial = {f'kaffee_3_{i}' : base64.b64encode(db.get_attachment(doc_id,f'kaffee_3_{i}').read()) for i in range(1,4)}
+# 	x = {f'kaffee_{i}' : base64.b64encode(db.get_attachment(doc_id,f'kaffee_{i}').read()) for i in range(4,6)}
+# 	g = xspecial | x
+# 	return simplejson.dumps(g)
 
-@app.route('/fetchimg/kaffee', methods=['GET'])
-def fetchKaffee():
-	mango = {'selector': {'datastory': 'kaffee'}}
-	y= list(db.find(mango))
-	s = ''.join(str(x) for x in y)
-	counter = 0
-	doc_id = ''
-	for char in s:
-		if char == "'":
-			counter += 1
-			continue
-		if counter == 1:
-			doc_id += char
-		elif counter == 3: 
-			break
-	xspecial = {f'kaffee_3_{i}' : base64.b64encode(db.get_attachment(doc_id,f'kaffee_3_{i}').read()) for i in range(1,4)}
-	x = {f'kaffee_{i}' : base64.b64encode(db.get_attachment(doc_id,f'kaffee_{i}').read()) for i in range(4,6)}
-	g = xspecial | x
-	return simplejson.dumps(g)
-
-@app.route('/fetchds', methods=['GET'])
-def fetchDs():
+# @app.route('/fetchds', methods=['GET'])
+# def fetchDs():
 	
-	request_data = request.get_json()
-	name = request_data['datastory']
-	items = []
+# 	request_data = request.get_json()
+# 	name = request_data['datastory']
+# 	items = []
 
-	mango = {'selector': {'done': 'true'}}
-	y= list(db.find(mango))
+# 	mango = {'selector': {'done': 'true'}}
+# 	y= list(db.find(mango))
 
-	datastory = y[0]['datastory']
-	content = y[0]['content']
-	dic = {'datastory' : y[0]['datastory'],
-		   'content' : y[0]['content']} 
+# 	datastory = y[0]['datastory']
+# 	content = y[0]['content']
+# 	dic = {'datastory' : y[0]['datastory'],
+# 		   'content' : y[0]['content']} 
 	
-	items.extend([datastory, content])
+# 	items.extend([datastory, content])
 	
-	return simplejson.dumps(dic)
+# 	return simplejson.dumps(dic)
 
 if __name__ == '__main__':
 	app.run()
