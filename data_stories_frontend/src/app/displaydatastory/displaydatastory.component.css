@@ -1,24 +1,16 @@
 form {
     margin: 20px !important;
   }
-
- 
-
-  
-
 button{
    margin-top: 21px;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 
 }
-
-
 .inhalt{
   display: flex;
   justify-content: center;
 }
-
 .box{
   background-color: white;
   margin-top: 50px;

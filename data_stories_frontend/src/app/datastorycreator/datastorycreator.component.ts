@@ -1,8 +1,7 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiClientService } from '../service/api-client.service';
-import { Template1Component } from '../templates/template1/template1.component';
 
 @Component({
   selector: 'app-datastorycreator',
@@ -11,20 +10,11 @@ import { Template1Component } from '../templates/template1/template1.component';
   
 })
 export class DatastorycreatorComponent implements OnInit {
-  @ViewChild(Template1Component, {static: false}) child:Template1Component;
   public form: Object = {components: []};
   tabs = [1, 2, 3];
   selected = new FormControl(0);
   name : string;
-  fragerunde: number;
-  adressat: string;
-  stand: string;
-  datensatz: string;
-  zeitraum_von: Date;
-  zeitraum_bis: Date;
-  messungsintervall: string;
-  eintraege: number;
-  file: File = null; // Variable to store file
+  file: File = null;
   showTemplate: number = 0;
   
   constructor(private apiclient: ApiClientService, private router: Router) { }
@@ -43,9 +33,7 @@ export class DatastorycreatorComponent implements OnInit {
   removeTab(index: number) {
     this.tabs.splice(index, 1);
   }
-  
-  onChange(event) {
-  }
+
   nextT(tab: number) {
     this.selected.setValue(tab);
     this.showTemplate = 0;
@@ -66,9 +54,6 @@ export class DatastorycreatorComponent implements OnInit {
   
   onChange1(event){
     this.file = event.target.files[0];
-  }
-  onUpload(){
-    this.apiclient.imageUploadAction(this.file,'name')
   }
   
 }

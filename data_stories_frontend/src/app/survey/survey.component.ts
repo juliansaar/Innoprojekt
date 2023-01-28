@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ApiClientService } from '../service/api-client.service';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-survey',

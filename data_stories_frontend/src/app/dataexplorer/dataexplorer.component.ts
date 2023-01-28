@@ -16,12 +16,7 @@ export class DataexplorerComponent implements OnInit {
   constructor(private apiClient: ApiClientService) {
    }
 
-  ngOnInit(): void {
-    // // this.apiClient.getAll().subscribe((data: any) => this.jsonRaw = {
-    // //    ...data
-    // // });
-    // // this.jsonRaw = this.jsonRaw[0]
-    
+  ngOnInit(): void {   
 }
 onClick(){
   this.apiClient.getStatus(this.druck,this.leck).subscribe((response) =>

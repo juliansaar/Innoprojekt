@@ -48,3 +48,11 @@ def save_component2(request_data):
 			"images" : request_data['images']
 		}
     return specifics
+
+def save_component3(request_data):
+	if request_data['phase'] == 0:
+		return request_data['content3']
+	else: 
+		return ''
+
+

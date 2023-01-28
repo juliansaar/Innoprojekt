@@ -1,0 +1,80 @@
+form {
+  margin: 20px !important;
+}
+
+#buttons {
+  margin: 10px !important;
+}
+
+
+#fragen {
+  color: orange;
+  margin: 3;
+}
+
+p {
+  margin: 0;
+  font-size: 1vw;
+}
+
+textarea {
+  width: 20vw;
+  height: 3vw;
+  margin: 1vw;
+}
+
+.wrap {
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  width: 20vw;
+  height: 15vh;
+}
+
+.img {
+  opacity: 0.2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20%;
+  height: auto;
+}
+
+.text-center {
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  opacity: 1;
+  width: 38vw;
+  height: 47vh;
+}
+
+.wrap1 {
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  width: 20vw;
+  height: 5vh;
+}
+
+.text-center1 {
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  opacity: 1;
+  width: 35vw;
+  height: "200px";
+}
+
+.imgs {
+  display: flex;
+  opacity: 0, 3;
+}
+
+.container {
+  display: flex
+}

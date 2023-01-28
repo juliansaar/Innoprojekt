@@ -35,6 +35,10 @@ export class Template4Component implements OnInit {
     }
   }
   onSubmit(submission: any) {
+    if (this.phase === 0 && this.datastory === undefined) {
+      window.alert("Bitte zuerst oben einen Namen für die Datastory vergeben!")
+      return
+    }
     if (this.phase == 1){
     var body = {template: "template4", datastory: this.datastory, foilnumber: this.foilnumber, "answeredform": submission.data, phase: 1}
     this.apiclient.createDataStory(body).subscribe(response => {
