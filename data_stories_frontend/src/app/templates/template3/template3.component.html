@@ -64,7 +64,8 @@
   <ng-template #fetchImgs>
     <img src="{{image1}}">
   </ng-template>
-</div>
+</div><div id="buttons">
   <button *ngIf="phase !== 2 && last === false &&  datastory !== ''" type="submit" (click)="onSubmit()" class="btn btn-success">Speichern und Weiter</button>
   <button *ngIf="phase === 1 && last === true &&  datastory !== ''" type="submit" (click)="onSubmit()" class="btn btn-success">Speichern und Data Story Abschicken</button>
+</div>
 </form>
