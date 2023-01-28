@@ -33,27 +33,13 @@
               <input type="radio" id="kp" name="radio" value="kp" disabled>
               <label for="kp">Weiß ich nicht</label>
             </div>
-            <div *ngIf="phase === 1"><!--<textarea name="answer1" [(ngModel)]="answer1" aria-label="c" placeholder="Deine Antwort"></textarea>
-              <input type="radio" id="ja" name="radio" value="ja" [(ngModel)]="radio">
-              <label for="ja">Ja</label><br>
-              <input type="radio" id="nein" name="radio" value="nein" [(ngModel)]="radio">
-              <label for="nein">Nein</label><br>
-              <input type="radio" id="kp" name="radio" value="kp" [(ngModel)]="radio">
-              <label for="kp">Weiß ich nicht</label>-->
+            <div *ngIf="phase === 1">
 
               <mat-radio-group class="radio-group" [(ngModel)]="answer1" [ngModelOptions]="{standalone: true}">
                 <mat-radio-button class="radio-button" *ngFor="let radio of radio_answers" [value]="radio">{{radio}}</mat-radio-button>
               </mat-radio-group>
             </div>
             <div *ngIf="phase === 2">Antwort: {{answer1}}</div>
-
-            <!-- Question 2 From Data Scientist 
-            <div *ngIf="phase === 0; else fetchTheQuestion1">
-                <textarea name="question2" [(ngModel)]="question2" name="question2" aria-label="e"></textarea>
-            </div>
-            <ng-template #fetchTheQuestion1>
-                <p>{{question2}}</p>
-            </ng-template>-->
 
             <!-- Answer 2 From Domain Expert -->
             <div *ngIf="phase === 0"><textarea disabled placeholder="Antwortfeld des Domänenexperten"></textarea></div>
@@ -67,24 +53,12 @@
                 <img src="../assets/boxplot.png" alt="boxplot">
               </div>
               <div class="text-center">
-                <!-- <div id="t1">
-                  <input class="form-control" type="file" (change)="onChange1($event)">
-                  <button type="submit" (click)="onUpload()" class="btn btn-success">
-                    Upload
-                  </button>
-                </div> -->
               </div>
             </div>
       
             <div class="wrap1">
-              <!-- <div class="img"><img src="../assets/describe_tabelle.png" alt="describe_tabelle" width="200px"
-                  height="200px"> 
-              </div>-->
               <div class="text-center1">
                 <input class="form-control" type="file" (change)="onChange1($event)">
-                <!-- <button type="submit" (click)="onUpload()" class="btn btn-success">
-                  Upload
-                </button> -->
               </div>
               <div>
               </div>

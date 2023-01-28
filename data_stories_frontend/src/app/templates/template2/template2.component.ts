@@ -22,23 +22,17 @@ export class Template2Component implements OnInit {
   answer1: string;
   radio_answers: string[] = ['Ja', 'Nein', 'Weiß ich nicht'];
   answer2: string;
-  submitted: boolean;
   body: any;
   content: any;
-  json: any;
   questions: string[];
   answers: string[];
   images: string[];
   data = undefined;
-  basic_content: any;
-  b: any;
-  next: boolean;
   constructor(private apiclient: ApiClientService) {
 
   }
 
   async ngOnInit() {
-    this.next = false;
     console.log('t2 oninit', this.phase)
     if (this.phase !== 0)
       this.data = await this.apiclient.getDatastory(this.datastory).subscribe(response => {
@@ -74,7 +68,6 @@ export class Template2Component implements OnInit {
     else if (this.phase === 2) {
     }
     this.newItemEvent.emit(this.foilnumber);
-    this.next = true;
   }
 
   update() {
