@@ -3,6 +3,7 @@ from uuid import uuid4
 from flask import Flask, request
 import couchdb
 import simplejson
+
 import functions
 
 app = Flask(__name__)
@@ -164,8 +165,10 @@ def get_datastory_id(name):
         doc_id = ''
     return doc_id
 
+
 if __name__ == '__main__':
 	app.run(host='0.0.0.0')
+
 
 # legacy code for documentation purposes
 
@@ -274,4 +277,5 @@ if __name__ == '__main__':
 	
 # 	items.extend([datastory, content])
 	
+
 # 	return simplejson.dumps(dic)
