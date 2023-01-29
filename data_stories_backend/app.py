@@ -3,20 +3,22 @@ from uuid import uuid4
 from flask import Flask, request
 import couchdb
 import simplejson
-from flask_cors import CORS
 import functions
 
 app = Flask(__name__)
-#CORS(app,resources={r"*":{"origins":"*"}})
 
 prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
-local = 'http://admin:innoprojekt@localhost:5984/'
+local = 'http://admin:admin@localhost:5984/'
+prod_localhost = 'http://admin:innoprojekt@localhost:5984/'
 
-#import platform
-#platform.system()
-#if platform.system() == 'Windows' or platform.system()== 'Linux':
-couch = couchdb.Server(local)
-#else: couch = couchdb.Server(prod)
+
+import platform
+platform.system()
+if platform.system() == 'Windows':
+	couch = couchdb.Server(local)
+elif platform.system()== 'Linux':
+	couch = couchdb.Server(prod_localhost)
+else: couch = couchdb.Server(prod)
 
 try:
 	db = couch['datastories']
@@ -162,6 +164,9 @@ def get_datastory_id(name):
         doc_id = ''
     return doc_id
 
+if __name__ == '__main__':
+	app.run(host='0.0.0.0')
+
 # legacy code for documentation purposes
 
 #method to show how you can use a classification model in the frontend
@@ -270,6 +275,3 @@ def get_datastory_id(name):
 # 	items.extend([datastory, content])
 	
 # 	return simplejson.dumps(dic)
-
-if __name__ == '__main__':
-	app.run(host='0.0.0.0')
