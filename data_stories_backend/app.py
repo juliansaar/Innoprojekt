@@ -7,16 +7,16 @@ from flask_cors import CORS
 import functions
 
 app = Flask(__name__)
-CORS(app,resources={r"*":{"origins":"*"}})
+#CORS(app,resources={r"*":{"origins":"*"}})
 
 prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
-local = 'http://admin:admin@localhost:5984/'
+local = 'http://admin:innoprojekt@localhost:5984/'
 
-import platform
-platform.system()
-if platform.system() == 'Windows':
-	couch = couchdb.Server(local)
-else: couch = couchdb.Server(prod)
+#import platform
+#platform.system()
+#if platform.system() == 'Windows' or platform.system()== 'Linux':
+couch = couchdb.Server(local)
+#else: couch = couchdb.Server(prod)
 
 try:
 	db = couch['datastories']
@@ -272,4 +272,4 @@ def get_datastory_id(name):
 # 	return simplejson.dumps(dic)
 
 if __name__ == '__main__':
-	app.run()
+	app.run(host='0.0.0.0')
