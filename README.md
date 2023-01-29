@@ -52,6 +52,23 @@ flask run
 ```
 
 ## Deploy Backend to Azure
-push your changes and merge into main
--> connect to Azure VM via ssh and pull the changes
--> restart the app
+Push your changes and merge into main:
+```
+git push
+```
+Connect in linux shell to Azure VM via ssh:
+```
+sudo ssh -i ~/.ssh/testd_key.pem azureuser@20.107.50.230
+```
+Pull the changes:
+```
+git pull
+```
+Stop the gunicorn3 server:
+```
+sudo pkill -f gunicorn3
+```
+Restart the gunicorn3 server:
+```
+gunicorn3 --workers=3 app:app --deamon
+```
