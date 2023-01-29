@@ -7,9 +7,9 @@ import functions
 
 app = Flask(__name__)
 
-prod = 'http://admin:innoprojekt@20.107.50.230:5984/'
+prod = 'set variable in cloud'
 local = 'http://admin:admin@localhost:5984/'
-prod_localhost = 'http://admin:innoprojekt@localhost:5984/'
+prod_localhost = 'set variable in cloud'
 
 
 import platform

@@ -1,5 +1,6 @@
 # Innoprojekt
-Innovation project about industrial data stories
+Innovation project about industrial data stories <br>
+If you need the credentials for the prod database, please contact one of the Contributers
 
 ## Local Development Angular
 ### Prerequisites
